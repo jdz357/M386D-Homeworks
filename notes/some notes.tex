@@ -1,4 +1,4 @@
-\documentclass[letterpaper,twoside,11pt]{article}
+\documentclass[letterpaper,twoside,12pt]{article}
 \usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, bbm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor, hyperref}
 \usepackage{amsthm}		%theorem style 
 %\usepackage{geometry}  %Adjust margins if needed. 
@@ -107,7 +107,7 @@ The Fourier Transform can be defined naturally for functions in $L^1\left( \R^d 
 \subsection{$L^1\left( \R^d \right)$ Theory}
 
 For \cg (a point) \cbk $\xi \in \R^d$, the function 
-\[\varphi_\xi\left( x \right) = e^{-ix\cdot \xi} = \cos\left( x\cdot \xi  \right) - i \sin \left( x\cdot \xi \right)\] for $x \in \R^d$ defines a wave in the direction $\xi$. Moreover, the period of $\varphi_\xi$ in the $j$-th direction is $2\pi / \xi_j$. 
+\[\varphi_\xi : x\mapsto  e^{-ix\cdot \xi} = \cos\left( x\cdot \xi  \right) - i \sin \left( x\cdot \xi \right)\] for $x \in \R^d$ defines a wave in the direction $\xi$. Moreover, the period of $\varphi_\xi$ in the $j$-th direction is $2\pi / \xi_j$. 
 \cg Consider the simplest nontrivial example, say when we are in $\R^2$ and we let $\xi = \left( 1, 1 \right)$. Then, the function $\varphi_\xi (x) = e^{-i(x + y)} = \cos\left( x + y \right) - i \sin \left( x + y \right)$ defines a wave that propagates in the direction $\left( 1, 1 \right)$. Look at the real part by itself, for example. It is clear that the period in the $x$ direction is $2\pi$, indeed as it should be. The same can be easily seen with the imaginary part. \cbk These harmonic functions have certain nice properties: 
 
 \begin{prop}
@@ -122,8 +122,44 @@ For \cg (a point) \cbk $\xi \in \R^d$, the function
     \item We clearly have 
     \[{\left| {{\varphi _\xi }} \right|^2} = {\cos ^2}\left( {x \cdot \xi } \right) + {\sin ^2}\left( {x \cdot \xi } \right) = 1,\]
     and 
+    \[\overline{\varphi_\xi}  = \cos\left( x\cdot \xi  \right) + i \sin\left( x \cdot \xi \right) = \cos\left( -x \cdot \xi \right) - i\sin\left( -x\cdot \xi \right) = \varphi_{-\xi}.\]
+    \item \[\varphi_\xi \left( x + y \right) = e^{-i\left( x + y \right)\cdot \xi} = e^{-ix\cdot \xi -iy\cdot \xi} = e^{-ix\cdot \xi} e^{-iy\cdot \xi} = \varphi_\xi \left( x \right) \varphi_\xi \left( y \right).\]
+    \item \[-\nabla^2 \varphi_\xi = - \left( -i\xi \right)^2 e^{-ix\cdot \xi} = |\xi|^2 \varphi_\xi.\] We remark that this property demonstrates that functions $\varphi_\xi$ are eigenfunctions of the Laplacian operator with eigenvalues $-|\xi|^2$. 
   \end{enumerate}
 \end{proof}
+
+We now define the Fourier Transform: 
+\begin{definition}
+  For $f \in L^1\left( \R^d \right)$, the Fourier Transform of $f$ is 
+  \[\left( \mathcal F f \right)\left( \xi \right) =\hat f \left( \xi  \right)= \frac{1}{\left( 2\pi  \right)^{d/2}} \int\limits_{\R^d } f(x) e^{-ix\cdot \xi} dx.\]
+\end{definition}
+At this moment, it is not immediately clear what function spaces the Fourier Transform connects. However, for $f \in L^1$, the Fourier transform is well defined since 
+\[\left\vert f(x) e^{- ix\cdot \xi} \right\vert = |f(x)|.\]
+\cg What we mean when we say well defined is that the integral defining $\hat f$ converges whenever $f \in L^1$. Indeed, $f \in L^1$ iff $\int |f(x)| dx < \infty$, but as we just showed, $\int |f(x) | dx = \int \left\vert f(x) e^{- ix\cdot \xi} \right\vert dx$, so the integral converges. \cbk 
+
+Additionally, we remark that it is possible (and equivalent) to define the Fourier transform in different ways, but that the end results are very similar and it is merely a matter of preference. 
+
+We preface some additional discussion with a motivating example to show that we need to take care when talking about function spaces:
+\begin{example}
+  On $\R$, let $f : x \mapsto \chi_{[-1/2, 1/2]}(x)$, the characteristic function on the interval $[-1/2, 1/2]$. Obviously, $f$ is an $L^1\left( \R \right)$ function. Now for every $\xi\neq 0$, 
+  \begin{align*}
+    \hat f (\xi) &= \left( 2\pi \right)^{-1/2} \int\limits_\R f(x) e^{-ix\cdot \xi} dx \\
+    &= \left( 2\pi \right)^{-1/2} \int\limits_{-1/2}^{1/2} e^{-ix\cdot \xi} dx \\
+    &=\left( 2\pi \right)^{-1/2} \frac{2}{k}\sin\left( \frac{k}{2} \right).
+  \end{align*}
+  This is fine, but notice that $\hat f$ is no longer integrable! So, just because $f \in L^1$, we have no reason to believe that $\hat f$ is also in $L^1$. 
+\end{example}
+We have now the following proposition: 
+\begin{prop}
+  The Fourier Transform viewed in the spaces
+  \[\mathcal F : L^1\left( \R^d \right) \to L^\infty \left( \R^d \right)\]
+  is a bounded linear map, and 
+  \[\left\| \hat f \right\|_{L^\infty \left( \R^d \right)} \leq \left( 2\pi \right)^{-d/2} \left\| f \right\|_{L^1\left( \R^d \right)}. \]
+\end{prop}
+\begin{proof}
+  Clearly, $\mathcal F$ is linear since the integral is a linear operator. 
+\end{proof}
+
 
 
 
