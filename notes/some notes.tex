@@ -157,9 +157,80 @@ We have now the following proposition:
   \[\left\| \hat f \right\|_{L^\infty \left( \R^d \right)} \leq \left( 2\pi \right)^{-d/2} \left\| f \right\|_{L^1\left( \R^d \right)}. \]
 \end{prop}
 \begin{proof}
-  Clearly, $\mathcal F$ is linear since the integral is a linear operator. 
+  Clearly, $\mathcal F$ is linear since the integral is a linear operator. Furthermore, 
+  \[{\left\| {\hat f} \right\|_{{L^\infty }}} = \mathop {\max }\limits_{\xi  \in {\mathbb{R}^d}} {\left( {2\pi } \right)^{ - d/2}}\left| {\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot \xi }}dx} } \right| \leqslant {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\left| {f\left( x \right){e^{ - ix \cdot \xi }}} \right|dx}  = {\left( {2\pi } \right)^{ - d/2}}{\left\| f \right\|_{{L^1}}}\]
 \end{proof}
-
+\begin{example}
+  Consider the characteristic function on the interval $[-1, 1]^d$, 
+  \[f:x \mapsto {\chi _{{{\left[ { - 1,1} \right]}^d}}}\left( x \right)\]
+  Certainly, $f$ is an $L^1$ function. Its Fourier Transform is 
+  \begin{align*}
+    \hat f\left( \xi  \right) &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot \xi }}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{ - 1}^1 {\int\limits_{ - 1}^1 { \ldots \int\limits_{ - 1}^1 {{e^{ - ix \cdot \xi }}d{x_1}d{x_2} \ldots d{x_d}} } }  \hfill \\
+     &= {\left( {2\pi } \right)^{ - d/2}}\prod\limits_{j = 1}^d {\int\limits_{ - 1}^1 {{e^{ - i{x_j}{\xi _j}}}d{x_j}} }  \hfill \\
+     &= {\left( {2\pi } \right)^{ - d/2}}\prod\limits_{j = 1}^d {\frac{{2\sin {\xi _j}}}{{{\xi _j}}}} 
+  \end{align*}
+  We can easily verify that $\hat f$ is bounded, since each term is bounded by $2/\xi_j$ and so the finite product is bounded. 
+\end{example}
+Additional properties include
+\begin{prop}
+  For $f\in L^1\left( \R^d \right)$ and a translation operator $\mathcal T_y$, i.e. $\mathcal T_yf \left( x \right) = f\left( x-y \right)$, 
+  \begin{enumerate}
+    \item $\widehat {\left( {{\mathcal{T}_y}f} \right)}\left( \xi  \right) = {e^{ - iy \cdot \xi }}\hat f\left( \xi  \right)$ for every $y \in \R^d$, that is, the Fourier transform takes translations into multiplication. 
+    \item $\widehat {\left( {{e^{ix \cdot y}}f} \right)}\left( \xi  \right) = {\mathcal{T}_y}\hat f\left( \xi  \right)$ for every $y \in \R^d$, that is, the Fourier transform takes multiplication by a harmonic function to translation.
+    \item For any $r>0$, $\widehat {f\left( {rx} \right)}\left( \xi  \right) = {r^{ - d}}\hat f\left( {{r^{ - 1}}\xi } \right)$, that is, the Fourier transform takes scaling into premultplying and scaling. 
+    \item $\widehat {\bar f}\left( \xi  \right) = \overline {\hat f\left( { - \xi } \right)} $, that is, the Fourier transform of complex conjugate equals complex conjugate of the Fourier transform, reflected. 
+  \end{enumerate} 
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+    \item \begin{align*}
+      \mathcal{F}f\left( {x - y} \right)\left( \xi  \right) &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( {x - y} \right){e^{ - ix \cdot \xi }}dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( u \right){e^{ - i\left( {u + y} \right) \cdot \xi }}du}  \hfill \\
+       &= {e^{ - iy \cdot \xi }}\mathcal{F}f\left( x \right)\left( \xi  \right) 
+    \end{align*}
+    \item \begin{align*}
+      \mathcal{F}\left( {{e^{ix \cdot y}}f\left( x \right)} \right)\left( \xi  \right) &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {{e^{ix \cdot y}}f\left( x \right){e^{ - ix \cdot \xi }}dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot \xi  + ix \cdot y}}dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot \left( {\xi  - y} \right)}}dx}  \hfill \\
+       &= \mathcal{F}f\left( x \right)\left( {\xi  - y} \right) \hfill \\
+       &= {\mathcal{T}_y}\hat f\left( \xi  \right)
+    \end{align*}
+    \item \begin{align*}
+      \mathcal{F}f\left( {rx} \right)\left( \xi  \right) &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( {rx} \right){e^{ - ix \cdot \xi }}dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( u \right){e^{ - i\frac{u}{r} \cdot \xi }}\frac{{du}}{{{r^d}}}}  \hfill \\
+       &= {r^{ - d}}{\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( u \right){e^{ - i\frac{u}{r} \cdot \xi }}du}  \hfill \\
+       &= {r^{ - d}}{\left( {2\pi } \right)^{ - d/2}}\hat f\left( {{r^{ - 1}}\xi } \right) 
+    \end{align*}
+    \item \begin{align*}
+      \mathcal{F}\bar f\left( \xi  \right) &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\bar f\left( x \right){e^{ - ix \cdot \xi }}dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\overline {f\left( x \right)\overline {{e^{ - ix \cdot \xi }}} } dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\overline {f\left( x \right){e^{ - ix \cdot \left( { - \xi } \right)}}} dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - d/2}}\overline {\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot \left( { - \xi } \right)}}dx} }  \hfill \\
+       &= \overline {\hat f\left( { - \xi } \right)} 
+      \end{align*}
+      Convince yourself that we can pull the complex conjugate out, or let $f(x) = a(x) + ib(x)$, and 
+      \begin{align*}
+        \mathcal{F}\bar f\left( \xi  \right) &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\bar f\left( x \right){e^{ - ix \cdot \xi }}dx}  \hfill \\
+         &= {\left( {2\pi } \right)^{ - d/2}}\left[ {\int\limits_{{\mathbb{R}^d}} {a\left( x \right){e^{ - ix \cdot \xi }}dx}  - i\int\limits_{{\mathbb{R}^d}} {b\left( x \right){e^{ - ix \cdot \xi }}dx} } \right] \hfill \\
+         &= {\left( {2\pi } \right)^{ - d/2}}\overline {\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot \xi }}dx} } 
+      \end{align*}
+      by linearity of the integral. 
+  \end{enumerate}
+\end{proof}
+While the Fourier transform maps $L^1$ into $L^\infty$, it most definitely does not map onto the entire space $L^\infty$. Let us attempt to better understand the range of $\mathcal F$. We do know that it is contained fully in a subspace of $L^\infty$ we denote $C_v\left( \R^d \right)$. 
+\begin{definition}
+  The space $C_v\left( \R^d \right)$ is the space of continuous functions that vanish at infinity, i.e. 
+  \[C_v\left( \R^d \right) = \{f \in C_0\left( \R^d \right) : f\text{ vanishes at }\infty\}.\]
+  We say that a continuous function $f$ vanishes at infinity if and only if for every $\varepsilon>0$, there exists a pre-compact $K \subset \R^d$ such that 
+  \[|f(x)| < \varepsilon\] whenever $x \notin K$. \cg Compare this definition with that of compact support. Notice that this is a slightly weaker definition, and certainly all continuous functions with compact support belong to $C_v\left( \R^d \right)$. \cbk 
+\end{definition}
+\begin{prop}
+  $C_v\left( \R^d \right)$ is a closed linear subspace of $L^\infty\left( \R^d \right)$. 
+\end{prop}
+\begin{proof}
+  
+\end{proof}
 
 
 
