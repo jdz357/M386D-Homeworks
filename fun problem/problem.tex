@@ -71,48 +71,32 @@
 \begin{document}
 %\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
 \title{\vspace{-2\baselineskip} 
-A fun problem
+A fun problem 2
 }
 %\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
 \author{Jonathan Zhang  }
 \date{}
 \maketitle
 
+Your task in this problem is to establish a relationship between \textit{pairs} of natural numbers and natural numbers.
+The \textit{set of natural numbers} is the set $\{1, 2, 3, 4, \dots\}$, not including zero. 
+A \textit{pair} of natural numbers is denoted $(i, j)$ where $i$ and $j$ are both natural numbers. The first few pairs of natural numbers are $(1, 1)$, $(1, 2)$, $(2, 1)$, and so on. 
 
-Consider a square of side length $4$, with a half-circle and quarter circle inscribed in it as shown below: 
+Your task is to \textbf{find} a formula that takes a pair of natural numbers $(i,j)$ and associates a single, unique, natural number $k$. For example, you may start like 
 
-\begin{center}
-  \includegraphics*[scale=0.25]{Untitled.png}
-\end{center}
-Determine the enclosed area $S$. 
+\[\begin{array}{*{20}{c}}
+  {\left( {1,1} \right)}& \to &1 \\ 
+  {\left( {2,1} \right)}& \to &2 \\ 
+  {\left( {1,2} \right)}& \to &3 \\ 
+  {\left( {3,1} \right)}& \to &4 \\ 
+   \vdots & \vdots & \vdots  
+\end{array}\]
 
-\paragraph*{A quick solution with calculus:}
-It is easy to see that the enclosed area can be calculated by integrating the difference of the curves of the two circles. 
-We begin by calculating the coordinates of the intersection point. Let the origin be the lower left corner of the figure. Then the half circle is givn by 
-\[(x-2)^2 + y^2 = 4\]
-and the quarter circle by 
-\[x^2 + (y-4)^2 = 16. \]
-Elementary calculation reveals that the intersection point of the two curves is located at $\left(\frac{16}{5}, \frac{8}{5}\right)$. It is then only the matter of evaluating the correct integral, 
-\[\int\limits_0^{16/5} \sqrt{4-(x-2)^2} - (4-\sqrt{16-x^2}) dx \approx 3.847. \]
+Once you have done so, can you do the reverse? That is, given a natural number $k$, find the unique pair of natural numbers $\left( i,j \right)$ that are associated with it? 
 
-\paragraph*{A more elementary solution:} With the help of some cleverly drawn lines, the problem can be solved exactly with nothing more than simple formulae. We recall some fundemantal facts. Given an isoscoles triangle as shown, its area is given by $A = \frac{1}{2}R^2 \sin(\vartheta)$. 
-\begin{center}
-  \includegraphics*[scale=0.25]{triangle.png}
-\end{center}
-Additionally, the area of a sector swept by the angle $\vartheta$ is $\frac{1}{2}\vartheta R^2$. The area of what is leftover therefore is $\frac{1}{2}R^2 \vartheta - \frac{1}{2}R^2 \sin\vartheta$.
 
-Consider now the same figure with some additional lines and points: 
-\begin{center}
-  \includegraphics*[scale=0.25]{addedlines.png}
-\end{center}
-We see that $S = S_1 + S_2$, and that triangles $OCD$ and $ODE$ are isoscoles triangles for which we can apply this rule. Our task now is only to find the angles $\vartheta_1$ and $\vartheta_2$. 
-We see that $\sin\vartheta_1 = (16/5)/4 = 4/5$. This means that 
-\[S_2 = \frac{1}{2}4^2 \arcsin(4/5) - \frac{1}{2}4^2\frac{4}{5} = 8\arcsin(4/5) - \frac{32}{5}.\]
-Additionally, we see that $\sin(\pi - \vartheta_2) = (8/5)/2 = 4/5$ so $\vartheta_2 = \pi - \arcsin(4/5)$. This means that 
-\[S_1 = \frac{1}{2}2^2 (\pi - \arcsin(4/5)) - \frac{1}{2}2^2\sin(\pi - \arcsin(4/5)) = 2(\pi - \arcsin(4/5)) - \frac{8}{5}\]
-Summing up, 
 
-\[S = S_1 + S_2 = 2(\pi - \arcsin(4/5)) - \frac{8}{5} + 8\arcsin(4/5) - \frac{32}{5} = 2\pi + 6\arcsin(4/5) -8 \approx 3.847.\]
+
 
 
 
