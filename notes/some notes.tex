@@ -22,6 +22,7 @@
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem*{lemm}{Lemma}
+\newtheorem{slem}{Sub-Lemma}
 \newtheorem{prop}{Proposition}[section]
 \newtheorem*{propp}{Proposition}
 \newtheorem*{ex}{Example}
@@ -225,12 +226,62 @@ While the Fourier transform maps $L^1$ into $L^\infty$, it most definitely does 
   We say that a continuous function $f$ vanishes at infinity if and only if for every $\varepsilon>0$, there exists a pre-compact $K \subset \R^d$ such that 
   \[|f(x)| < \varepsilon\] whenever $x \notin K$. \cg Compare this definition with that of compact support. Notice that this is a slightly weaker definition, and certainly all continuous functions with compact support belong to $C_v\left( \R^d \right)$. \cbk 
 \end{definition}
+
+
+
+
+
+
 \begin{prop}
   $C_v\left( \R^d \right)$ is a closed linear subspace of $L^\infty\left( \R^d \right)$. 
 \end{prop}
 \begin{proof}
   
 \end{proof}
+
+\begin{lemma}[Reimann-Lebesgue Lemma]
+  The Fourier Transform maps 
+  \[\mathcal{F}:{L^1}\left( {{\mathbb{R}^d}} \right) \to {C_v}\left( {{\mathbb{R}^d}} \right).\]
+  \cg That is to say, the Fourier Transform of an $L^1$ function is a $C_v$ function. \cbk Thus, for $f\in L^1\left( \R^d \right)$, 
+  \[\hat f \in {C_0}\left( {{\mathbb{R}^d}} \right)\qquad and\qquad \mathop {\lim }\limits_{\left| \xi  \right| \to \infty } \left| {\hat f\left( \xi  \right)} \right| = 0.\] (Merely the definition of $\hat f \in C_0$)
+\end{lemma}
+\begin{proof}
+  \href{https://web.ma.utexas.edu/users/koch/teaching/M383C-F22/access/M383C-F22-HW2-Solutions.pdf}{See Hans' homework problem.} Suppose $f \in L^1\left( \R^d \right)$. 
+
+\begin{slem}
+\end{slem}
+
+
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
