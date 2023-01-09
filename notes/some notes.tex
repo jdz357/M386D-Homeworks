@@ -246,7 +246,8 @@ While the Fourier transform maps $L^1$ into $L^\infty$, it most definitely does 
   \[\hat f \in {C_0}\left( {{\mathbb{R}^d}} \right)\qquad and\qquad \mathop {\lim }\limits_{\left| \xi  \right| \to \infty } \left| {\hat f\left( \xi  \right)} \right| = 0.\] (Merely the definition of $\hat f \in C_0$)
 \end{lemma}
 \begin{proof}
-  \href{https://web.ma.utexas.edu/users/koch/teaching/M383C-F22/access/M383C-F22-HW2-Solutions.pdf}{See Hans' homework problem.} Suppose $f \in L^1\left( \R^d \right)$. 
+  \href{https://web.ma.utexas.edu/users/koch/teaching/M383C-F22/access/M383C-F22-HW2-Solutions.pdf}{See Hans' homework problem.} 
+  Suppose $f \in L^1\left( \R^d \right)$. What we want to show is that $\hat f \in C_v\left( \R^d \right)$. 
 
   \cblu
   \begin{slem} 
@@ -256,13 +257,16 @@ While the Fourier transform maps $L^1$ into $L^\infty$, it most definitely does 
     need to show...
   \end{proof}
   \cbk 
-  Then, there exists a sequence of simple functions $f_n$ converging to $f$ in $L^1\left( \R^d \right)$.  
+  Then, there exists a sequence of simple functions $f_n$ converging to $f$ in $L^1\left( \R^d \right)$.  If we could show that $\hat f_n \in C_v$, then we could conclude immediately that $\hat f \in C_v$. \cg Why? Well, by previous proposition, the Fourier Transform is a bounded and this continuous map when viewed as $\mathcal F : L^1 \to L^\infty$. This means that if $f_n \to f$ in $L^1$, then $\mathcal F f_n \to \mathcal F f$ in $L^\infty$. However, since $C_v$ is a closed subspace of $L^\infty$, so if every $\hat f_n \in C_v$, then their limit must also belong to $C_v$. \cbk
+  Remember that $\hat f_n$ are Fourier Transforms of simple functions, i.e. finite linear combinations of characteristic functions. 
+  
   
 
-  \cbk
 
 
 \end{proof}
+
+
 
 
 
