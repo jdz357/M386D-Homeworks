@@ -1,0 +1,162 @@
+\documentclass[letterpaper,twoside,11pt]{article}
+\usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
+\usepackage{amsthm}		%theorem style 
+%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+%These lines make the theorem NAME BOLD
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}[section]
+%end of making theorem name bold. 
+\newtheorem*{thm}{Theorem}		%Theorem no number. 
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem*{ex}{Example}
+\newtheorem{notee}{Note}[section]
+\newtheorem*{note}{Note}
+\usepackage[super]{nth}
+\usepackage[makeroom]{cancel}
+
+%----------------------- Macros and Definitions --------------------------
+\setlength{\fboxsep}{2.5\fboxsep}
+%Sets boxlength size
+
+\setlength\headheight{15pt}
+\addtolength\topmargin{-25pt}
+\addtolength\footskip{0pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyhead[RO,LE]{\sffamily CSE 386C}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily CSE 386C}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\SL}{{\mathcal{L}}}
+\usepackage{libertine}            %% For fancy font
+\DeclareMathOperator*{\slim}{s-lim}
+\newcommand{\cg}{\color{gray}}
+\newcommand{\cbk}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\inv}{^{-1}}
+
+
+
+
+\begin{document}
+%\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
+\title{\vspace{-2\baselineskip} 
+Homework 13
+}
+%\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
+\author{Jonathan Zhang \qquad EID: { jdz357} }
+\date{}
+\maketitle
+
+
+\subsection*{Problem 1:}
+Let $X$ be a Hilbert space, $\mathcal D \subset X$ dense, and $A: \mathcal D \to X$ a closed Hermitian linear operator. Let $\lambda, \mu$ be two real numbers that are not eigenvalues of $A$, and suppose that $A-\mu$ has a compact inverse. Prove that 
+\begin{enumerate}[label=(\alph*)]
+  \item $(A-\mu)^{-1}$ is self-adjoint, 
+  \item $A-\lambda$ has compact inverse,
+  \item $(A-\mu)(A-\lambda)^{-1}$ maps $\mathcal D$ to itself and extends to a self-adjoint isomorphism of $X$. 
+\end{enumerate}
+
+\paragraph*{Solution} 
+\begin{enumerate}[label=(\alph*)]
+  \item We check simply that the operator is self adjoint: 
+  \[\left\langle y, (A-\mu)^{-1} x  \right\rangle = \langle (A-\mu)^{-*}y, x \rangle = \langle ((A-\mu)^*)^{-1} y, x\rangle  = \langle(A-\mu)^{-1}y, x\rangle \]
+  since $A = A^*$ and $\mu = \mu^*$ since $\mu \in \R$. 
+  \item Since $(A-\mu)\inv$ is compact and symmetric, it admits a representation 
+  \[(A-\mu)\inv x = \sum_n \alpha_n\langle e_n, x\rangle e_n.\] Since we can write $A-\lambda = A-\mu + (\mu-\lambda)$, then the corresponding representation for $(A-\lambda)\inv$ will be \[(A-\lambda)\inv = \sum_n (\alpha_n\inv + \mu - \lambda)\inv \langle e_n, x\rangle e_n. \]
+  Notice that the coefficients decay by the behavior of $\alpha_n$'s. Therefore, as the limit of a sequence of finite rank operators, we can conclude that $(A-\lambda)\inv$ is compact. 
+\item Consider the map $(A-\mu)(A-\lambda)^{-1}$. We will show that it takes $\mathcal D$ to itself. Indeed, for any $x\in \mathcal D$, 
+\[(A-\mu)(A-\lambda)^{-1} x = (A-\lambda)(A-\lambda)\inv x + (\lambda-\mu)(A-\lambda)\inv x= x + (\lambda-\mu)(A-\lambda)\inv x.\]
+Comparing the LHS and RHS, we see that the RHS lives in $\mathcal D$ only, so the LHS must also live in $\mathcal D$. Now, extend via limits to the whole space $X$. Notice that the inverse map is easy to determine: just switch the roles of $\lambda$ and $\mu$. 
+
+\end{enumerate}
+
+
+
+
+
+\newpage \subsection*{Problem 2:}
+Let $A$ and $B$ be self-adjoint bounded linear operators on a Hilbert space. If $A\geq B \geq 0$ and $B$ is invertible, prove that $A$ is invertible and that $B^{-1}\geq A^{-1} \geq 0$ 
+
+Hint show that $I\geq A^{-1/2}BA^{-1/2}\implies A^{1/2}B^{-1}A^{1/2}\geq I$.
+
+\paragraph*{Solution} First we argue that $A$ is invertible. Indeed if $B$ is invertible, then zero is not in the spectrum of $B$. Since $A\geq B$, then we have that $\lambda_A \geq \lambda_B$ for every $\lambda_B\in\sigma(B)$. Therefore zero is also not in the spectrum of $A$ and thus $A$ is invertible. 
+
+Then to show the inequality, we have a lemma: 
+\begin{lemma}
+  Let $A$ be a self adjoint, positive, invertible operator. Then its inverse is also positive. 
+\end{lemma}
+\begin{proof}
+  Define $y = Ax$. Then $\langle y, A^{-1} y\rangle = \langle Ax, x\rangle \geq 0$. 
+\end{proof}
+So, if $I \geq A^{-1/2}BA^{-1/2}$, then multiplication by (positive and symmetric) operators $A^{1/2}$ and $B^{-1}$ imply that $A^{1/2}B^{-1}A^{1/2}\geq I$. (We use here the fact that the square root is positive.) To arrive at the conclusion, notice that the hint really is just saying $A\geq B \implies B^{-1}\geq A^{-1}$. Since we showed that $A^{-1}$ is positive, we have the result. 
+
+\subsection*{Problem 3:}
+On $C^k(\R^n)$ consider the norm $\|f\|_k = \sup\left\{ |D^\alpha f(x) | : x\in \R^n, |\alpha|\leq k \right\}$. For $x, y\in \R^n$ and $f: \R^n \to \C$ define $(\mathcal T_y f)(x)= f(x-y)$. Show that if $f\in C^k(\R^n)$ with $k\geq 2$, then 
+\[\|\mathcal T_y f - f + y\cdot \nabla f\|_{k-2} \leq 2|y|^2 \|f\|_k\] with $|y| = \sum_{j=1}^n |y_j|$.
+
+\paragraph*{Solution} Proof goes by induction. In the base case, let $k = 2$. Then, we apply the mean value theorem and conclude that for any $x, y \in \R^n$, there exists $t, t_i \in [0,1]$, $i = 1,...n$ such that
+\[f(x) - f(x-y) = y\cdot \nabla f(x-ty)\]
+and 
+\[\partial_i f(x) - \partial_i f(x-ty) = ty\cdot \nabla\partial_i f(x-t_i y).\] This means that 
+\begin{align*}
+  |\mathcal T_y f(x) - f(x) + y\cdot\nabla f(x)| &= |f(x-y) - f(x) + y\cdot \nabla f(x)| \\
+  &= |-y\cdot \nabla f(x-ty) + y\cdot \nabla f(x) | \\
+  &= y\cdot (\nabla f(x) - \nabla f(x-ty))| \\
+  &= \left\vert \sum_i y_i (\partial_i f(x) - \partial_i f(x-ty))\right\vert \\
+  &=  \left\vert \sum_i y_i (ty\cdot \nabla \partial _i f(x-t_i y))\right\vert \\
+  &= \left\vert \sum_i y_i \left( \sum_j ty_j\partial_j\partial_i f(x-t_iy)\right)\right\vert \\
+  &\leq t |y|^2 \left\vert \sum_{i,j}\partial_j\partial_i f(x-t_iy) \right\vert \\
+  &\leq |y|^2 \|f\|_2 
+\end{align*} 
+Now we recover the norm by taking sup on both sides, so that $\|\mathcal T_yf - f + y\cdot \nabla f\|_0 \leq |y|^2 \|f\|_2$. Now, we can easily extend this to the general case. For $f \in C^k$, what we have just shown holds now with $f$ replaced by $D^\alpha f$ where $|\alpha|\leq k-2$. Taking the supremum again now produces the desired result. 
+
+
+
+
+
+
+\subsection*{Problem 4:} Prove Poisson sum formula, $\sum_k e^{ikx} = 2\pi \delta(x)$ for $|x|< \pi$, i.e. 
+\[\sum_{k=-\infty}^\infty \int\limits_{-\pi}^\pi e^{ikx} f(x) dx = 2\pi f(0), \qquad f\in \mathcal D((-\pi, \pi)).\]
+
+\paragraph*{Solution} The identity is essentially just two Fourier transforms. Define the Fourier transform $\mathcal F : L^2(-\pi, \pi) \to \ell^2(\Z) $ given by \[(\mathcal F f)(k) = \frac{1}{\sqrt{2\pi}}\int\limits_{-\pi}^\pi f(\xi) e^{ik\xi }d\xi\]
+Its inverse is given by 
+\[(\mathcal F^{-1} \hat f)(x) = \frac{1}{\sqrt{2\pi}}\sum_k \hat f(k) e^{-ikx}\]
+Combine these together, 
+\[f(x) = \frac{1}{2\pi}\sum_k \int\limits_{-\pi}^\pi f(\xi) e^{ik\xi}d\xi e^{-ikx}\]
+from which one evaluates at $x=0$ to get the result:
+\[f(0) = \frac{1}{2\pi}\sum_k \int\limits_{-\pi}^\pi f(\xi) e^{ik\xi}d\xi .\]
+
+\end{document}
+ 
