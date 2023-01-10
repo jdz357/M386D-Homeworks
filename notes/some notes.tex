@@ -258,14 +258,22 @@ While the Fourier transform maps $L^1$ into $L^\infty$, it most definitely does 
   \end{proof}
   \cbk 
   Then, there exists a sequence of simple functions $f_n$ converging to $f$ in $L^1\left( \R^d \right)$.  If we could show that $\hat f_n \in C_v$, then we could conclude immediately that $\hat f \in C_v$. \cg Why? Well, by previous proposition, the Fourier Transform is a bounded and this continuous map when viewed as $\mathcal F : L^1 \to L^\infty$. This means that if $f_n \to f$ in $L^1$, then $\mathcal F f_n \to \mathcal F f$ in $L^\infty$. However, since $C_v$ is a closed subspace of $L^\infty$, so if every $\hat f_n \in C_v$, then their limit must also belong to $C_v$. \cbk
-  Remember that $\hat f_n$ are Fourier Transforms of simple functions, i.e. finite linear combinations of characteristic functions. 
+  Remember that $\hat f_n$ are Fourier Transforms of simple functions, i.e. finite linear combinations of characteristic functions. We showed before that the Fourier transform of the characteristic function in $\R^d$ is 
+  \[{\left( {2\pi } \right)^{ - d/2}}\prod\limits_{j = 1}^d {\frac{{2\sin {\xi _j}}}{{{\xi _j}}}}  = {\left( {\frac{2}{\pi }} \right)^{d/2}}\prod\limits_{j = 1}^d {\frac{{\sin {\xi _j}}}{{{\xi _j}}}} \]
+  which is a member of $C_v$. To see this, notice first that as the product of sines, $\mathcal F \chi$ is continuous. Furthermore, notice that as $|\xi|\to\infty$, the Fourier transform tends to zero, since sine oscillates between zero and one. Therefore, $\mathcal F \chi \in C_v$. By previous proposition, the translation and scaling of this characteristic function continue to be members of $C_v$. Therefore, any finite linear combination is also in $C_v$, and therefore every $\mathcal F f_n \in C_v$. Thus, since $\hat f_n \to \hat f$ and $C_v$ is closed, then $\hat f \in C_v$. 
   
-  
-
-
-
 \end{proof}
 
+We have the following proposition, 
+\begin{prop}
+  For $f, g\in L^1\left( \R^d \right)$, 
+  \begin{enumerate}
+    \item $\displaystyle\int\limits_{{\mathbb{R}^d}} {\hat f\left( x \right)g\left( x \right)dx}  = \int\limits_{{\mathbb{R}^d}} {f\left( x \right)\hat g\left( x \right)dx} $
+    \item $f * g \in {L^1}\left( {{\mathbb{R}^d}} \right),\quad \widehat {f * g} = {\left( {2\pi } \right)^{d/2}}\hat f\hat g$, where the convolution of two functions $f$ and $g$ is defined as 
+    \[\left( {f * g} \right)\left( x \right) = \int\limits_{{\mathbb{R}^d}} {f\left( {x - y} \right)g\left( y \right)dy} \]
+    which is defined for almost all $x\in \R^d$. \cred Why almost all $x$? \cbk 
+  \end{enumerate}
+\end{prop}
 
 
 
