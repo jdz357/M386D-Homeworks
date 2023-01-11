@@ -236,7 +236,32 @@ While the Fourier transform maps $L^1$ into $L^\infty$, it most definitely does 
   $C_v\left( \R^d \right)$ is a closed linear subspace of $L^\infty\left( \R^d \right)$. 
 \end{prop}
 \begin{proof}
-  \cred Omitted temporarily...\cbk 
+  The central task is to show that $C_v$ is closed. Let $f_n$ be a Cauchy sequence converging to $f$ in $L^\infty$. We need to demonstrate that $f\in C_v$ as well. Let us first prove that $f$ is continuous.
+  \cblu 
+  \begin{slem}
+    The uniform limit of continuous functions is a continuous function.
+  \end{slem}
+  \begin{proof}
+    With the above setup, since $f_n$ converges uniformly to $f$, there exists an $N$ such that 
+    \[\left| {f\left( x \right) - {f_n}\left( x \right)} \right| < \frac{\varepsilon }{3}\]
+    whenever $n > N$. 
+    Additionally, $f_n$ is continuous for every $n$, so there exists a $\delta$ such that 
+    \[\left| {{f_n}\left( x \right) - {f_n}\left( y \right)} \right| < \frac{\varepsilon }{3}\] 
+    whenever 
+    \[\left| {x - y} \right| < \delta .\]
+    Therefore, for $n>N$ and $\left| x-y\right| < \delta$,
+    \[\left| {f\left( x \right) - f\left( y \right)} \right| < \left| {f\left( x \right) - {f_n}\left( x \right)} \right| + \left| {{f_n}\left( x \right) - {f_n}\left( y \right)} \right| + \left| {{f_n}\left( y \right) - f\left( y \right)} \right| < \varepsilon \]
+    which proves that $f$ is indeed continuous.
+  \end{proof}
+  \cbk 
+  With the knowledge that $f$ is continuous, it remains to show that $f$ vanishes at infinity. Since $f_n \to f$, given $\varepsilon > 0$, there exists an $N$ such that 
+  \[\left| {f\left( x \right) - {f_n}\left( x \right)} \right| < \frac{\varepsilon }{2}\]
+  whenever $n > N$. Additionally, since $f_n \in C_v$, there exists a precompact $K$ such that for every $x \in X\setminus K$, 
+  \[\left| {{f_n}\left( x \right)} \right| < \frac{\varepsilon}{2}. \]
+  Thus, for $x \in X\setminus K$ and $n>N$, 
+  \[\left| {f\left( x \right)} \right| \leqslant \left| {f\left( x \right) - {f_n}\left( x \right)} \right| + \left| {{f_n}\left( x \right)} \right| \leqslant \varepsilon ,\]
+  and hence, $f\in C_v$. 
+
 \end{proof}
 
 \begin{lemma}[Reimann-Lebesgue Lemma]
