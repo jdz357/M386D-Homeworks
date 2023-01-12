@@ -84,11 +84,30 @@ Homework 1
 Compute the Fourier transform of $\exp\left( -a| x| ^2 \right)$, $a>0$, directly for $x\in \R$.
 
 \paragraph*{Solution} 
+First of all, notice that the Gaussian is an $L^1$ function. 
+Computing directly,
+\begin{align*}
+    \hat f\left( \xi  \right) &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {{e^{ - a{{\left| x \right|}^2} - ix \cdot \xi }}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {{e^{ - a{{\left( {x + \frac{{i\xi }}{{2a}}} \right)}^2} - \frac{{{\xi ^2}}}{{4a}}}}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - d/2}}{e^{ - \frac{{{\xi ^2}}}{{4a}}}}\int\limits_{{\mathbb{R}^d}} {{e^{ - a{{\left( {x + \frac{{i\xi }}{{2a}}} \right)}^2}}}dx}.  
+\end{align*}
+To compute the remaining integral, we first observe that the integrand is a holomorphic function, so Cauchy's Theorem implies that the integral over any closed contour is zero. We choose the rectangle prescribed by vertices $-R, R, -R-\frac{i\xi}{2a},R-\frac{i\xi}{2a}$.  
+
+
 
 \subsection*{Problem 6.3:}
 If $f\in L^1\left( \R^d \right)$ and $f>0$, show that for every $\xi\neq 0$, $\left\vert \hat f \left( \xi \right) \right\vert< \hat f\left( 0 \right)$. 
 
-\paragraph*{Solution} 
+\paragraph*{Solution} By definition, 
+\[\hat f\left( 0 \right) = {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( x \right)dx} .\]
+The weak inequality follows by direct computation, 
+\begin{align*}
+  \left| {\hat f\left( \xi  \right)} \right| &= \left| {{{\left( {2\pi } \right)}^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot \xi }}dx} } \right| \hfill \\
+   &\leqslant {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\left| {f\left( x \right)} \right|dx}  \hfill \\
+   &\leqslant {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( x \right)dx}  \hfill \\
+   &= \hat f\left( 0 \right) 
+  \end{align*}
+
 
 
 \subsection*{Problem 6.4:}
@@ -102,7 +121,7 @@ If $f\in L^1\left( \R^d \right)$ and $f(x) = g\left( \left\vert x\right\vert  \r
 Show that the Fourier transform $\mathcal F : L^1\left( \R^d \right)\to C_v\left( \R^d \right)$ is not onto. Show that $\mathcal F\left( L^1\left( \R^d \right) \right)$ is dense in $C_v\left( \R^d \right)$. 
 
 \paragraph*{Solution} 
-
+Some like Fourier Inverse Theorem, Open Mapping Theorem, conclude bounded inverse. 
 
 
 \end{document}
