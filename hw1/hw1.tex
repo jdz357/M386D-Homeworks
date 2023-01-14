@@ -84,11 +84,32 @@ Homework 1
 Compute the Fourier transform of $\exp\left( -a| x| ^2 \right)$, $a>0$, directly for $x\in \R$.
 
 \paragraph*{Solution} 
-First of all, notice that the Gaussian is an $L^1$ function. 
+First of all, notice that the Gaussian is an $L^1$ function, so this integral makes sense. 
 Computing directly,
+\[\hat f \left( \xi \right) = \left( 2\pi \right)^{-1/2}\int\limits_{-\infty}^\infty e^{-ax^2 -ix\xi } dx  \]
+By completing the square, 
+\[\hat f \left( \xi \right) = \left( 2\pi \right)^{-1/2}e^{-\xi^2/4a}\int\limits_{-\infty}^\infty e^{-a\left( x+i\xi/2a  \right)^2 } dx.\]
+We attempt to evaluate the integral by considering the corresponding complex integral over a rectangle. 
+Disregarding the details for a moment to conclude the result, the original integral is equal to
+\[\hat f \left( \xi \right) = \left( 2\pi \right)^{-1/2} e^{-\xi^2/4a} \sqrt{\frac{\pi}{a}}.\]
+To compute the integral, we consider the counter-clockwise countour in $\C$ given by the vertices $R, -R, R-i\xi/2a, -R-i\xi/2a$. Since the integrand is holomorphic, Cauchy's Theorem tells us the integral over this contour must be zero. Further, the integrals on the sides of the rectangles vanish as $R\to\infty$ as they are each bounded by $e^{-aR^2}$. (This can be seen by letting $z(t) = -R - i\xi t/2a$ for $t \in [0,1]$ on the left edge, say. Then plug $z$ into the integral, expand the exponent, and see that the integral in magnitude is dominated by $e^{-aR^2}$.) Denote the upper edge contour as $\Gamma_1$ and the lower as $\Gamma_3$. Cauchy's Theorem tells us 
+\[\int\limits_{\Gamma_1} + \int\limits_{\Gamma_3}=0\]
+In particular, since $\Gamma_1$ is oriented from right to left, we are actually interested in $-\int_{\Gamma_1} = \int_{\Gamma_3}$. On $\Gamma_3$, $z = t - i\xi/2a$ and so the integral is 
+\[\int\limits_{\Gamma_3} e^{-a\left( z+i\xi/2a  \right)^2 } dz=\int\limits_{-\infty}^{\infty}e^{-at^2}dt=\sqrt{\frac{\pi}{a}}.\]
 
 
-\subsection*{Problem 6.3:}
+
+
+
+
+
+
+
+
+
+
+
+\newpage \subsection*{Problem 6.3:}
 If $f\in L^1\left( \R^d \right)$ and $f>0$, show that for every $\xi\neq 0$, $\left\vert \hat f \left( \xi \right) \right\vert< \hat f\left( 0 \right)$. 
 
 \paragraph*{Solution} By definition, 
@@ -100,18 +121,43 @@ The weak inequality follows by direct computation,
    &\leqslant {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {f\left( x \right)dx}  \hfill \\
    &= \hat f\left( 0 \right) .
 \end{align*}
-  We argue now that $\xi = 0$ is the only point where equality is attained. Assume to the contrary that there exists a $\xi^* \neq 0$ such that $|\hat f\left( \xi^* \right) | = \hat f\left( 0 \right)$. However, this means that 
-  \[\left| {\int\limits_{{\mathbb{R}^d}} {f\left( x \right){e^{ - ix \cdot {\xi ^*}}}dx} } \right| = \int\limits_{{\mathbb{R}^d}} {f\left( x \right)dx} \]
-  from which we see that 
-  \[{e^{ - ix \cdot {\xi ^*}}} =  \pm 1\]
-  is a necessary condition. But, to hold for every $x$, $\xi^*$ must equal zero, a contradiction. 
+What remains is to show that the inequality is strict.
+We can decompose the real and imaginary parts of the fourier transform as 
+\[\hat f\left( \xi \right)= \left( 2\pi \right)^{-d/2} \int f(x)\cos\left( x\cdot \xi \right)dx - \left( 2\pi \right)^{-d/2}i \int f(x) \sin\left( x\cdot \xi \right)dx \]
+Now, notice that since $f>0$, $f(x) \cos(x\cdot \xi) \leq f(x)$, and so 
+$\mathfrak R\left( \hat f \right)\left( \xi \right) \leq \int f(x) dx.$ If $\xi \neq 0$, then $\cos(x\cdot \xi) <1$ apart from a set of measure zero, so equality is reached only if $\|f\|_1=0$, but that would imply that $f=0$ almost everywhere, a contradiction to the assumption that $f>0$. So, this inequality is strict whenever $\xi \neq 0$. 
+
+
+
+
+
+
+
+
+
 
 
 
 \subsection*{Problem 6.4:}
 If $f\in L^1\left( \R^d \right)$ and $f(x) = g\left( \left\vert x\right\vert  \right)$ for some $g$, show that $\hat f\left( \xi \right) = h\left( \left\vert \xi\right\vert \right) $ for some $h$. Can you relate $g$ and $h$? 
 
-\paragraph*{Solution} 
+\paragraph*{Solution} Essentially, we are arguing that the Fourier transform of an even function is again another even function. Its Fourier transform is  
+\[\hat f \left( \xi \right) = \left( 2\pi \right)^{-d/2} \int\limits_{\R^d} g\left( |x| \right)e^{-ix\cdot \xi} dx\]
+since $f$ is real valued, $f = \overline f$ and we have 
+\[\overline{\hat f \left( \xi \right)} = \hat f\left( -\xi \right) = \left( 2\pi \right)^{-d/2} \int\limits_{\R^d} g\left( |x| \right)e^{ix\cdot \xi} dx\]
+Letting $u = -x$, $du = -dx$, 
+\[\overline{\hat f \left( \xi \right)} = \hat f\left( -\xi \right) = \left( 2\pi \right)^{-d/2} \int\limits_{\R^d} g\left( |u| \right)e^{-iu\cdot \xi} du = \hat f \left( \xi \right).\]
+That is, $\hat f$ is a real-valued, even function, so we conclude $\hat f (\xi) = h\left( |\xi| \right)$. In particular, we see that 
+\[\hat f \left( \xi \right) = (\mathcal F f(x))(\xi) = \left(\mathcal F g\left( |x| \right)\right)(\xi) = h(|\xi| ). \]
+That is, $g$ and $h$ are related indirectly, since they are each being composed with the absolute value, so $h\circ |\cdot | = \mathcal F\left( g\circ |\cdot | \right).$ 
+
+
+
+
+
+
+
+
 
 
 
@@ -119,7 +165,37 @@ If $f\in L^1\left( \R^d \right)$ and $f(x) = g\left( \left\vert x\right\vert  \r
 Show that the Fourier transform $\mathcal F : L^1\left( \R^d \right)\to C_v\left( \R^d \right)$ is not onto. Show that $\mathcal F\left( L^1\left( \R^d \right) \right)$ is dense in $C_v\left( \R^d \right)$. 
 
 \paragraph*{Solution} 
-Some like Fourier Inverse Theorem, Open Mapping Theorem, conclude bounded inverse, and then a contradiction with indicator function after that 
+The general strategy is to go by contradiction. We will assume that $\mathcal F$ is onto, and thus, by the Fourier Inversion Theorem, $\mathcal F$ is one to one. Then by open mapping theorem, we conclude that there must exist a bounded inverse operator from $C_v \to L^1$. Without loss of generality, let us proceed in 1-D.  
+
+Let $f_n \in C_v$ be defined as 
+\[f_n(x) = \left\{ \begin{matrix}
+  1 && x\in [-n, n]\\[.2cm]
+  0 && \text{otherwise}
+\end{matrix} \right. \]
+and consider the convolution $f_n \ast f_1:$ 
+\[(f_n\ast f_1) (x) = \int\limits_{-\infty}^{\infty} f_n(x-y) f_1(y) dy = \int\limits_{-1}^1 f_n(x-y)dy = \int\limits_{-1}^1 f_n(y-x)dy\]
+which is zero in the interval $(-\infty, -n-1)$, linear with slope 1 in $(-n-1, -n+1)$, unity in $(-n+1, n-1)$, linear with slope $-1$ in $(n-1, n+1)$, and zero in $(n+1, \infty)$. (i.e. a trapezoid). 
+It can be shown that the sequence $f_n \ast f_1$ is precisely the Fourier transform of the sequence 
+\[g_n(x) = \frac{\sin\left( 2\pi x \right)\sin\left( 2\pi nx \right)}{\pi^2 x^2 }.\]
+Moreover, 
+\begin{align*}
+  \|g_1\|_1 &= \int\frac{|\sin\left( 2\pi x \right)\sin\left( 2\pi nx \right)|}{\pi^2 x^2 } dx \\
+  &= \frac{2n}{\pi} \int \frac{|\sin(x) \sin(x/n)|}{x^2}dx \\
+  &= \frac{4n}{\pi} \int_{0}^{\infty}\frac{|\sin(x) \sin(x/n)|}{x^2}\\
+  &\geq \frac{4n}{\pi} \int_{0}^{n}\frac{|\sin(x) \sin(x/n)|}{x^2}
+\end{align*}
+To estimate, $\sin t \geq t-t^3/6 \geq 5/6t$ for $t \in [0,1]$, and $\sin(x/n)\geq 5x/6n$ on $[0,n]$. Therefore we may estimate that $\|g_n\|_1 \to \infty$ as $n\to \infty $. However, this contradicts the statement that there exists a bounded inverse operator from $C_v$ to $L^1$. Therefore, the Fourier transform is not onto. 
+
+
+
+To show that the image of $L^1$ is dense in $C_v$, we first show that if $f$ is continuous with compact support and twice differentiable, then $\hat f \in L^1$. Indeed, for $\xi\neq 0$, 
+\[\hat f (\xi) =\int f(x) e^{-ix\xi}dx = \frac{1}{i\xi}\int f'(x) e^{-ix\xi}dx = \frac{1}{-\xi^2}\int f''(x) e^{-ix\xi}dx\]
+with each integration by parts, the boundary terms disappear due to compact support. 
+We see that the last expression is a $C_v$ function times $1/\xi^2$ which shows that $\hat f$ is bounded by a constant times $\xi^{-2}$. Furthermore, around zero, we have already shown that $\hat f$ is bounded. Hence, we conclude that the range of $\mathcal F$ on $L^1$ is dense in $C_v$. 
+
+
+
+
 
 
 \end{document}
