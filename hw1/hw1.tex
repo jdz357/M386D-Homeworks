@@ -141,22 +141,12 @@ $\mathfrak R\left( \hat f \right)\left( \xi \right) \leq \int f(x) dx.$ If $\xi 
 \subsection*{Problem 6.4:}
 If $f\in L^1\left( \R^d \right)$ and $f(x) = g\left( \left\vert x\right\vert  \right)$ for some $g$, show that $\hat f\left( \xi \right) = h\left( \left\vert \xi\right\vert \right) $ for some $h$. Can you relate $g$ and $h$? 
 
-\paragraph*{Solution} Essentially, we are arguing that the Fourier transform of an even function is again another even function. Its Fourier transform is  
-\[\hat f \left( \xi \right) = \left( 2\pi \right)^{-d/2} \int\limits_{\R^d} g\left( |x| \right)e^{-ix\cdot \xi} dx\]
-since $f$ is real valued, $f = \overline f$ and we have 
-\[\overline{\hat f \left( \xi \right)} = \hat f\left( -\xi \right) = \left( 2\pi \right)^{-d/2} \int\limits_{\R^d} g\left( |x| \right)e^{ix\cdot \xi} dx\]
-Letting $u = -x$, $du = -dx$, 
-\[\overline{\hat f \left( \xi \right)} = \hat f\left( -\xi \right) = \left( 2\pi \right)^{-d/2} \int\limits_{\R^d} g\left( |u| \right)e^{-iu\cdot \xi} du = \hat f \left( \xi \right).\]
-That is, $\hat f$ is a real-valued, even function, so we conclude $\hat f (\xi) = h\left( |\xi| \right)$. In particular, we see that 
-\[\hat f \left( \xi \right) = (\mathcal F f(x))(\xi) = \left(\mathcal F g\left( |x| \right)\right)(\xi) = h(|\xi| ). \]
-That is, $g$ and $h$ are related indirectly, since they are each being composed with the absolute value, so $h\circ |\cdot | = \mathcal F\left( g\circ |\cdot | \right).$ 
+\paragraph*{Solution} 
+We say that $f$ is a radial function iff $f \circ T = f$ for every orthogonal transformation $T$ on $\R^d$. We note that orthogonal transformations preserve inner products and thus their Jacobian is of unit magnitude. 
+If $f\in L^1\left( \R^d \right)$ is radial, then for a fixed $T$ orthogonal transformation, 
 
-
-
-
-
-
-
+\[\hat f\left( T\xi \right) = \int_{\R^d} f(x) e^{-T\xi\cdot x} = \int_{\R^d} f(Ts) e^{-T\xi\cdot Ts}ds = \int_{\R^d} f(s) e^{-i\xi \cdot s }ds = \hat f(\xi) \]
+and thus $\hat f$ is radial and we may write $\hat f(\xi) = h(|\xi|)$. Furthermore, we see that $g$ and $h$ are related as $h$ is the Fourier transform of $g$. 
 
 
 
