@@ -146,7 +146,7 @@ We say that $f$ is a radial function iff $f \circ T = f$ for every orthogonal tr
 If $f\in L^1\left( \R^d \right)$ is radial, then for a fixed $T$ orthogonal transformation, 
 
 \[\hat f\left( T\xi \right) = \int_{\R^d} f(x) e^{-T\xi\cdot x} = \int_{\R^d} f(Ts) e^{-T\xi\cdot Ts}ds = \int_{\R^d} f(s) e^{-i\xi \cdot s }ds = \hat f(\xi) \]
-and thus $\hat f$ is radial and we may write $\hat f(\xi) = h(|\xi|)$. Furthermore, we see that $g$ and $h$ are related as $h$ is the Fourier transform of $g$. 
+and thus $\hat f$ is radial and we may write $\hat f(\xi) = h(|\xi|)$. Furthermore, we see that $g$ and $h$ are related as $h$ is the Fourier transform of $g$, although only if $g$ and $h$ are defined on $\R^+$, for if they are defined also on the entire $\R$, we cannot comment on their values for negative arguments. 
 
 
 
@@ -155,8 +155,17 @@ and thus $\hat f$ is radial and we may write $\hat f(\xi) = h(|\xi|)$. Furthermo
 Show that the Fourier transform $\mathcal F : L^1\left( \R^d \right)\to C_v\left( \R^d \right)$ is not onto. Show that $\mathcal F\left( L^1\left( \R^d \right) \right)$ is dense in $C_v\left( \R^d \right)$. 
 
 \paragraph*{Solution} 
-The general strategy is to go by contradiction. We will assume that $\mathcal F$ is onto, and thus, by the Fourier Inversion Theorem, $\mathcal F$ is one to one. Then by open mapping theorem, we conclude that there must exist a bounded inverse operator from $C_v \to L^1$. Without loss of generality, let us proceed in 1-D.  
+The general strategy is to attempt to find a function in $C_v$ that cannot be the image of a function in $L^1$. It is sufficient to construct an odd function $g\in C_v$ such that 
+\[\left| \int\limits_r^R \frac{g(t)}{t}dt \right| \to \infty \quad \text{as} \quad R\to \infty.\]
+We consider the odd extension of the function 
+\[g(t) = \left\{ \begin{matrix}
+  t/e && 0 \leq t \leq e\\
+  1/\ln t &&t>e
+\end{matrix}\right. \]
+We see that 
+\[\int\limits_e^R \frac{g(t)}{t}dt = \ln \ln R \to \infty.\]
 
+\iffalse
 Let $f_n \in C_v$ be defined as 
 \[f_n(x) = \left\{ \begin{matrix}
   1 && x\in [-n, n]\\[.2cm]
@@ -175,7 +184,7 @@ Moreover,
   &\geq \frac{4n}{\pi} \int_{0}^{n}\frac{|\sin(x) \sin(x/n)|}{x^2}
 \end{align*}
 To estimate, $\sin t \geq t-t^3/6 \geq 5/6t$ for $t \in [0,1]$, and $\sin(x/n)\geq 5x/6n$ on $[0,n]$. Therefore we may estimate that $\|g_n\|_1 \to \infty$ as $n\to \infty $. However, this contradicts the statement that there exists a bounded inverse operator from $C_v$ to $L^1$. Therefore, the Fourier transform is not onto. 
-
+\fi 
 
 
 To show that the image of $L^1$ is dense in $C_v$, we first show that if $f$ is continuous with compact support and twice differentiable, then $\hat f \in L^1$. Indeed, for $\xi\neq 0$, 
