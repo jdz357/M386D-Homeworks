@@ -120,8 +120,17 @@ Next, suppose that $f$ admits two different decompositions, $f = f_1 + f_2 = g_1
 \textit{Let the ground field be $\mathbb C$ and define $T: L^2\left( \R^d  \right) \to L^2$ by }
 \[\left( Tf \right)(x) = \int e^{-|x-y|^2/2} f(y) dy.\]
 \textit{Use the Fourier transform to show that $T$ is a positive, injective but not surjective operator. }
-\paragraph*{Solution}
+\paragraph*{Solution} 
+Define $\varphi(x) = e^{-|x|^2/2}$. Observe that $T$ is nothing more than convolution, i.e. 
+\[\left( {Tf} \right)\left( x \right) = \left( {\varphi  * f} \right)\left( x \right) = \int\limits_{{\mathbb{R}^d}} {\varphi \left( {x - y} \right)f\left( y \right)dy}  = \int\limits_{{\mathbb{R}^d}} {{e^{ - {{\left| {x - y} \right|}^2}/2}}f\left( y \right)dy} .\]
+If we consider now the Fourier transform,
+\[\widehat {\left( {Tf} \right)} = \widehat {\left( {\varphi  * f} \right)} = {\left( {2\pi } \right)^{d/2}}\hat \varphi \hat f.\]
+The Fourier transform preserves inner product, so 
+\[\left( {Tf,f} \right) = \left( {\widehat {\left( {Tf} \right)},\hat f} \right) = \int\limits_{{\mathbb{R}^d}} {{{\left( {2\pi } \right)}^{d/2}}\hat \varphi \left( \xi  \right){{\left\{ {\hat f\left( \xi  \right)} \right\}}^2}d\xi }  \geqslant 0\]
+Notice this is the case since $\varphi = \hat \varphi >0$. So we conclude that $T$ is positive. 
 
+\cred show T is injective?
+\cbk 
 
 
 
@@ -142,6 +151,7 @@ Next, suppose that $f$ admits two different decompositions, $f = f_1 + f_2 = g_1
 \subsection*{Problem 6.15:}
 \textit{Let $\varphi \in \mathcal S \left( \R^d \right)$, $\hat \varphi \left( 0 \right) = \left( 2\pi \right)^{-d/2}$, and $\varphi_\varepsilon \left( x \right) = \varepsilon^{-d} \varphi\left( x/\varepsilon \right)$. Prove that $\varphi_\varepsilon \to \delta_0$ and $\hat \varphi_\varepsilon \to \left( 2\pi  \right)^{-d/2}$ as $\varepsilon \to 0^+$. In what sense do these convergences take place? }
 
+We claim that $\varphi_\varepsilon \to \delta_0$ in $\mathcal S'$. 
 
 
 
