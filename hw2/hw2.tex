@@ -101,6 +101,7 @@ Next, suppose that $f$ admits two different decompositions, $f = f_1 + f_2 = g_1
 &=\left( 2\pi \right)^{-d/2} \int\limits_{\R^d} \left( g_1(x) + g_2(x)  \right)e^{-ix\cdot \xi }dx\\
 &=\hat g_1 + \hat g_2.
 \end{align*}
+So, the proposed definition of $\hat f$ is well-defined. 
 
 
 
@@ -129,12 +130,15 @@ The Fourier transform preserves inner product, so
 \[\left( {Tf,f} \right) = \left( {\widehat {\left( {Tf} \right)},\hat f} \right) = \int\limits_{{\mathbb{R}^d}} {{{\left( {2\pi } \right)}^{d/2}}\hat \varphi \left( \xi  \right){{\left\{ {\hat f\left( \xi  \right)} \right\}}^2}d\xi }  \geqslant 0\]
 Notice this is the case since $\varphi = \hat \varphi >0$. So we conclude that $T$ is positive. 
 
-\cred show T is injective?
-\cbk 
 
+Since $T$ is linear, it is sufficient to check $Tf=0$. We can consider equivalently the Fourier transform, and using the Plancherel Theorem,
+\[\widehat {Tf} = 0 = {\left( {2\pi } \right)^{d/2}}\hat \varphi \left( \xi  \right)\hat f\left( \xi  \right) = {\left( {2\pi } \right)^{d/2}}\varphi \left( \xi  \right)\hat f\left( \xi  \right) \Rightarrow \hat f = 0 \Rightarrow f = 0.\]
+So $T$ is injective. 
 
-
-
+Consider now solving the equation $Tf = \varphi$, or equivalently, the equation ${\mathcal{F}^{ - 1}}\left( {\widehat {Tf}} \right) = \varphi $. Since the Fourier transform is a unitary operator, then 
+\[\left( {\widehat {Tf}} \right)\left( \xi  \right) = \varphi \left( \xi  \right) = {\left( {2\pi } \right)^{d/2}}\varphi \left( \xi  \right)\hat f\left( \xi  \right).\]
+However, since $\varphi > 0$, then it must be that \[\hat f\left( \xi  \right) = {\left( {2\pi } \right)^{ - d/2}},\]
+but this cannot be since the constant function $\left( 2\pi \right)^{-d/2} \notin L^2\left( \R^d \right)$. Therefore, we cannot find a solution to this equation, so $T$ is not surjective. 
 
 
 
@@ -151,10 +155,26 @@ Notice this is the case since $\varphi = \hat \varphi >0$. So we conclude that $
 \subsection*{Problem 6.15:}
 \textit{Let $\varphi \in \mathcal S \left( \R^d \right)$, $\hat \varphi \left( 0 \right) = \left( 2\pi \right)^{-d/2}$, and $\varphi_\varepsilon \left( x \right) = \varepsilon^{-d} \varphi\left( x/\varepsilon \right)$. Prove that $\varphi_\varepsilon \to \delta_0$ and $\hat \varphi_\varepsilon \to \left( 2\pi  \right)^{-d/2}$ as $\varepsilon \to 0^+$. In what sense do these convergences take place? }
 
-We claim that $\varphi_\varepsilon \to \delta_0$ in $\mathcal S'$. 
+Notice first that 
+\[\hat \varphi \left( 0 \right) = {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\varphi \left( x \right)dx}  \Rightarrow \int\limits_{{\mathbb{R}^d}} {\varphi \left( x \right)dx}  = 1\]
 
 
+We claim that $\varphi_\varepsilon \to \delta_0$ in $\mathcal S'$. Let $f \in \mathcal S$. Then 
 
+\begin{align*}
+  \left\langle {{\varphi _\varepsilon },f} \right\rangle  &= \int\limits_{{\mathbb{R}^d}} {{\varepsilon ^{ - d}}\varphi \left( {x/\varepsilon } \right)f\left( x \right)dx}  \hfill \\
+   &= \int\limits_{{\mathbb{R}^d}} {\varphi \left( u \right)f\left( {\varepsilon u} \right)du}  \hfill \\
+  &\xrightarrow{{\varepsilon  \to {0^ + }}}\int\limits_{{\mathbb{R}^d}} {\varphi \left( u \right)f\left( 0 \right)du}  \hfill \\
+   &= f\left( 0 \right) \hfill \\
+   &= \left\langle {{\delta _0},f} \right\rangle 
+\end{align*}
+where we have used the variable substitution $u = x/\varepsilon$, $du = \varepsilon^{-d} dx$ and the Lebesgue Dominated Convergence Theorem to justify passing the limit under the integral since $f(\varepsilon u) \to f(0)$ uniformly. Indeed, notice that for fixed $u$, the integrand converges pointwise to the desired result, and it is dominated by the measurable function $\|f\|_{\infty} \varphi(u)$. 
+
+Next, 
+\[{\widehat \varphi _\varepsilon } = \mathcal{F}\left( {{\varphi _\varepsilon }} \right) = {\varepsilon ^{ - d}}\mathcal{F}\left( {\varphi \left( {\frac{1}{\varepsilon }x} \right)} \right) = {\varepsilon ^{ - d}}{\left( {\frac{1}{\varepsilon }} \right)^{ - d}}\hat \varphi \left( {\varepsilon \xi } \right) = \hat \varphi \left( {\varepsilon \xi } \right)\]
+and so 
+\[\left\langle {{{\widehat \varphi }_\varepsilon },f} \right\rangle  = \int\limits_{{\mathbb{R}^d}} {\hat \varphi \left( {\varepsilon \xi } \right)f\left( \xi  \right)d\xi } \xrightarrow{{\varepsilon  \to {0^ + }}}\int\limits_{{\mathbb{R}^d}} {{{\left( {2\pi } \right)}^{ - d/2}}f\left( \xi  \right)d\xi }  = \left\langle {{{\left( {2\pi } \right)}^{ - d/2}},f} \right\rangle \] 
+by the same dominated convergence argument. 
 
 
 
