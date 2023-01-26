@@ -72,7 +72,7 @@
 \begin{document}
 %\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
 \title{\vspace{-2\baselineskip} 
-Homework 2
+Homework 3
 }
 %\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
 \author{Jonathan Zhang \qquad EID: { jdz357} }
@@ -80,105 +80,25 @@ Homework 2
 \maketitle
 
 
-\subsection*{Problem 6.9:}
-\textit{
-Suppose that $f\in L^p\left( \R^d \right)$ for $p \in \left( 1, 2 \right)$. Show that there exist $f_1 \in L^1\left( \R^d \right)$ and $f_2 \in L^2\left( \R^d \right)$ such that $f = f_1 + f_2$. 
-Define $\hat f = \hat f_1 + \hat f_2$. Show that this definition is well defined, that is, independent of the choices $f_1$ and $f_2$. }
+\subsection*{Problem 6.18:}
+\textit{ }
 
-\paragraph*{Solution}
-Write $f$ as 
-\[f = f\chi_{[x:|f(x)<1]} + f\chi_{[x:|f(x)\geqslant 1]}\]
-and define 
-\[f_2(x) = f\chi_{[x:|f(x)<1]},\qquad f_1(x) = f\chi_{[x:|f(x)\geqslant 1]}.\]
-Then, 
-\[\|f_1\|_1 = \int\limits_{\R^d} |f(x)|\chi_{[x:|f(x)\geqslant 1]}dx = \int\limits_{x:|f(x)|\geqslant 1}|f(x)| \leq\int\limits_{x:|f(x)|\geqslant 1}|f(x)|^p \leq \|f\|_p^p. \]
-\[\|f_2\|_2^2 = \int\limits_{\R^d} |f(x)|^2\chi_{[x:|f(x)< 1]}dx = \int\limits_{x:|f(x)|< 1}|f(x)|^2 \leq\int\limits_{x:|f(x)|< 1}|f(x)|^p \leq \|f\|_p^p. \]
 
-Next, suppose that $f$ admits two different decompositions, $f = f_1 + f_2 = g_1 + g_2$, where $f_i, g_i \in L^i\left( \R^d \right)$ for $i = 1, 2$. Then, 
-\begin{align*}
-\hat f_1 + \hat f_2 &= \left( 2\pi \right)^{-d/2}\left(\int\limits_{\R^d} f_1(x) e^{-ix\cdot \xi } dx+\int\limits_{\R^d} f_2(x) e^{-ix\cdot \xi } dx \right)\\
-&=\left( 2\pi \right)^{-d/2} \int\limits_{\R^d} \left( f_1(x) + f_2(x)  \right)e^{-ix\cdot \xi }dx\\
-&=\left( 2\pi \right)^{-d/2} \int\limits_{\R^d} \left( g_1(x) + g_2(x)  \right)e^{-ix\cdot \xi }dx\\
-&=\hat g_1 + \hat g_2.
-\end{align*}
-So, the proposed definition of $\hat f$ is well-defined. 
+
+\subsection*{Problem 6.20:}
+\textit{ }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-\newpage
-\subsection*{Problem 6.11:}
-\textit{Let the ground field be $\mathbb C$ and define $T: L^2\left( \R^d  \right) \to L^2$ by }
-\[\left( Tf \right)(x) = \int e^{-|x-y|^2/2} f(y) dy.\]
-\textit{Use the Fourier transform to show that $T$ is a positive, injective but not surjective operator. }
-\paragraph*{Solution} 
-Define $\varphi(x) = e^{-|x|^2/2}$. Observe that $T$ is nothing more than convolution, i.e. 
-\[\left( {Tf} \right)\left( x \right) = \left( {\varphi  * f} \right)\left( x \right) = \int\limits_{{\mathbb{R}^d}} {\varphi \left( {x - y} \right)f\left( y \right)dy}  = \int\limits_{{\mathbb{R}^d}} {{e^{ - {{\left| {x - y} \right|}^2}/2}}f\left( y \right)dy} .\]
-If we consider now the Fourier transform,
-\[\widehat {\left( {Tf} \right)} = \widehat {\left( {\varphi  * f} \right)} = {\left( {2\pi } \right)^{d/2}}\hat \varphi \hat f.\]
-The Fourier transform preserves inner product, so 
-\[\left( {Tf,f} \right) = \left( {\widehat {\left( {Tf} \right)},\hat f} \right) = \int\limits_{{\mathbb{R}^d}} {{{\left( {2\pi } \right)}^{d/2}}\hat \varphi \left( \xi  \right){{\left\{ {\hat f\left( \xi  \right)} \right\}}^2}d\xi }  \geqslant 0\]
-Notice this is the case since $\varphi = \hat \varphi >0$. So we conclude that $T$ is positive. 
-
-
-Since $T$ is linear, it is sufficient to check $Tf=0$. We can consider equivalently the Fourier transform, and using the Plancherel Theorem,
-\[\widehat {Tf} = 0 = {\left( {2\pi } \right)^{d/2}}\hat \varphi \left( \xi  \right)\hat f\left( \xi  \right) = {\left( {2\pi } \right)^{d/2}}\varphi \left( \xi  \right)\hat f\left( \xi  \right) \Rightarrow \hat f = 0 \Rightarrow f = 0.\]
-So $T$ is injective. 
-
-Consider now solving the equation $Tf = \varphi$, or equivalently, the equation ${\mathcal{F}^{ - 1}}\left( {\widehat {Tf}} \right) = \varphi $. Since the Fourier transform is a unitary operator, then 
-\[\left( {\widehat {Tf}} \right)\left( \xi  \right) = \varphi \left( \xi  \right) = {\left( {2\pi } \right)^{d/2}}\varphi \left( \xi  \right)\hat f\left( \xi  \right).\]
-However, since $\varphi > 0$, then it must be that \[\hat f\left( \xi  \right) = {\left( {2\pi } \right)^{ - d/2}},\]
-but this cannot be since the constant function $\left( 2\pi \right)^{-d/2} \notin L^2\left( \R^d \right)$. Therefore, we cannot find a solution to this equation, so $T$ is not surjective. 
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage 
-\subsection*{Problem 6.15:}
-\textit{Let $\varphi \in \mathcal S \left( \R^d \right)$, $\hat \varphi \left( 0 \right) = \left( 2\pi \right)^{-d/2}$, and $\varphi_\varepsilon \left( x \right) = \varepsilon^{-d} \varphi\left( x/\varepsilon \right)$. Prove that $\varphi_\varepsilon \to \delta_0$ and $\hat \varphi_\varepsilon \to \left( 2\pi  \right)^{-d/2}$ as $\varepsilon \to 0^+$. In what sense do these convergences take place? }
-
-Notice first that 
-\[\hat \varphi \left( 0 \right) = {\left( {2\pi } \right)^{ - d/2}}\int\limits_{{\mathbb{R}^d}} {\varphi \left( x \right)dx}  \Rightarrow \int\limits_{{\mathbb{R}^d}} {\varphi \left( x \right)dx}  = 1\]
-
-
-We claim that $\varphi_\varepsilon \to \delta_0$ in $\mathcal S'$. Let $f \in \mathcal S$. Then 
-
-\begin{align*}
-  \left\langle {{\varphi _\varepsilon },f} \right\rangle  &= \int\limits_{{\mathbb{R}^d}} {{\varepsilon ^{ - d}}\varphi \left( {x/\varepsilon } \right)f\left( x \right)dx}  \hfill \\
-   &= \int\limits_{{\mathbb{R}^d}} {\varphi \left( u \right)f\left( {\varepsilon u} \right)du}  \hfill \\
-  &\xrightarrow{{\varepsilon  \to {0^ + }}}\int\limits_{{\mathbb{R}^d}} {\varphi \left( u \right)f\left( 0 \right)du}  \hfill \\
-   &= f\left( 0 \right) \hfill \\
-   &= \left\langle {{\delta _0},f} \right\rangle 
-\end{align*}
-where we have used the variable substitution $u = x/\varepsilon$, $du = \varepsilon^{-d} dx$ and the Lebesgue Dominated Convergence Theorem to justify passing the limit under the integral since $f(\varepsilon u) \to f(0)$ uniformly. Indeed, notice that for fixed $u$, the integrand converges pointwise to the desired result, and it is dominated by the measurable function $\|f\|_{\infty} \varphi(u)$. 
-
-Next, 
-\[{\widehat \varphi _\varepsilon } = \mathcal{F}\left( {{\varphi _\varepsilon }} \right) = {\varepsilon ^{ - d}}\mathcal{F}\left( {\varphi \left( {\frac{1}{\varepsilon }x} \right)} \right) = {\varepsilon ^{ - d}}{\left( {\frac{1}{\varepsilon }} \right)^{ - d}}\hat \varphi \left( {\varepsilon \xi } \right) = \hat \varphi \left( {\varepsilon \xi } \right)\]
-and so 
-\[\left\langle {{{\widehat \varphi }_\varepsilon },f} \right\rangle  = \int\limits_{{\mathbb{R}^d}} {\hat \varphi \left( {\varepsilon \xi } \right)f\left( \xi  \right)d\xi } \xrightarrow{{\varepsilon  \to {0^ + }}}\int\limits_{{\mathbb{R}^d}} {{{\left( {2\pi } \right)}^{ - d/2}}f\left( \xi  \right)d\xi }  = \left\langle {{{\left( {2\pi } \right)}^{ - d/2}},f} \right\rangle \] 
-by the same dominated convergence argument. 
-
-
-
-
+\subsection*{Problem 6.23:}
+\textit{ }
+\subsection*{Problem 6.25:}
+\textit{ }
+\subsection*{Problem 6.27:}
+\textit{ }
+\subsection*{Problem 6.30:}
+\textit{ }
 
 
 
