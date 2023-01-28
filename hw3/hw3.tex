@@ -80,7 +80,7 @@ Homework 3
 \date{}
 \maketitle
 
-
+\cred 
 \subsection*{Problem 6.18:}
  For $f\in \mathcal S (\R)$, define the Hilbert transform of $f$ by $Hf = PV\left( \frac{1}{\pi x} \right) \ast f$.
 \begin{enumerate}
@@ -98,6 +98,17 @@ Homework 3
 \end{enumerate}
 
 
+
+
+
+
+
+
+
+
+\cbk 
+
+
 \subsection*{Problem 6.20:}
 Compute the Fourier transforms of the following functions considered as tempered distributions. 
 \begin{enumerate}
@@ -106,17 +117,99 @@ Compute the Fourier transforms of the following functions considered as tempered
   \item $e^{i|x|^2}$ for $x \in \R^d$
   \item $\sin x$ and $\cos x$ for $x\in \R$. 
 \end{enumerate}
+\paragraph*{Solution}
+\begin{enumerate}
+  \item \begin{align*}
+    \left\langle {{{\hat x}^n},\phi } \right\rangle  &= \left\langle {{x^n},\hat \phi } \right\rangle  \hfill \\
+     &= \left\langle {1,{x^n}\hat \phi } \right\rangle  \hfill \\
+     &= {\left( i \right)^{ - n}}\left\langle {1,{{\left( {ix} \right)}^n}\hat \phi } \right\rangle  \hfill \\
+     &= {\left( i \right)^{ - n}}\left\langle {1,{{\left( {{D^n}\phi } \right)}^ \wedge }} \right\rangle  \hfill \\
+     &= {\left( i \right)^{ - n}}\left\langle {\hat 1,\left( {{D^n}\phi } \right)} \right\rangle  \hfill \\
+     &= {\left( i \right)^{ - n}}\left\langle {{{\left( {2\pi } \right)}^{1/2}}{\delta _0},\left( {{D^n}\phi } \right)} \right\rangle  \hfill \\
+     &= {\left( {2\pi } \right)^{1/2}}{\left( i \right)^{ - n}}\left\langle {{{\left( { - 1} \right)}^n}{D^n}{\delta _0},\phi } \right\rangle  \hfill \\
+     &= \left\langle {{{\left( {2\pi } \right)}^{1/2}}{{\left( i \right)}^n}{D^n}{\delta _0},\phi } \right\rangle  \hfill \\ 
+  \end{align*}
+  \item In this case, $e^{-|x|}$ is actually an $L^1$ function. Therefore, we can equivalently just compute its Fourier transform in the usual way. 
+  \begin{align*}
+    \mathcal{F}\left( {{e^{ - |x|}}} \right) &= {\left( {2\pi } \right)^{ - 1/2}}\int\limits_\mathbb{R} {{e^{ - \left| x \right| - ix\xi }}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\left[ {\int\limits_{ - \infty }^0 {{e^{x - ix\xi }}dx}  + \int\limits_0^\infty  {{e^{ - x - ix\xi }}dx} } \right] \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\left[ {\frac{1}{{1 - i\xi }} + \frac{1}{{1 + i\xi }}} \right] \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\frac{2}{{1 + {\xi ^2}}} 
+  \end{align*}
+  so 
+  \[\left\langle {{{\left( {{e^{ - |x|}}} \right)}^ \wedge },\phi } \right\rangle  = \left\langle {{{\left( {2\pi } \right)}^{ - 1/2}}\frac{2}{{1 + {\xi ^2}}},\phi } \right\rangle .\]
+  \item \cred asdf asdfj weird pie slice integral thing \cbk 
+  \item Follows from the Fourier transform of $x^n$ by linearity. 
+  \[\cos x = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}{x^{2n}}}}{{\left( {2n} \right)!}}}  \Rightarrow {\left( {\cos x} \right)^ \wedge } = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}{{\left( {{x^{2n}}} \right)}^ \wedge }}}{{\left( {2n} \right)!}}}  = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}}}{{\left( {2n} \right)!}}{{\left( {2\pi } \right)}^{1/2}}{i^{2n}}{D^{2n}}{\delta _0}} \]
+  and
+  \[\sin x = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}{x^{2n + 1}}}}{{\left( {2n + 1} \right)!}}}  \Rightarrow {\left( {\sin x} \right)^ \wedge }\sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}{{\left( {{x^{2n + 1}}} \right)}^ \wedge }}}{{\left( {2n + 1} \right)!}}}  = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}}}{{\left( {2n + 1} \right)!}}{{\left( {2\pi } \right)}^{1/2}}{i^{2n + 1}}{D^{2n + 1}}{\delta _0}} \]
+\end{enumerate}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\cbk 
 \subsection*{Problem 6.23:}
-Define the sapce $H$, endowed with inner product $\left( f,g \right)_H$. 
+Define the space $H$, endowed with inner product $\left( f,g \right)_H$. 
 \begin{enumerate}
   \item Show that $H$ is complete. 
   \item Prove that $H$ is continuously imbedded in $L^2 \left( \R \right)$. 
   \item If $m(\xi) \geq \alpha |\xi|^2$ for some $\alpha >0$, prove that for $f \in H$, the tempered distributional derivative $f'\in L^2(\R)$. 
 \end{enumerate}
+
+\paragraph*{Solution} Notice first that the norm on $H$ is merely a weighted $L^2$ norm on Fourier space. 
+\begin{enumerate}
+  \item Let $f_n \in H$ be a Cauchy sequence. Since the Fourier transform preserves norm, then $\hat f_n$ is also a Cauchy sequence in $L^2_m (\R)$. Since $m$ is a non-negative measure, $L^2_m$ is complete, so the sequence posesses a limit $\hat f_n \to g \in L^2_m$. Now, $g$, as the limit of measurable functions $\hat f_n$, is also measurable. Furthermore, $g \in L^2$ since $||g||_{L^2_m} \geq m^* \|g\|_{L^2}$. If we define now $f := \mathcal F \inv (g)$ using the $L^2$ Fourier inverse, we uncover the remaining properties we need. As the limit of measurable functions $f_n$, $f$ is measurable. Additionally, $f \in L^2$ and so it immediately generates a tempered distribution, so $f \in \sch ' (\R)$. Finally, $\|f\|_H = \|\mathcal F \inv (g) \|_H = \|g\|_{L^2} < \infty$. 
+  \item The inclusion map 
+  \[H \ni f \to i\left( f \right) = f \in {L^2}\]
+  is bounded, since 
+  \[{\left\| f \right\|_H} = {\left\| {\hat f} \right\|_{L_m^2}} \geqslant {m^*}{\left\| {\hat f} \right\|_{{L^2}}} = {m^*}{\left\| f \right\|_{{L^2}}}\]
+  i.e. the continuity constant is $1/m^*$. 
+  \item We have 
+  \begin{align*}
+    \left\| f \right\|_H^2 &= \int {{{\left| {\hat f\left( \xi  \right)} \right|}^2}m\left( \xi  \right)d\xi }  \hfill \\
+     &\geqslant \alpha \int {{{\left| {\xi \hat f\left( \xi  \right)} \right|}^2}d\xi }  \hfill \\
+     &= \alpha \int {{{\left| {{{\left( {Df} \right)}^ \wedge }\left( \xi  \right)} \right|}^2}d\xi }  \hfill \\
+     &= \alpha {\left\| {{{\left( {Df} \right)}^ \wedge }} \right\|^2} \Rightarrow  f'\in L^2.
+  \end{align*}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection*{Problem 6.25:} 
@@ -124,9 +217,22 @@ Use the Fourier transform to find a solution to
 \[u - \frac{\partial^2 u }{\partial x_1^2 } - \frac{\partial^2 u }{\partial x_2^2 } = e^{-x_1^2 - x_2^2 } \] 
 Can you find a fundamental solution? 
 
-\paragraph*{Solution} If we can find a fundamental solution, then we have solved the given right hand side.
+\paragraph*{Solution} If we can find a fundamental solution, then we have solved the given right hand side. Note $d=2$. Let us attempt to solve 
+\[u_0 - \frac{{{\partial ^2}u_0}}{{\partial x_1^2}} - \frac{{{\partial ^2}u_0}}{{\partial x_2^2}} = {\delta _0}.\] 
+Taking Fourier transform, 
+\[\hat u_0 - {\left( {i{\xi _1}} \right)^2}\hat u_0 - {\left( {i{\xi _2}} \right)^2}\hat u_0 = \hat u_0\left( {1 + {{\left| {{\xi _1}} \right|}^2} + {{\left| {{\xi _2}} \right|}^2}} \right) = {\left( {2\pi } \right)^{ - 1}}\]
+so, in the Fourier domain, the fundamental solution is 
+\[\hat u_0 = {\left( {2\pi } \right)^{ - 1}}\frac{1}{{1 + {{\left| {{\xi _1}} \right|}^2} + {{\left| {{\xi _2}} \right|}^2}}} \Rightarrow {{ u}_0} = {\left[ {{{\left( {2\pi } \right)}^{ - 1}}\frac{1}{{1 + {{\left| {{\xi _1}} \right|}^2} + {{\left| {{\xi _2}} \right|}^2}}}} \right]^ \vee }.\]
+Now for any right hand side $f$, the solution is given by $u = u_0 \ast f$. In this case, 
+\[u = {\left[ {{{\left( {2\pi } \right)}^{ - 1}}\frac{1}{{1 + {{\left| {{\xi _1}} \right|}^2} + {{\left| {{\xi _2}} \right|}^2}}}} \right]^ \vee } * {e^{ - x_1^2 - x_2^2}}\]
 
 
+
+
+
+
+
+\cred 
 \subsection*{Problem 6.27:}
 Telegrapher's equation 
 \[u_{tt} + 2u_t + u = c^2 u_{xx} \]
@@ -140,6 +246,19 @@ for $x \in \R$ and $t>0$, and $u(x, 0) = f(x)$ and $u_t(x, 0) = g(x)$ are given 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+\cred 
 \subsection*{Problem 6.30:}
 Consider 
 \[\Delta^2 u + u = f(x)\] 
