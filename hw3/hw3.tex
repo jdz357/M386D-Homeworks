@@ -80,7 +80,7 @@ Homework 3
 \date{}
 \maketitle
 
-\cred 
+
 \subsection*{Problem 6.18:}
  For $f\in \mathcal S (\R)$, define the Hilbert transform of $f$ by $Hf = PV\left( \frac{1}{\pi x} \right) \ast f$.
 \begin{enumerate}
@@ -92,9 +92,36 @@ Homework 3
 
 \paragraph*{Solution}
 \begin{enumerate}
-  \item asdf
+  \item For $\phi \in \sch$, 
+  \begin{align*}
+    \left\langle {PV\left( {1/x} \right),\phi } \right\rangle  &= \mathop {\lim }\limits_{\varepsilon  \to {0^ + }} \int\limits_{\left| x \right| > \varepsilon } {\frac{{\phi \left( x \right)}}{x}dx}  \hfill \\
+     &= \mathop {\lim }\limits_{\varepsilon  \to {0^ + },M,M' \to \infty } \left\{ {\int\limits_\varepsilon ^M {\frac{{\phi \left( x \right)}}{x}dx}  + \int\limits_{ - M'}^{ - \varepsilon } {\frac{{\phi \left( x \right)}}{x}dx} } \right\} \hfill \\
+     &= \mathop {\lim }\limits_{\varepsilon  \to {0^ + },M,M' \to \infty } \left\{ {\int\limits_\varepsilon ^1 {\frac{{\phi \left( x \right)}}{x}dx}  + \int\limits_1^M {\frac{{\phi \left( x \right)}}{x}dx}  + \int\limits_{ - M'}^{ - 1} {\frac{{\phi \left( x \right)}}{x}dx}  + \int\limits_{ - 1}^{ - \varepsilon } {\frac{{\phi \left( x \right)}}{x}dx} } \right\} \hfill \\
+     &= \mathop {\lim }\limits_{\varepsilon  \to {0^ + },M,M' \to \infty } \left\{ {\int\limits_\varepsilon ^1 {\frac{{\phi \left( x \right) - \phi \left( { - x} \right)}}{x}dx + \int\limits_1^M {\frac{{\phi \left( x \right)}}{x}dx}  + \int\limits_{ - M'}^{ - 1} {\frac{{\phi \left( x \right)}}{x}dx} } } \right\} 
+  \end{align*}
+  The first integral converges because by the mean value theorem, we have that 
+  \[\left| {\frac{{\phi \left( x \right) - \phi \left( { - x} \right)}}{x}} \right| = \left| {\frac{{\phi '\left( \xi  \right)2x}}{x}} \right| \leqslant 2{\left\| \phi  \right\|_{0,1}}\]
+  and for the second and third integrals, for $|x|>1$, 
+  \[\left| {\frac{{\phi \left( x \right)}}{x}} \right| \leqslant \frac{1}{{{x^2}}}\left| {x\phi \left( x \right)} \right| \leqslant \frac{1}{{{x^2}}}{\left\| \phi  \right\|_{1,0}}\]
+  Hence, 
+  \[\left| {\left\langle {PV\left( {1/x} \right),\phi } \right\rangle } \right| \leqslant 2\left( {{{\left\| \phi  \right\|}_{0,1}} + {{\left\| \phi  \right\|}_{1,0}}} \right)\]
+  which proves continuity. Linearity is easy to see by linearity of integrals. 
   \item Recall $xPV\left( 1/x \right)=1$. Taking Fourier transform on both sides yields 
-  \[\mathcal F \left( xPV\left( 1/x \right) \right) = \]
+  \[2\pi {\delta _0} = \mathcal{F}\left( {xPV\left( {1/x} \right)} \right) = i\frac{d}{{d\xi }}\mathcal{F}\left( {PV\left( {1/x} \right)} \right),\]
+  so 
+  \[\mathcal{F}\left( {PV\left( {1/x} \right)} \right) =  - {\left( {2\pi } \right)^{ - 1/2}}iH\left( \xi  \right) + C =  - i\sqrt {\pi /2} \operatorname{sgn} \left( \xi  \right)\]
+  where we have used the fact that the Dirac delta is the derivative of the Heaviside function. Notice we choose the constant $C$ and rescale in order to make the Heaviside function look like the $sgn$ function. 
+  \item We have for $f \in \sch$, 
+  \[\left\| {Hf} \right\| = \left\| {{{\left( {Hf} \right)}^ \wedge }} \right\| = \left\| { - i\operatorname{sgn} \left( x \right)\hat f} \right\| = \left\| {\hat f} \right\| = \left\| f \right\|\]
+  and
+  \begin{align*}
+    HHf &= H\left( {Hf} \right) \hfill \\
+     &= H\left( {{{\left( { - i\operatorname{sgn} \left( x \right)\hat f} \right)}^ \vee }} \right) \hfill \\
+     &= {\left( { - i\operatorname{sgn} \left( x \right){{\left( {{{\left( { - i\operatorname{sgn} \left( x \right)\hat f} \right)}^ \vee }} \right)}^ \wedge }} \right)^ \vee } \hfill \\
+     &= {\left( { - i\operatorname{sgn} \left( x \right)\left( { - i\operatorname{sgn} \left( x \right)\hat f} \right)} \right)^ \vee } \hfill \\
+     &=  - f  
+  \end{align*}
+  \item By the density of $\mathcal S$ in $L^2$, $H$ can be extended through limits. For $f\in L^2$, pick a sequence $\sch \ni f_n \to f \in L^2$. Then define $Hf = \lim_{n \to \infty} Hf_n$. We can apply the result we had in class for a bounded linear map on a dense subset. 
 \end{enumerate}
 
 
@@ -138,7 +165,21 @@ Compute the Fourier transforms of the following functions considered as tempered
   \end{align*}
   so 
   \[\left\langle {{{\left( {{e^{ - |x|}}} \right)}^ \wedge },\phi } \right\rangle  = \left\langle {{{\left( {2\pi } \right)}^{ - 1/2}}\frac{2}{{1 + {\xi ^2}}},\phi } \right\rangle .\]
-  \item \cred asdf asdfj weird pie slice integral thing \cbk 
+  \item We will attempt to evaluate the integral using contour integration. First of all, notice that even though we are in $\R^d$, ${\left| x \right|^2} \in \mathbb{R}$, so it is sufficient to consider only the 1D case. The steps are 
+  \begin{align*}
+    {\left( {{e^{i{{\left| x \right|}^2}}}} \right)^ \wedge } &= {\left( {2\pi } \right)^{ - 1/2}}\int\limits_\mathbb{R} {{e^{i{{\left| x \right|}^2} - ix\xi }}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\sqrt {1/2} \int\limits_\mathbb{R} {{e^{i{{\left| x \right|}^2}/2 - ix\xi \sqrt {1/2} }}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\sqrt {1/2} {e^{ - i{\xi ^2}/4}}\int {{e^{i\frac{{{{\left( {x - \xi \sqrt {1/2} } \right)}^2}}}{2}}}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\sqrt {1/2} {e^{ - i{\xi ^2}/4}}\int {{e^{i\frac{{{{\left( x \right)}^2}}}{2}}}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\sqrt {1/2} {e^{ - i{\xi ^2}/4}}{e^{i\pi /4}}\int {{e^{ - \frac{{{{\left( x \right)}^2}}}{2}}}dx}  \hfill \\
+     &= {\left( {2\pi } \right)^{ - 1/2}}\sqrt {1/2} {e^{ - i{\xi ^2}/4}}{e^{i\pi /4}}\left( {\sqrt {2\pi } } \right) \hfill \\
+     &= \sqrt {1/2} {e^{i\left( { - {\xi ^2} + \pi } \right)/4}}.
+    \end{align*}
+    We use the substitutions $t \mapsto t \sqrt{a}$, completing the square, $t \mapsto t + x\sqrt{a}$. The contour is 
+    \begin{center}
+      \includegraphics*[scale=0.3]{Untitled.png}
+    \end{center}
+    Over this contour, the integral is zero. The integrals along the arc vanish as $R \to \infty$. The integral alon the horizontal line tends to $\int \exp(it^2/2) = \sqrt{2\pi}$, and the integral alon the diagonal is the negative of $\exp(i\pi/4)\int\exp(it^2/2)$.
   \item Follows from the Fourier transform of $x^n$ by linearity. 
   \[\cos x = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}{x^{2n}}}}{{\left( {2n} \right)!}}}  \Rightarrow {\left( {\cos x} \right)^ \wedge } = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}{{\left( {{x^{2n}}} \right)}^ \wedge }}}{{\left( {2n} \right)!}}}  = \sum\limits_{n = 0}^\infty  {\frac{{{{\left( { - 1} \right)}^n}}}{{\left( {2n} \right)!}}{{\left( {2\pi } \right)}^{1/2}}{i^{2n}}{D^{2n}}{\delta _0}} \]
   and
@@ -232,7 +273,7 @@ Now for any right hand side $f$, the solution is given by $u = u_0 \ast f$. In t
 
 
 
-\cred 
+
 \subsection*{Problem 6.27:}
 Telegrapher's equation 
 \[u_{tt} + 2u_t + u = c^2 u_{xx} \]
@@ -243,22 +284,36 @@ for $x \in \R$ and $t>0$, and $u(x, 0) = f(x)$ and $u_t(x, 0) = g(x)$ are given 
   \item Show that the solution can be viewed as the sum of two wave packets, one moving to the right with a constant speed, and one moving to the left with the same speed. 
 \end{enumerate}
 
+\paragraph*{Solution} Proceed formally. Take the Fourier transform in $x$: 
+\[{{\hat u}_{tt}} + 2{{\hat u}_t} + \hat u\left( {1 + {c^2}{\xi ^2}} \right) = 0\]
+Using the ansatz $\hat u (\xi, t) = F(\xi)e^{rt}$, we arrive at the values for $r$, 
+\[{r^2} + 2r + \left( {1 + {c^2}{\xi ^2}} \right) = 0 \Rightarrow r = \frac{{ - 2 \pm 2ic\xi }}{2} =  - 1 \pm ic\xi \]
+\[\hat u\left( {\xi ,t} \right) = F\left( \xi  \right){e^{\left( { - 1 + ic\xi } \right)t}} + G\left( \xi  \right){e^{\left( { - 1 - ic\xi } \right)t}} = {e^{ - t}}\left[ {F\left( \xi  \right){e^{ic\xi t}} + G\left( \xi  \right){e^{ - ic\xi t}}} \right]\]
+The initial conditions can also be transformed, and building those in, we find formulas for the unknown coefficients $F$ and $G$. 
+\begin{align*}
+  \hat u\left( {\xi ,0} \right) &= \hat f\left( \xi  \right) = F\left( \xi  \right) + G\left( \xi  \right) \hfill \\
+  {{\hat u}_t}\left( {\xi ,0} \right) &= \hat g\left( \xi  \right) = F\left( \xi  \right)\left( { - 1 + ic\xi } \right) + G\left( \xi  \right)\left( { - 1 - ic\xi } \right) 
+\end{align*}
+which yield 
+\[F\left( \xi  \right) = \frac{1}{{2ic\xi }}\left[ {\left( {1 + ic\xi } \right)\hat f\left( \xi  \right) + \hat g\left( \xi  \right)} \right],\qquad G\left( \xi  \right) =  - \frac{1}{{2ic\xi }}\left[ {\left( {1 - ic\xi } \right)\hat f\left( \xi  \right) + \hat g (\xi)} \right].\]
+The final solution is then the inverse Fourier transform 
+\[u\left( {x,t} \right) = {\left( {2\pi } \right)^{ - 1/2}}{e^{ - t}}\int {\left( {F\left( \xi  \right){e^{ic\xi t}} + G\left( \xi  \right){e^{ - ic\xi t}}} \right){e^{i\xi x}}d\xi } .\]
+
+Furthermore, the representation is indeed a solution. Notice that (almost by construction), the solution satisfies the initial conditions. Formally, without justifying interchange of integral and time derivative, it also satisfies the original PDE. (Note this is much easier to check in the Fourier domain, but can still be verified in the physical domain). 
+
+We can write the solution as 
+\begin{align*}
+  u\left( {x,t} \right) &\propto {e^{ - t}}\int {\left( {F\left( \xi  \right){e^{ic\xi t + i\xi x}} + G\left( \xi  \right){e^{ - ic\xi t + i\xi x}}} \right)d\xi }  \hfill \\
+   &\propto {e^{ - t}}\int {\left( {F\left( \xi  \right){e^{i\xi \left( {ct + x} \right)}} + G\left( \xi  \right){e^{i\xi \left( { - ct + x} \right)}}} \right)d\xi }  \hfill \\
+   &\propto {e^{ - t}}\left( {\check{F} \left( {x + ct} \right) +  \check G \left( {x - ct} \right)} \right) 
+  \end{align*}
+which represent two wave packets, both moving with speed $c$. 
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-\cred 
 \subsection*{Problem 6.30:}
 Consider 
 \[\Delta^2 u + u = f(x)\] 
@@ -270,16 +325,23 @@ for $x\in \R^d$ and $\Delta^2 = \Delta\Delta$.
   \item Show that $\check{m}\in L^2 \left( \R^d \right)$ for some range of $d$ and use this to extend the convolution solution to $f\in L^1\left( \R^d \right)$. In that case, in what $L^p$ space is $u$? 
 \end{enumerate}
 
+\paragraph*{Solution} Let us attempt to find a fundamental solution. Setting the right hand side equal to $\delta$ and taking Fourier transform, we see that 
+\[\left( {{{\left( {i\xi } \right)}^4} + 1} \right)\hat u = {\left( {2\pi } \right)^{ - d/2}} \Rightarrow \hat u = \frac{{{{\left( {2\pi } \right)}^{ - d/2}}}}{{{{\left| \xi  \right|}^4} + 1}}\] and the corresponding solution in a distributional sense is 
+\[u = {\left( {\frac{1}{{1 + {{\left| \xi  \right|}^4}}}\hat f} \right)^ \vee }\]
+i.e. $m(\xi) = 1/1+|\xi|^4$. 
 
+This solution is unique. Suppose to the contrary that there exist two different solutions, $u_1$ and $u_2$. Define $v = u_1 - v_2$. Then $v$ satisfies the homogeneous equation, i.e. 
+\[v = {\left( {\frac{1}{{1 + {{\left| \xi  \right|}^4}}}\hat 0} \right)^ \vee } = {0^ \vee } = 0\]
+but this implies that $u_1 = u_2$. 
 
+For $f \in \sch$, the solution is given by the convolution with the fundamental solution
+\[u = {\left( {\frac{{{{\left( {2\pi } \right)}^{ - d/2}}}}{{{{\left| \xi  \right|}^4} + 1}}} \right)^ \vee } * f\]
 
-
-
-
-
-
-
-
+Finally, computing the norm of $\check m$ is the same as the norm of $m$. Since $m$ is radial, the integral is of the form 
+\[{\left\| m \right\|^2} = \int {\frac{1}{{{{\left( {1 + {{\left| \xi  \right|}^4}} \right)}^2}}}d\xi }  \propto \int\limits_0^\infty  {\frac{{{r^{d - 1}}dr}}{{{{\left( {1 + {r^4}} \right)}^2}}}} \]
+We are concerned just with when the integral converges, so 
+\[\int\limits_0^\infty  {\frac{{{r^{d - 1}}dr}}{{{{\left( {1 + {r^4}} \right)}^2}}}} \sim\int\limits_0^\infty  {\frac{{dr}}{{{r^{8 + 1 - d}}}}} \]
+which converges only when $9-d>1$, i.e. $d<8$. In the case when $f \in L^1$, we claim $u\in L^2$, since $\|u\|= \|\hat u \|$ which is bounded by the Cauchy Schwartz inequality. 
 
 
 
