@@ -87,19 +87,53 @@ Prove that for $f \in H^1\left( \R^d \right)$, $\|f\|_{H^1\left( \R^d \right)}$ 
 Generalize to $H^k\left( \R^d \right)$?
 
 \paragraph*{Solution}
+Make use of Plancherel theorem. Let $f\in H^1\left( \R^d \right)$. Then $f$ and $Df$ are $L^2$. The norm is 
+\[\|f\|_{H^1}^2 = \|f\|^2_{L^2} + \|Df\|^2_{L^2} = \|\hat f\|^2_{L^2} + \|\left( Df \right)^\land\|^2_{L^2} = \int |\hat f|^2 + |\left( Df \right)^\land|^2 = \int \left( 1+|\xi|^2 \right) |\hat f|^2.\]
+The result also generalizes to $H^k$. In this case, propose a norm 
+\[\|f\|_{H^k\left( \R^d \right)} = \left[\int\limits_{\R^d} \left( 1+|\xi|^2 \right)^k|\hat f\left( \xi \right)|^2d\xi \right]^{1/2}.\]
+We need to show that there exist constants $C_1, C_2 >0$ that bound the two norms. But, this boils down to showing that there exists $C_1, C_2$ such that 
+\[C_1 \left( 1+x^2 \right)^{k/2} \leq \sum_{r=0}^{k} x^r \leq C_2 \left( 1+x^2 \right)^{k/2}. \]
+Equivalently, 
+\[C_1 \left( 1+x^2 \right)^{k} \leq \left( {\sum_{r=0}^{k} x^r} \right)^2 \leq C_2 \left( 1+x^2 \right)^{k}. \]
+Consider the function 
+\[f (x) = \frac{\left( {\sum_{r=0}^{k} x^r} \right)^2}{\left( 1+x^2 \right)^{k}}\in C^0\left( [0,\infty ) \right).\]
+Since $f(0) = 1$ and $\lim_{x\to \infty} f(x) = 1$, $f$ has a maximum on $[0,\infty)$ which gives $C_2$. Similarly, $g(x) = 1/f(x)$ has a maximum, giving $C_1$. 
 
 
 
 
+
+
+
+
+
+
+
+
+
+\newpage 
 \subsection*{Problem 7.2:}
 Prove that if $f \in H_0^1\left( 0,1 \right)$, then there exists $C>0$ such that $\|f\|_{L^2(0,1)} \leq C \|f'\|_{L^2(0,1)}$. 
 If instead $f \in \left\{ g \in H^1(0,1) : \int_0^1 g(x) dx = 0 \right\}$, provide a similar estimate. 
 
 \paragraph*{Proof: }
-Go by contradiction. Suppose to the contrary that there exists an $f \in H_0^1(0,1)$ such that for every $C>0$, we have 
-\[\|f\|_{L^2} > C \|f'\|_{L^2}.\]
-In particular, we could choose $C=n$ for $n \in \N$. 
+Go by contradiction. Suppose to the contrary that there exists a sequence $f_n \in H_0^1$ with $\|f_n\|=1$ and $\|Df_n\|\to 0$. From every bounded sequence in a Hilbert space, we can extract a weakly convergent subsequence, $f_{n_k} \rightharpoonup f \in H_0^1$. The weak convergence in $H^1$ implies weak convergence of the derivative $Df_{n_k} \rightharpoonup Df \in L^2\left( \Omega \right)$. Since the norm is continuous, then we would conclude that $Df = 0$, that is, $f$ must be a constant. But in order to satisfy the boundary condition, then $f$ is indentically zero. 
 
+On the other side, the Rellich-Kondrachov Theorem tells us that weak convergence in $H^1$ implies $f_{n_k} \to f \in L^2$, which implies convergence in the $L^2$ norm. But, that would mean that $\|f\| = \lim \|f_n\| = 1$, a contradiction to the above conclusion that $f = 0$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage 
 \subsection*{Problem 7.3:}
 Prove that $\delta_0 \notin \left( H^1\left( \R^d \right) \right)^*$ for $d \geq 2$, but that $\delta_0 \in \left( H^1\left( \R \right) \right)^*$. You will need to define that $\delta_0$ applied to $f \in H^1\left( \R \right)$ means. 
 
@@ -108,7 +142,9 @@ Prove that $\delta_0 \notin \left( H^1\left( \R^d \right) \right)^*$ for $d \geq
 \subsection*{Problem 7.4:}
 Prove that $H^1(0,1)$ is continuously embedded in $C_B(0,1)$, the set of bounded and continuous functions on $(0,1)$. 
 
-
+\paragraph*{Solution} Need to show that the inclusion map 
+\[H^1\left( 0,1 \right) \ni f \to f \in C_B\left( 0,1 \right)\] 
+is bounded, i.e. there exists $C>0$ such that $\|f\|_{\infty} \leq C \|f\|_{H^1}$.
 
 \end{document}
  
