@@ -1,7 +1,7 @@
 \documentclass[letterpaper,twoside,11pt]{article}
 \usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
 \usepackage{amsthm}		%theorem style 
-%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
 %These lines make the theorem NAME BOLD
 \newtheoremstyle{mystyle}%                % Name
   {}%                                     % Space above
@@ -114,12 +114,29 @@ Since $f(0) = 1$ and $\lim_{x\to \infty} f(x) = 1$, $f$ has a maximum on $[0,\in
 \newpage 
 \subsection*{Problem 7.2:}
 Prove that if $f \in H_0^1\left( 0,1 \right)$, then there exists $C>0$ such that $\|f\|_{L^2(0,1)} \leq C \|f'\|_{L^2(0,1)}$. 
-If instead $f \in \left\{ g \in H^1(0,1) : \int_0^1 g(x) dx = 0 \right\}$, provide a similar estimate. 
+Similarly, if $f \in \left\{ g \in H^1(0,1) : \int_0^1 g(x) dx = 0 \right\}$?
 
-\paragraph*{Proof: }
-Go by contradiction. Suppose to the contrary that there exists a sequence $f_n \in H_0^1$ with $\|f_n\|=1$ and $\|Df_n\|\to 0$. From every bounded sequence in a Hilbert space, we can extract a weakly convergent subsequence, $f_{n_k} \rightharpoonup f \in H_0^1$. The weak convergence in $H^1$ implies weak convergence of the derivative $Df_{n_k} \rightharpoonup Df \in L^2\left( \Omega \right)$. Since the norm is continuous, then we would conclude that $Df = 0$, that is, $f$ must be a constant. But in order to satisfy the boundary condition, then $f$ is indentically zero. 
+\paragraph*{Proof: } If $f \in H_0^1\left( 0,1 \right)$, then write $f$ as $f\left( x \right) = \int\limits_0^x {f'\left( s \right)ds} .$
+Then 
+\[\left| {f\left( x \right)} \right| = \left| {\int\limits_0^x {f'\left( s \right)ds} } \right| \leqslant \int\limits_0^x {\left| {f'\left( s \right)} \right|ds} .\]
+Taking supremum w.r.t. $x$, we have ${\left\| f \right\|_\infty } \leqslant \int\limits_0^1 {\left| {f'\left( s \right)} \right|ds} $. Squaring both sides, 
+\[\left\| f \right\|_\infty ^2 \leqslant {\left\{ {\int\limits_0^1 {\left| {f'\left( s \right)} \right|ds} } \right\}^2} \leqslant \int\limits_0^1 {{{\left| {f'\left( s \right)} \right|}^2}ds}  = \left\| {f'} \right\|_{{L^2}\left( {0,1} \right)}^2.\]
+Finally, 
+\[\left\| f \right\|_2^2 = \int\limits_0^1 {{{\left| f \right|}^2}}  \leqslant \left\| f \right\|_\infty ^2\]
+which proves the result for $C=1$. This merely a bound, not necessarily the tightest. 
 
-On the other side, the Rellich-Kondrachov Theorem tells us that weak convergence in $H^1$ implies $f_{n_k} \to f \in L^2$, which implies convergence in the $L^2$ norm. But, that would mean that $\|f\| = \lim \|f_n\| = 1$, a contradiction to the above conclusion that $f = 0$. 
+For the case of zero mean, we go by contradiction. We suppose to the contrary that there exists a sequence of functions $f_k \in H^1\left( 0,1 \right)$ with zero mean such that 
+\[{\left\| {{f_k}} \right\|_{{L^2}}} > k{\left\| {\nabla {f_k}} \right\|_{{L^2}}}.\] 
+Without loss of generality, let us assume that $\|f_k\|_{L^2} = 1$. Therefore, \[\frac{1}{k} > {\left\| {\nabla {f_k}} \right\|_{{L^2}}} \to 0.\]
+Now, from every bounded sequence in a Hilbert space, we can extract a weakly convergent subsequence, $f_{k_l} \rightharpoonup f$. Weak convergence in $H^1$ implies weak convergence of $\nabla f_k \rightharpoonup \nabla f$ in $L^2$. Passing to the limit, then $\nabla f = 0$, i.e. $f$ must be a constant. But since $f$ must have zero mean, then $f \equiv 0$. 
+On the other side, the Rellich-Kondrachov Theorem tells us that weak convergence in $H^1$ implies strong convergence $f_{k_l} \to f$ in $L^2$, and therefore also in the norm. But convergence in the $L^2$ norm implies that $\|f\|_{L^2} = 1$, a contradiction. 
+
+
+
+
+
+
+
 
 
 
@@ -136,15 +153,47 @@ On the other side, the Rellich-Kondrachov Theorem tells us that weak convergence
 \newpage 
 \subsection*{Problem 7.3:}
 Prove that $\delta_0 \notin \left( H^1\left( \R^d \right) \right)^*$ for $d \geq 2$, but that $\delta_0 \in \left( H^1\left( \R \right) \right)^*$. You will need to define that $\delta_0$ applied to $f \in H^1\left( \R \right)$ means. 
+\paragraph*{Solution} 
+
+For $f \in H^1\left( \R \right)$, define the action of $\delta_0$ as follows. First, identify a sequence $f_j \in \mathcal D$ converging to $f$. Then define the action of $\delta_0$ using its definition on Schwartz functions, i.e. $\left\langle {{\delta _0},f} \right\rangle  = \mathop {\lim }\limits_{j \to \infty } \left\langle {{\delta _0},{f_j}} \right\rangle $. Indeed, for every $f_j$, we have 
+\[\left| {\left\langle {{\delta _0},{f_j}} \right\rangle } \right| = \left| {\left\langle {{\mathcal{F}^{ - 1}}\mathcal{F}{\delta _0},{f_j}} \right\rangle } \right| = \left| {\left\langle {\mathcal{F}{\delta _0},\mathcal{F}{f_j}} \right\rangle } \right| = \left| {\int\limits_{{\mathbb{R}^d}} {{{\left( {2\pi } \right)}^{ - d/2}}{{\hat f}_j}\left( \xi  \right)d\xi } } \right| = {\left( {2\pi } \right)^{ - d/2}}\left| {\int\limits_{{\mathbb{R}^d}} {{{\hat f}_j}\left( \xi  \right)d\xi } } \right|\]
+It follows from Cauchy-Schwarz that 
+\begin{align*}
+  {\left( {2\pi } \right)^{ - 1/2}}\left| {\int\limits_{{\mathbb{R}}} {{{\hat f}_j}\left( \xi  \right)d\xi } } \right| &\leqslant {\left( {2\pi } \right)^{ - 1/2}}\int\limits_{{\mathbb{R}}} {\left| {{{\hat f}_j}\left( \xi  \right)} \right|\sqrt {\frac{{1 + {{\left| \xi  \right|}^2}}}{{1 + {{\left| \xi  \right|}^2}}}} d\xi }  \hfill \\
+   &\leqslant {\left( {2\pi } \right)^{ - 1/2}}\left\{ {\int\limits_{{\mathbb{R}}} {\left( {1 + {{\left| \xi  \right|}^2}} \right){{\left| {{{\hat f}_j}\left( \xi  \right)} \right|}^2}d\xi } } \right\}^{1/2}{\left\{ {\int\limits_{{\mathbb{R}}} {\frac{1}{{1 + {{\left| \xi  \right|}^2}}}d\xi } } \right\}^{1/2}} .
+\end{align*}
+We showed earlier that the first integral is nothing more than $\|f_j\|_{H^1\left( \R \right)}$ which converges to $\|f\|_{H^1\left( \R \right)}$. By performing change of var. on the second integral, we see that 
+\[\int\limits_\mathbb{R} {\frac{1}{{1 + {{\left| \xi  \right|}^2}}}d\xi } \sim d{\omega _d}\int\limits_\mathbb{R} {\frac{{{r^{d - 1}}}}{{1 + {r^2}}}dr} \]
+which converges only when $1 - d + 2 > 1$, i.e. when $d <2$. 
+
+To show that $\delta_0$ is not a member of the dual space for $d>1$, we compute its norm in the dual space. First, the dual of $H^1\left( \R^d \right)$ is $H^{-1}\left( \R^d \right)$. Then, we have the norm 
+
+\[{\left\| {{\delta _0}} \right\|_{{H^{ - 1}}\left( {{\mathbb{R}^d}} \right)}} = {\left\{ {\int\limits_{{\mathbb{R}^d}} {{{\left( {1 + {{\left| \xi  \right|}^2}} \right)}^{ - 1}}{{\left| {{{\hat \delta }_0}} \right|}^2}} } \right\}^{1/2}} = {\left( {2\pi } \right)^{ - d/2}}{\left\{ {\int\limits_{{\mathbb{R}^d}} {\frac{1}{{1 + {{\left| \xi  \right|}^2}}}d\xi } } \right\}^{1/2}}.\]
+Performing the same change of variables, we again see that the integral is similar to 
+\[\int\limits_\mathbb{R^d} {\frac{1}{{1 + {{\left| \xi  \right|}^2}}}d\xi } \sim d{\omega _d}\int\limits_\mathbb{R} {\frac{{{r^{d - 1}}}}{{1 + {r^2}}}dr} \]
+and also converges only when $d<2$. 
 
 
 
+\newpage
 \subsection*{Problem 7.4:}
 Prove that $H^1(0,1)$ is continuously embedded in $C_B(0,1)$, the set of bounded and continuous functions on $(0,1)$. 
 
-\paragraph*{Solution} Need to show that the inclusion map 
-\[H^1\left( 0,1 \right) \ni f \to f \in C_B\left( 0,1 \right)\] 
-is bounded, i.e. there exists $C>0$ such that $\|f\|_{\infty} \leq C \|f\|_{H^1}$.
+\paragraph*{Solution} Take a Cauchy sequence of smooth functions $f_j \in H^1\left( 0,1 \right) \cap C^\infty \left( [0,1] \right)$. Let now $ g := f_j - f_k$. Notice that by Cauchy-Schwarz
+\[\left| {\int\limits_0^1 g } \right| \leqslant \sqrt {\int\limits_0^1 {{1^2}} } \sqrt {\int\limits_0^1 {{g^2}} }  = 1\left\| g \right\|_{{L^2}}^2 \leqslant \left\| g \right\|_{{H^1}}^2.\]
+Furthermore, by the mean value theorem, $g$ attains its average, $m = \int\limits_0^1 g $ at some point $x_0$. Then 
+\[\left| {g\left( x \right) - m} \right| \leqslant \sqrt {\left| {x - {x_0}} \right|} {\left\| g \right\|_{{H^1}}} \leqslant {\left\| g \right\|_{{H^1}}}.\]
+Finally, triangle inequality tells us 
+\[{\left\| g \right\|_\infty } \leqslant m + {\left\| g \right\|_{{H^1}}} \leqslant 2{\left\| g \right\|_{{H^1}}}.\]
+So, if $f_j$ is Cauchy in $H^1\left( 0,1 \right) \cap C^\infty \left( [0,1] \right)$, then it is Cauchy in $C_B(0,1)$ and therefore converges. The inclusion map is therefore sequentially continuous and therefore continuous. 
+
+
+
+
+
+
+
+
 
 \end{document}
  
