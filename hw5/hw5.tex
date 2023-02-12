@@ -1,0 +1,148 @@
+\documentclass[letterpaper,twoside,11pt]{article}
+\usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
+\usepackage{amsthm}		%theorem style 
+%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+%These lines make the theorem NAME BOLD
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}[section]
+%end of making theorem name bold. 
+\newtheorem*{thm}{Theorem}		%Theorem no number. 
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem*{ex}{Example}
+\newtheorem{notee}{Note}[section]
+\newtheorem*{note}{Note}
+\usepackage[super]{nth}
+\usepackage[makeroom]{cancel}
+
+%----------------------- Macros and Definitions --------------------------
+\setlength{\fboxsep}{2.5\fboxsep}
+%Sets boxlength size
+
+\setlength\headheight{15pt}
+\addtolength\topmargin{-25pt}
+\addtolength\footskip{0pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\SL}{{\mathcal{L}}}
+\usepackage{libertine}            %% For fancy font
+\DeclareMathOperator*{\slim}{s-lim}
+\newcommand{\cg}{\color{gray}}
+\newcommand{\cbk}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\sch}{\mathcal S} 
+
+
+
+
+\begin{document}
+%\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
+\title{\vspace{-2\baselineskip} 
+Homework 5
+}
+%\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
+\author{Jonathan Zhang \qquad EID: { jdz357} }
+\date{}
+\maketitle
+
+
+\subsection*{Problem 7.6:}
+Suppose $\Omega \subset \R^d$ is a possibly unbounded domain and $\{U_\alpha\}_{\alpha \in I}$ is a collection of open sets in $\R^d$ that cover $\Omega$. Prove there exists a locally finite partition of unity in $\Omega$ subordinate to the cover. 
+
+\paragraph*{Solution} We start with a lemma: 
+\begin{lemma}
+  If $S$ is a countable dense subset of $\R^d$ with the collection of balls 
+  \[\mathcal B = \left\{ B_r(x) \subset \R^d | r \in \mathbb{Q}, x\in S, \text{ and } \exists \alpha \in I : B_r(x) \subset U_\alpha \right\},\]
+  then $\cup B_{r_j/2}(x_j)$ is an open cover of $\Omega$. 
+
+\end{lemma}
+\begin{proof}
+  Fix $r_j/2 >0$ for all $j$ and consider a point $x\in \Omega$. Suppose now to the contrary that there does not exists a $j$ such that $x$ belongs to $B_{r_j/2}(x_j)$. Then, since $\Q$ is dense in $\R$, for any $\varepsilon>0$ there exists a rational $q$ arbitrarily close to $x$. Since $q\in Q$, then also $q\in S$, and so it has a radius $r_{q/2}$ associated with it. If $\varepsilon \leq r_{q/2}$, then we are done. If not, select a new $\varepsilon_1 < \varepsilon$ and repeat the process, arriving at a new $q_1\in \Q$ such that $x\in B_{\varepsilon_1}(q_1)$. Repeating, we keep looking with smaller $\varepsilon_k$, $q_k$, $r_{q_k/2}$. If we repeat infinitely many times, though, we have found some $j$ such that $\varepsilon > r_j$ for every $\varepsilon >0$, otherwise we would have stopped. The only way to satisfy this would be for $r_j = 0$, a contradiction. 
+\end{proof}
+
+We now want to construct the functions that make up the partition of unity. Let $\varphi(x)$ denote Cauchy's infinitely differentiable function in 1D. We can easily translate and dilate this to form a bump function $\phi_j \in C_0^\infty \left( B_j \right)$ satisfying $0 \leq \phi_j \leq 1$ and $\phi_j = 1$ on $B_{r_j/2}$:
+\[\phi_j(x) = \varphi\left( \frac{2}{r_j} \left( |x-x_j| +r_j\right)  \right) \varphi\left( -\frac{2}{r_j} \left( |x-x_j| -r_j\right)  \right).\]
+Now let $\psi_1 = \phi_1$, $\psi_k = \prod_{j = 1}^{k-1}\psi_j \psi_k$. 
+
+We can now demonstrate the desired properties. 
+First of all, property (iii) is easy to see. Indeed, for every $j \in \mathcal J$ that indexes $\mathcal B$, there exists $\alpha \in I$ such that 
+\[\text{supp }\psi_j \subset \text{supp } \phi_j \subset \text{supp } B_j \subset \text{supp }U_\alpha.\]
+
+Now we show that for every compact $K\subset \Omega$, all but finitely many $\psi_j$ vanish. Observe that if $\psi_i = 0$, then all $\psi_{i+k}$ vanish for $k>0$. 
+We have already shown that $B_{r_j/2}$ provide an open cover for $\Omega$. Since $K$ is compact, it admits a finite subcover, that is, $K\subset \cup_{j=1}^M B_{r_j/2}(x_j)$. Now for $x \in K$, there exists a $N\leq M$ such that $x\in B_{r_N/2}(x_N)$. We then have that $\phi_N(x) = 1$, and that $\psi_n(x) = 0$ for $n\geq N$. So, only finitely many $\psi$ support on $K$. It is also easy to see that $\psi_j$ range betewen $0$ and $1$. To show the summation property, go by induction. We need to show that 
+\[\sum_{j = 1 }^{m}\psi_j = 1 - \prod_{j = 1}^{m}\left( 1-\phi_j \right).\]
+This holds trivially for $m = 1$. Now, for the inductive step, 
+\begin{align*}
+  \sum_{j = 1}^{m+1}\psi_j &= \psi_{m+1} + \sum_{j = 1}^{m}\psi_j\\ 
+  &= \psi_{m+1} + 1 - \prod_{j = 1 }^{m } \left( 1-\phi_j \right) \\
+  &= \phi_{m+1}\prod_{j = 1}^{m}\left( 1- \phi_j \right) + 1 - \prod_{j = 1}^{m}\left( 1-\phi_j \right)\\
+  &=1-\prod_{j = 1}^{m+1}\left( 1-\phi_j \right).
+\end{align*} 
+To show the summation property, we again use the fact that we have an open cover of half-radius balls. Using what we have just proved, 
+\[\sum_{j \in \mathcal J} \psi_j (x) = \sum_{j = 1}^{m}\psi_j(x) = 1- \prod_{j = 1 }^{m }\left( 1-\phi_j(x) \right)= 1-\left( 1-\phi_m(x) \right)\prod_{j = 1}^{m-1}\left( 1-\phi_j(x) \right) = 1.\]
+
+
+
+
+
+
+
+
+
+
+
+\subsection*{Problem 7.7:}
+$u \in \mathcal D'\left( \R^d \right)$, $\phi \in \mathcal D$. 
+\paragraph*{Solution}
+\begin{enumerate}
+  \item Define the functional 
+  \[\psi:\R\ni t \to \psi(t) = \phi(x-ty) \in \R.\]
+  Apply the fundamental theorem, 
+\end{enumerate}
+
+
+
+
+\subsection*{Problem 7.8:}
+\subsection*{Problem 7.11:}
+
+
+
+
+\end{document}
+ 
