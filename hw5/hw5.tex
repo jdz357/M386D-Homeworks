@@ -133,13 +133,75 @@ $u \in \mathcal D'\left( \R^d \right)$, $\phi \in \mathcal D$.
   \item Define the functional 
   \[\psi:\R\ni t \to \psi(t) = \phi(x-ty) \in \R.\]
   Apply the fundamental theorem, 
+  \begin{align*}
+    \psi \left( 1 \right) - \psi \left( 0 \right) &= \int\limits_0^1 {\frac{{d\psi }}{{dt}}dt}  \hfill \\
+    \phi \left( {x - y} \right) - \phi \left( x \right) &= \int\limits_0^1 {\frac{d}{{dt}}\phi \left( {x - ty} \right)dt}  \hfill \\
+    \tau_y\phi - \phi \left( x \right) &= \int\limits_0^1 { - y \cdot \nabla \phi \left( {x - ty} \right)dt} 
+  \end{align*}
+  and apply $u \in \mathcal D'$. We have 
+  \begin{align*}
+    u\left( {{\tau _y}\phi  - \phi } \right) = u\left( {{\tau _y}\phi } \right) - u\left( \phi  \right) &= u\left( {\int\limits_0^1 { - y \cdot \nabla \left( {{\tau _{ty}}\phi } \right)dt} } \right) \hfill \\
+     &=  - \int\limits_0^1 {u\left( {\sum\limits_{j = 1}^d {{y_j}\frac{\partial }{{\partial {x_j}}}\left( {{\tau _{ty}}\phi } \right)} } \right)dt}  \hfill \\
+     &=  - \int\limits_0^1 {\sum\limits_{j = 1}^d {{y_j}\left\langle {u,\frac{\partial }{{\partial {x_j}}}\left( {{\tau _{ty}}\phi } \right)} \right\rangle } dt}  \hfill \\
+     &= \int\limits_0^1 {\sum\limits_{j = 1}^d {{y_j}\left\langle {\frac{\partial }{{\partial {x_j}}}u,\left( {{\tau _{ty}}\phi } \right)} \right\rangle } dt}  \hfill \\
+     &= \int\limits_0^1 {\sum\limits_{j = 1}^d {{y_j}\frac{{\partial u}}{{\partial {x_j}}}\left( {{\tau _{ty}}\phi } \right)} dt} 
+    \end{align*}
+    \item Let $f \in W^{1,1}_{loc} \left( \R^d \right)$. Then, 
+    \[{\Lambda _f}\left( {{\tau _y}\phi } \right) - {\Lambda _f}\phi  = \int\limits_0^1 {\sum\limits_{j = 1}^d {{y_j}\frac{{\partial f}}{{\partial {x_j}}}\left( {{\tau _{ty}}\phi } \right)} dt} ,\]
+    \[{\tau _{ - y}}{\Lambda _f}\phi  - {\Lambda _f}\phi  = \int\limits_{{\mathbb{R}^d}} {\left( {f\left( {x + y} \right) - f\left( x \right)} \right)\phi \left( x \right)dx}  = \int\limits_0^1 {\sum\limits_{j = 1}^d {{y_j}\int\limits_{{\mathbb{R}^d}} {\frac{{\partial f}}{{\partial {x_j}}}\left( {x + ty} \right)\phi \left( x \right)dx} } dt} .\]
+    Exchanging order of integration, we have 
+    \[\int\limits_{{\mathbb{R}^d}} {\left( {f\left( {x + y} \right) - f\left( x \right)} \right)\phi \left( x \right)dx}  = \int\limits_{{\mathbb{R}^d}} {\left\{ {\int\limits_0^1 {\sum\limits_{j = 1}^d {{y_j}\frac{{\partial f}}{{\partial {x_j}}}\left( {x + ty} \right)dt} } } \right\}\phi \left( x \right)dx} .\] 
+    Now, we see equality of the prefactors within the integrand. Finally, we need just recognize that $y \cdot \nabla f \left( x+ty \right)$ is exactly the expssion represented by the sum. 
+    \item For $p \in (1,\infty]$, $L_{loc}^p\left( \R^d \right)\subset L_{loc}^1$. Thus, for $f\in W^{1, \infty}_{loc}\left( \R^d \right)$, $f \in W^{1,1}_{loc}$ and we can apply the result from the previous part. The previous part tells us that 
+    \[\left| {f\left( {x + \left( {y - x} \right)} \right) - f\left( x \right)} \right| = \int\limits_0^1 {\left( {y - x} \right) \cdot \nabla f\left( {x + t\left( {y - x} \right)} \right)dt} .\]
+    So then, 
+    \begin{align*}
+      \left| {f\left( y \right) - f\left( x \right)} \right| &= \left| {\int\limits_0^1 {\left( {y - x} \right) \cdot \nabla f\left( {x + t\left( {y - x} \right)} \right)dt} } \right| \hfill \\
+       &\leqslant \left| {y - x} \right|\int\limits_0^1 {dt} {\left\| {\nabla f} \right\|_{{L^\infty }\left( {{B_R}\left( 0 \right)} \right)}} \hfill \\
+       &\leqslant {C_{R,f}}\left| {y - x} \right| 
+      \end{align*}
 \end{enumerate}
 
 
 
 
-\subsection*{Problem 7.8:}
+\subsection*{Problem 7.8:} Counterexamples. 
+\begin{enumerate}
+  \item We know that for $f(x) = |x|^r$, that $f \in W^{1,p}\left( \Omega \right)$ if and only if $r > -\left( d-p \right)/p$. For $q > dp/(d-p)$, $f \notin L^q \left( \Omega \right)$ if, for some $B_r(0) \subset \Omega \cap B_1(0)$, $\|f\|_q^q \geq \int_{B_r(0)} |x|^{rq}dx$, that is, if $rq \leq -1$. Thus, we can find a counterexample for $r \in ( -(d-p)/p, -(d-p)/dp ]$. 
+  \item The previous example is bot bounded and shows there is no embedding $W^{1,p}\left( \Omega \right)\hookrightarrow C_B^0$. However, from the Sobolev embedding theorem, if $\Omega$ is bounded and $mp>d$, then $W^{m,p}_0\left( \Omega \right)\hookrightarrow C^0_B\left( \Omega \right)$. In the case of the $H^s$ spaces, though, we have $p=2$ and thus $m>1/2$, so $W^{s,2}_0 \hookrightarrow C^0_B$ for $s > 1/2$. This implies that $\delta \in H^s$ for $s < -1/2$. 
+  \item Notice immediately that $f$ is not bounded at the origin. However, 
+  \[{\left| {\log \log \left( {\frac{{4R}}{{\left| x \right|}}} \right)} \right|^p} \leqslant {\left( {4R{{\left| x \right|}^{ - 1/2p}}} \right)^p}\] for every $ x\in B_r(0)$. So then, $f \in L^p\left( \Omega \right)$. For the derivative, notice that 
+  \[Df\left( x \right) = \frac{{ - x}}{{\left| {{x^2}} \right|\log \left( {4R/\left| x \right|} \right)}}.\]
+  Define a similar sequence 
+  \[D{f_n} = \left\{ {\begin{array}{*{20}{c}}
+    {Df\left( x \right)}&{x \in \Omega  \setminus {B_n}} \\ 
+    0&\text{otherwise} 
+  \end{array}} \right.\]
+  and observe that $Df_n$ converges monotonically to $Df$ in $L^p\left( \Omega \right)$. Computation of the norm is done in spherical coordinates, 
+  \[\left\| {D{f_n}} \right\|_p^p = \int\limits_{\Omega  \setminus {B_n}} {{{\left| {\frac{{ - x}}{{\left| {{x^2}} \right|\log \left( {4R/\left| x \right|} \right)}}} \right|}^p}dx}  = \int\limits_{\Omega  \setminus {B_n}} {{{\left| {\frac{1}{{\left| x \right|\log \left( {4R/\left| x \right|} \right)}}} \right|}^p}dx} \sim \int\limits_{{\varepsilon _n}}^R {\frac{1}{{\rho \log \left( {4R/\rho } \right)}}d\rho } .\]
+  As $\rho\to0$, the integrand is zero and is bounded across the rest of the domain. Thus, $f \in W^{1,p}$ as requested. 
+  \item The distributional derivative of absolute value is 
+  \[Du = \left\{ {\begin{array}{*{20}{c}}
+    { - 1}&{x < 0} \\ 
+    a&{x = 0} \\ 
+    1&{x > 0} 
+  \end{array}} \right.\] for any choice of $a\in \R$. Thus, $Du \in L^\infty\left( -1,1 \right)$ and $u \in W^{1,\infty}\left( -1, 1 \right)$. Assume now to the contrary that there exists a sequence of smooth functions $f_n \in C^\infty$, $f_n \to u$ in $W^{1,\infty}\left( -1, 1 \right)$. If this is the case, then for the derivative, we have $Df_n \to Du$ in $L^\infty$. Since $f_n$ are smooth, then so are $Df_n$. For $\varepsilon = 1/2$, this implies in particular that $Df_n(x) \in \left( -3/2, -1/2 \right)$ for $x<0$ and $Df_n \in (1/2, 3/2)$ for $x>0$. The contradiction is that the intermediate value theorem implies that there exists an interval such that $Df_n \in [-1/2, 1/2]$ in order to connect these two regions. So, $C^\infty \left( -1, 1 \right)\cap W^{1,\infty}\left( -1, 1 \right)$ is not dense in $W^{1,\infty}\left( -1, 1 \right)$. 
+\end{enumerate}
+
+
+
 \subsection*{Problem 7.11:}
+We have 
+
+\begin{align*}
+  \left\| f \right\|_{{H^s}}^2 &= \int\limits_{{\mathbb{R}^d}} {{{\left( {1 + {{\left| \xi  \right|}^2}} \right)}^s}{{\left| {\hat f\left( \xi  \right)} \right|}^2}d\xi }  \hfill \\
+   &= \int\limits_{{\mathbb{R}^d}} {{{\left( {1 + {{\left| \xi  \right|}^2}} \right)}^s}{{\left| {\hat f\left( \xi  \right)} \right|}^{2s}}{{\left| {\hat f\left( \xi  \right)} \right|}^{2\left( {s - 1} \right)}}d\xi }  \hfill \\
+   &= \int\limits_{{\mathbb{R}^d}} {{{\left\{ {{{\left( {1 + {{\left| \xi  \right|}^2}} \right)}^{1/2}}\left| {\hat f\left( \xi  \right)} \right|} \right\}}^{2s}}{{\left| {\hat f\left( \xi  \right)} \right|}^{2\left( {s - 1} \right)}}d\xi }  \hfill \\
+   &\leqslant {\left\| {{{\left( {1 + {{\left| \xi  \right|}^2}} \right)}^{1/2}}\left| {\hat f\left( \xi  \right)} \right|} \right\|^{2s}}_{{L^2}\left( {{\mathbb{R}^d}} \right)}{\left\| {{{\left| {\hat f} \right|}^{2\left( {s - 1} \right)}}} \right\|_{{L^2}\left( {{\mathbb{R}^d}} \right)}} \hfill \\
+   &\leqslant {\left\| {{{\left( {1 + {{\left| \xi  \right|}^2}} \right)}^{1/2}}\left| {\hat f\left( \xi  \right)} \right|} \right\|^{2s}}_{{L^2}\left( {{\mathbb{R}^d}} \right)}{\left\| {\left| {\hat f} \right|} \right\|^{2\left( {1 - s} \right)}}_{{L^2}\left( {{\mathbb{R}^d}} \right)} 
+\end{align*}
+and hence, 
+\[\left\| f \right\|_{{H^s}}^{} \leqslant {\left\| {{{\left( {1 + {{\left| \xi  \right|}^2}} \right)}^{1/2}}\left| {\hat f\left( \xi  \right)} \right|} \right\|^s}_{{L^2}\left( {{\mathbb{R}^d}} \right)}{\left\| {\left| {\hat f} \right|} \right\|^{\left( {1 - s} \right)}}_{{L^2}\left( {{\mathbb{R}^d}} \right)} \Rightarrow \left\| f \right\|_{{H^s}}^{} \leqslant \left\| f \right\|_{{H^1}}^s\left\| f \right\|_{{L^2}}^{1 - s}\]
 
 
 
