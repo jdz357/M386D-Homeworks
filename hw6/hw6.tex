@@ -1,0 +1,140 @@
+\documentclass[letterpaper,twoside,11pt]{article}
+\usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
+\usepackage{amsthm}		%theorem style 
+%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+%These lines make the theorem NAME BOLD
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}[section]
+%end of making theorem name bold. 
+\newtheorem*{thm}{Theorem}		%Theorem no number. 
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem*{ex}{Example}
+\newtheorem{notee}{Note}[section]
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{note}{Note}
+\usepackage[super]{nth}
+\usepackage[makeroom]{cancel}
+
+%----------------------- Macros and Definitions --------------------------
+\setlength{\fboxsep}{2.5\fboxsep}
+%Sets boxlength size
+
+\setlength\headheight{15pt}
+\addtolength\topmargin{-25pt}
+\addtolength\footskip{0pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\SL}{{\mathcal{L}}}
+\usepackage{libertine}            %% For fancy font
+\DeclareMathOperator*{\slim}{s-lim}
+\newcommand{\cg}{\color{gray}}
+\newcommand{\cbk}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\sch}{\mathcal S} 
+
+
+
+
+\begin{document}
+%\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
+\title{\vspace{-2\baselineskip} 
+Homework 6
+}
+%\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
+\author{Jonathan Zhang \qquad EID: { jdz357} }
+\date{}
+\maketitle
+
+
+
+\begin{exercise}[7.10]
+Suppose $\Omega\subset \R^d$ is bounded with Lipschitz boundary and $f_j \rightharpoonup f$ and $g_j\rightharpoonup g$ weakly in $H^1\left( \Omega \right)$. Show that, for a subsequence, $\nabla \left( f_jg_j \right) \to \nabla (fg)$ as a distribution. Find all $p$ in $[1,\infty]$ such that the convergence can be taken weakly in $L^p\left( \Omega \right)$. 
+\end{exercise}
+
+
+
+
+
+
+
+\begin{exercise}[7.15]
+Suppose that $w \in L^1\left( \R \right)$, $w(x) > 0$, and $w$ is even. Moreover, for $x > 0$, $w \in C^2[0, infty)$, $w'(x) < 0$, and $w''(x) >0$. Consider the equation 
+\[w\ast u - u'' = f\in L^2\left( \R \right).\]
+\begin{enumerate}
+  \item Show that $\hat w \left( \xi \right) >0$. 
+  \item Fund a fundamental solution. Leave answer in terms of inverse Fourier transform. 
+  \item Find the solution operator as a convolution operator. 
+  \item Show that $u \in H^2\left( \R \right)$. 
+\end{enumerate}
+\end{exercise}
+
+
+
+\begin{exercise}[7.16]
+  Let $H$ be a Hilbert space and $Z$ a closed linear subspace. Prove that $H/Z$ has the inner product 
+  \[\left( \hat x, \hat y \right)_{H/Z} = \left( P_Z^{\perp} x,P_Z^{\perp} y  \right)_H\]
+  and that $H/Z$ is isomorphic to $Z^\perp$.
+
+\end{exercise}
+
+
+
+\begin{exercise}[7.17]
+  Elliptic regularity theorey shows that if $\Omega \subset \R^d$ has a smooth boundary and $f \in H^s\left( \Omega \right)$, then $-\Delta u = f$ in $\Omega$, $u = 0$ on $\partial \Omega$ has a unique solution $u \in H^{s+2}$. For what values of $s$ will $u$ be continuous? Can you be sure that a fundamental solution is continuous? Answer depends on $d$. 
+
+\end{exercise}
+
+
+
+
+\begin{exercise}[7.19]
+  Let $\Omega \subset \R^d$ be a domain with Lipschitz boundary. Let $w\in L^\infty \left( \Omega \right)$. Define 
+  \[H_w\left( \Omega \right) = \left\{f \in L^2 (\Omega) : \nabla \left( wf \right) \in \left( L^2(\Omega) \right)^d\right\}\]
+\begin{enumerate}
+  \item Give reasonable conditions on $w$ so that $H_w\left( \Omega \right) = H^1 \left( \Omega \right)$. 
+  \item Prove that $H_w\left( \Omega \right)$ is a Hilbert space. What is the inner product? 
+  \item Can you define the trace of $f$ on $\partial \Omega$? First consider trace of $wf$. 
+  \item Characterize $H_w\left( \R \right)$ if $w(x)$ is the Heaviside function. 
+\end{enumerate}
+\end{exercise}
+
+
+
+\end{document}
+ 
