@@ -104,14 +104,75 @@ Suppose that $w \in L^1\left( \R \right)$, $w(x) > 0$, and $w$ is even. Moreover
 \end{enumerate}
 \end{exercise}
 
+\begin{proof}
+  \begin{enumerate}
+    \item First, use some properties of $w$: 
+    \begin{align*}
+      \hat w\left( \xi  \right) &= {\left( {2\pi } \right)^{ - 1/2}}\int\limits_\mathbb{R} {w\left( x \right){e^{ - ix\xi }}dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - 1/2}}\int\limits_\mathbb{R} {w\left( x \right)\left( {\cos \left( {x\xi } \right) - i\sin \left( {x\xi } \right)} \right)dx}  \hfill \\
+       &= {\left( {2\pi } \right)^{ - 1/2}}\int\limits_\mathbb{R} {w\left( x \right)\cos \left( {x\xi } \right)dx}  \hfill \\
+       &= 2{\left( {2\pi } \right)^{ - 1/2}}\int\limits_0^\infty  {w\left( x \right)\cos \left( {x\xi } \right)dx}  
+    \end{align*}
+    Since the product $w(x)\sin(x\xi)$ is odd, its integral over the real line is zero. IBP tells us 
+    \begin{align*}
+        \int\limits_0^\infty  {w\left( x \right)\cos \left( {x\xi } \right)dx}  = \left[ {w\left( x \right)\sin \left( {x\xi } \right)\frac{1}{\xi }} \right]_0^\infty  - \int\limits_0^\infty  {\frac{1}{\xi }w'\left( x \right)\sin \left( {x\xi } \right)dx}  \hfill \\
+         = \mathop {\lim }\limits_{x \to \infty } w\left( x \right)\sin \left( {x\xi } \right)\frac{1}{\xi } - \int\limits_0^\infty  {\frac{1}{\xi }w'\left( x \right)\sin \left( {x\xi } \right)dx}  .
+    \end{align*}
+    Let us examine the integral 
+    \[ - \int\limits_0^\infty  {\frac{1}{\xi }w'\left( x \right)\sin \left( {x\xi } \right)dx} .\]
+    and consider it first on an interval $(0, 2\pi / |\xi|)$. For the moment, let us restrict ourselves to $\xi > 0$. We will demonstrate that over a single interval, the integral is positive. Then, we will extend the same reasoning to all the inervals, and conclude that the original integral is positive. 
+
+    Let us decompose the integral as
+    \[\int\limits_0^{2\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  = \int\limits_0^{\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  + \int\limits_{\pi /\left| \xi  \right|}^{2\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx} \]
+
+
+  \end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{exercise}[7.16]
   Let $H$ be a Hilbert space and $Z$ a closed linear subspace. Prove that $H/Z$ has the inner product 
   \[\left( \hat x, \hat y \right)_{H/Z} = \left( P_Z^{\perp} x,P_Z^{\perp} y  \right)_H\]
   and that $H/Z$ is isomorphic to $Z^\perp$.
-
 \end{exercise}
+
+We want to show the following: 
+\begin{enumerate}
+  \item The proposed inner product is well defined. 
+  \item The inner product in $H/Z$ is in fact an inner product. 
+  \item There is a natural isomorphism between $H/Z$ and $Z^\perp$. 
+\end{enumerate}
+\begin{proof}
+  \begin{enumerate}
+    \item Let $x_1, x_2 \in \hat x$ be two elements in the equivalence class. Then, 
+    \[{\left( {\hat x,\hat y} \right)_{H/Z}} = \left( {P_Z^ \bot {x_1},P_Z^ \bot y} \right) = \left( {P_Z^ \bot {x_2},P_Z^ \bot y} \right)\]
+    if and only if 
+    \[\left( {P_Z^ \bot \left( {{x_1} - {x_2}} \right),P_Z^ \bot y} \right) = 0.\]
+    But, since $x_1$ and $x_2$ belong to the same equivalence class, their difference is a member of $Z$. Therefore, the projection ${P_Z^ \bot \left( {{x_1} - {x_2}} \right)}=0$, so the value of ${\left( {\hat x,\hat y} \right)_{H/Z}}$ is independent of the choice of representative. 
+
+    \item Symmetry: 
+    \[{\left( {\hat x,\hat y} \right)_{H/Z}} = {\left( {P_Z^ \bot {x_1},P_Z^ \bot y} \right)_H} = {\left( {P_Z^ \bot y,P_Z^ \bot {x_1}} \right)_H} = {\left( {\hat y,\hat x} \right)_{H/Z}}.\]
+    Positivity: 
+    \[{\left( {\hat x,\hat x} \right)_{H/Z}} = {\left( {P_Z^ \bot {x_1},P_Z^ \bot {x_1}} \right)_H} = {\left\| {P_Z^ \bot {x_1}} \right\|^2} \geqslant 0,\]
+    and we see clearly that $(\hat x, \hat x)_{H/Z} = 0$ only when $x \in Z$, or equivalently, $x\in \hat 0$. 
+    Linearity: Projections are linear, and the inner product in $H$ is linear. 
+
+    \item The two spaces are connected by the natural isomorphism 
+    \[i:H/Z \ni \hat x \to P_Z^ \bot {x_1} \in {Z^ \bot };\quad {i^{ - 1}}:{Z^ \bot } \ni x \to \hat x \in H/Z.\]
+    Map $i$ is a well defined map, since we just showed the projection is independent of the choice of representative. 
+  \end{enumerate}
+\end{proof}
+
 
 
 
