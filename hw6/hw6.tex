@@ -123,8 +123,19 @@ Suppose that $w \in L^1\left( \R \right)$, $w(x) > 0$, and $w$ is even. Moreover
     and consider it first on an interval $(0, 2\pi / |\xi|)$. For the moment, let us restrict ourselves to $\xi > 0$. We will demonstrate that over a single interval, the integral is positive. Then, we will extend the same reasoning to all the inervals, and conclude that the original integral is positive. 
 
     Let us decompose the integral as
-    \[\int\limits_0^{2\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  = \int\limits_0^{\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  + \int\limits_{\pi /\left| \xi  \right|}^{2\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx} \]
-
+    \[\int\limits_0^{2\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  = \int\limits_0^{\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  + \int\limits_{\pi /\left| \xi  \right|}^{2\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx} .\]
+    %The first integral is negative, since the product $w'(x) \sin(x\xi) < 0$ for $x \in (0, \pi/\xi)$. 
+    For the second integral, change variables to $u = x- \pi/|\xi|$: 
+    \begin{align*}
+    \int\limits_0^{2\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  &= \int\limits_0^{\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  + \int\limits_{0}^{\pi /\left| \xi  \right|} {w'\left( u+\pi/|\xi|\right)\sin \left( {(u+\pi/|\xi|)\xi } \right)dx} \\
+    &=\int\limits_0^{\pi /\left| \xi  \right|} {w'\left( x \right)\sin \left( {x\xi } \right)dx}  - \int\limits_{0}^{\pi /\left| \xi  \right|} {w'\left( u+\pi/|\xi|\right)\sin (u\xi)du} \\
+    &=\int\limits_0^{\pi /\left| \xi  \right|} \left({w'\left( u \right)}  -  w'\left( u+\pi/|\xi|\right)\right)\sin (u\xi)du.
+    \end{align*}
+    Now by Taylor expansion, 
+    \[w'\left( u + \pi/|\xi| \right) = w'(u) + w''(\tilde u) \pi/|\xi|\quad \text{for some } \tilde u \in [u, u+\pi/|\xi|]. \]
+    So the integral simplifies to 
+    \[\int\limits_0^{\pi /\left| \xi  \right|} -\pi/|\xi|w''\left( \tilde u \right)\sin (u\xi)du.\]
+    The sign of this integral is negative by inspection. The same reasoning applies for the integral over the interval $(n\pi/|\xi|, (n+1)\pi/|\xi|)$. That means the original integral is positive since it is premultiplied by $-1/\xi$. 
 
   \end{enumerate}
 \end{proof}
