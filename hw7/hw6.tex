@@ -1,0 +1,152 @@
+\documentclass[letterpaper,twoside,11pt]{article}
+\usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
+\usepackage{amsthm}		%theorem style 
+%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+%These lines make the theorem NAME BOLD
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}[section]
+%end of making theorem name bold. 
+\newtheorem*{thm}{Theorem}		%Theorem no number. 
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem*{ex}{Example}
+\newtheorem{notee}{Note}[section]
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{note}{Note}
+\usepackage[super]{nth}
+\usepackage[makeroom]{cancel}
+
+%----------------------- Macros and Definitions --------------------------
+\setlength{\fboxsep}{2.5\fboxsep}
+%Sets boxlength size
+
+\setlength\headheight{15pt}
+\addtolength\topmargin{-25pt}
+\addtolength\footskip{0pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\SL}{{\mathcal{L}}}
+\usepackage{libertine}            %% For fancy font
+\DeclareMathOperator*{\slim}{s-lim}
+\newcommand{\cg}{\color{gray}}
+\newcommand{\cbk}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\sch}{\mathcal S} 
+
+
+
+
+\begin{document}
+%\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
+\title{\vspace{-2\baselineskip} 
+Homework 7
+}
+%\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
+\author{Jonathan Zhang \qquad EID: { jdz357} }
+\date{}
+\maketitle
+
+
+
+\begin{exercise}[8.1]
+  If $A$ is positive definite, show that its eigenvalues are positive. If $A$ is symmetric and has positive eigenvalues, then $A$ is positive definite. 
+\end{exercise}
+
+\begin{proof}
+  Suppose that $A$ is positive definite. Let $\left( \lambda, v \right)$ be an eigenpair for $A$. Then by the positive definiteness, 
+    \[0<\left( v, Av \right) = \left( v, \lambda v \right) = \lambda \left( v, v \right) = \lambda \|v\|^2.\]
+    Since this quantity is strictly positive, we must have $\lambda >0$. 
+
+  On the other side, 
+  assume now that $A$ has all positive eigenvalues. Then, $a$ admits a diagonalization $A= U \Lambda U^*$ for some $U^* = U\inv$ unitary matrix. Pick $x \neq 0$, and set $y = U^* x \neq 0$. Then 
+    \[\left( x, Ax \right) = \left( x, U \Lambda U^* x \right) = \left( y, \Lambda y \right).\] 
+    Expand $y = \sum y_i e_i$, then 
+    \[\left( y, \Lambda y \right) = \sum_{i} \overline{y_i} y_i \lambda _i >0\] since $\lambda_i >0$ and $\overline{y_i}y_i = |y_i|^2 \geq 0 $ since $y \neq 0$ by assumption. This shows that $\left( x, Ax \right) = \left( y, \Lambda y \right) >0$ and $a$ is positive definite. 
+
+\end{proof}
+
+
+
+
+
+
+\newpage 
+\begin{exercise}[8.3]
+
+\end{exercise}
+
+
+
+
+
+\newpage
+\begin{exercise}[8.5]
+\end{exercise}
+
+
+
+
+
+
+
+
+
+
+\newpage 
+\begin{exercise}[8.8]
+  $\Omega \subset \R^d$ bounded, connected, Lipschitz domain. Let $V \subset \Omega$ have positive measure. Let $H = \left\{ u \in H^1 (\Omega) : u|_V = 0 \right\}$. 
+  \begin{enumerate}
+    \item Why is $H$ a Hilbert space? 
+    \item Prove that there exists $C>0$ such that 
+    \[\|u\| \leq C \|\nabla u\|\]
+    for every $u \in H$. 
+  \end{enumerate}
+\end{exercise}
+
+\begin{enumerate}
+  \item $H$ is the null space of the restriction to $V$ operator. Since restriction is continuous, then $H$ is closed. As a closed subspace of Hilbert space $H^1\left( \Omega \right)$, then $H$ is itself a Hilbert space. 
+  \item Go by contradiction. Assume to the contrary that there exists a sequence $u_n \in H$ such that 
+  \[\|u_n\|= 1 \qquad \text{and} \qquad \|\nabla u_n\| \to 0.\]
+  Now, from every bounded sequence in a Hilbert space, we can extract a weakly convergent subsequence $u_{n_k} \rightharpoonup u \in H$. Weak convergence of $
+
+\end{enumerate}
+
+
+
+\end{document}
+ 
