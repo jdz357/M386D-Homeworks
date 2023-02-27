@@ -87,6 +87,16 @@ Homework 6
 Suppose $\Omega\subset \R^d$ is bounded with Lipschitz boundary and $f_j \rightharpoonup f$ and $g_j\rightharpoonup g$ weakly in $H^1\left( \Omega \right)$. Show that, for a subsequence, $\nabla \left( f_jg_j \right) \to \nabla (fg)$ as a distribution. Find all $p$ in $[1,\infty]$ such that the convergence can be taken weakly in $L^p\left( \Omega \right)$. 
 \end{exercise}
 
+Weak convergence of $f_j$ in $H^1$ implies strong convergence of $f_j$ in $L^2$. To see this, consider any subsequence $f_{j_k}$. By Rellich-Kondrachov, then every subsequence of $f_{j_k}$ converges strongly to $f$ in $L^2$. But if that is the case, then $f_j \to f$ in $L^2$. Same with $g$. 
+Holder's implies then that the product of $f_jg_j$ converges strongly in $L^1$ to $fg$. 
+
+Now, as a distribution, 
+\begin{align*}
+  \left\langle \nabla (f_jg_j) - \nabla (fg) , \phi \right\rangle = \left\langle \nabla ( f_jg_j - fg ) , \phi \right\rangle\ = \left\langle f_jg_j - fg, \nabla \phi \right\rangle \leq \|f_jg_j - fg\|_1 \|\nabla \phi\|_\infty.
+\end{align*}
+
+We claim that weak convergence in $L^p$ works for any $p \in [1, \infty]$. Notice first that on bounded domains, $L^p$ spaces are nested. Additionally, $\nabla(f_j g_j ) = f_j \nabla g_j + g_j \nabla f_j$. Each term is a product of a weakly convergent and strongly convergent sequence, so each term converges weakly in $L^1$. We have just shown that both the sequence $f_j g_j $ and the sequence $\nabla (f_j g_j)$ converge weakly in $L^1$, so $f_j g_j$ converges in $W^{1, 1}$. Now, Rellich implies that for some subsequence, $f_j g_j$ converges strongly in $L^1\left( \Omega \right)$, and thus every $L^p$, $p > 1$ as well. 
+
 
 
 
@@ -136,6 +146,28 @@ Suppose that $w \in L^1\left( \R \right)$, $w(x) > 0$, and $w$ is even. Moreover
     So the integral simplifies to 
     \[\int\limits_0^{\pi /\left| \xi  \right|} -\pi/|\xi|w''\left( \tilde u \right)\sin (u\xi)du.\]
     The sign of this integral is negative by inspection. The same reasoning applies for the integral over the interval $(n\pi/|\xi|, (n+1)\pi/|\xi|)$. That means the original integral is positive since it is premultiplied by $-1/\xi$. 
+    For negative $\xi$, we remark that the same holds by the oddity of sine. 
+
+    Lastly, we argue that $\lim_{x\to \infty} w(x) = 0$. We know that $w$ is monotone decreasing, but at a decreasing rate. We also know that $w$ is strictly positive. At best case, $w(x) \to 0$ as $x \to \infty$. At worst, $w(x)$ approaches some constant nonzero, but this cannot be, since $w$ is integrable. The final result is that 
+
+    \[\hat w \left( \xi \right) = -2\left( 2\pi \right)^{-1/2} \frac{1}{\xi}\int\limits_0^\infty w'(x) \sin(x\xi) dx >0 \]
+
+
+    \item Let $f = \delta_0$. Take the Fourier transform and solve for $\hat G$. 
+    \[\left( 2\pi  \right)^{1/2} \hat w \hat G - \left( i\xi \right)^2 \hat G = \left( 2\pi  \right)^{-1/2}\]
+    so 
+    \[ G = \left[\frac{\left( 2\pi \right)^{-1/2}}{(2\pi)^{1/2} \hat w + \xi^2}\right]^\vee\]
+    is the fundamental solution. 
+
+    \item Now for any right hand side, the solution is $u = G \ast f$. 
+    
+
+    \item $u\in H^2$ since 
+    
+    \[\|u\|_{H^2}^2 = \int \left( 1+\xi^2 \right)^2 \hat u^2 = \int \left( 1+\xi^2 \right)^2 \frac{\hat f ^2}{((2\pi)^{1/2} \hat w + \xi^2)^2}\] 
+    is finite, since by Holders, it is bounded by $\|f\|^2_2 \left\| \frac{(1+\xi^2)^2}{((2\pi)^{1/2} \hat w + \xi^2)^2}\right\|_\infty$.
+    
+    
 
   \end{enumerate}
 \end{proof}
@@ -192,6 +224,10 @@ We want to show the following:
 
 \end{exercise}
 
+Use the Sobolev embedding theorem with $m = s+2$, $p = 2$, and $j = 0$. This tells us that $H^{s+2} \hookrightarrow C_B^0$ (i.e. $u$ is continuous) only if $2(s+2) > d$, that is, $s > (d-1)/2$.
+
+For the fundamental solution, recall that $\delta \in H^s$ for $s < -d/2$. The two conditions tell us that $ d = 1$ is the only possible value, so the fundamental solution is continuous only if $d = 1$ and $s \in [-3/2, -1/2]$. 
+
 
 
 
@@ -206,6 +242,15 @@ We want to show the following:
 \end{enumerate}
 \end{exercise}
 
+
+\begin{enumerate}
+  \item First, we remark that an easy condition is that $w \in \R$ and $w \neq 0$. However, we can admit a larger class of $w$. By the product rule, $\nabla(wf) = f\nabla w + w \nabla f$, and if we want the result to be in $L^2$, then a reasonable condition is that $\nabla w \in L^\infty$. Finally, we need that $|w|\geq a > 0$. 
+  \item It is clear that $H_w$ is a vector space. We need to show now that it is complete. Let $f_j$ be a Cauchy sequence in $H_w\left( \Omega \right)$. Then $f_j$ converges in $L^2$ to $f$. At the same time, $\nabla (wf_j)$ is Cauchy in $\left( L^2 \right)^d$ and converges to $h \in \left( L^2 \right)^d$. Our claim is that $h = \nabla \left( wf \right)$. Indeed, 
+  \[\langle h, \varphi \rangle \leftarrow \langle \nabla (wf_j) , \varphi \rangle = \langle wf_j, \nabla \varphi \rangle \to \langle wf, \nabla \varphi \rangle = \langle \nabla (wf) , \varphi \rangle \]
+  and so by the Lebesgue lemma, we have $h = \nabla (wf)$. The inner product on $H_w$ is defined by 
+  \[(f, g)_{H_w} = (f, g)_{L^2} + (\nabla (wf), \nabla (wg))_{\bm L^2}\]
+
+\end{enumerate}
 
 
 \end{document}
