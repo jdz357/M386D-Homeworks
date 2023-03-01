@@ -1,7 +1,7 @@
 \documentclass[letterpaper,twoside,11pt]{article}
 \usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
 \usepackage{amsthm}		%theorem style 
-%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
 %These lines make the theorem NAME BOLD
 \newtheoremstyle{mystyle}%                % Name
   {}%                                     % Space above
@@ -59,7 +59,7 @@
 \newcommand{\Q}{{\mathbb Q}}
 \newcommand{\C}{{\mathbb C}}
 \newcommand{\SL}{{\mathcal{L}}}
-\usepackage{libertine}            %% For fancy font
+%\usepackage{libertine}            %% For fancy font
 \DeclareMathOperator*{\slim}{s-lim}
 \newcommand{\cg}{\color{gray}}
 \newcommand{\cbk}{\color{black}}
@@ -93,10 +93,10 @@ Homework 7
     Since this quantity is strictly positive, we must have $\lambda >0$. 
 
   On the other side, 
-  assume now that $A$ has all positive eigenvalues. Then, $a$ admits a diagonalization $A= U \Lambda U^*$ for some $U^* = U\inv$ unitary matrix. Pick $x \neq 0$, and set $y = U^* x \neq 0$. Then 
+  assume now that $A$ has all positive eigenvalues. Then, $A$ admits a diagonalization $A= U \Lambda U^*$ for some $U^* = U\inv$ unitary matrix. Pick $x \neq 0$, and set $y = U^* x \neq 0$. Then 
     \[\left( x, Ax \right) = \left( x, U \Lambda U^* x \right) = \left( y, \Lambda y \right).\] 
     Expand $y = \sum y_i e_i$, then 
-    \[\left( y, \Lambda y \right) = \sum_{i} \overline{y_i} y_i \lambda _i >0\] since $\lambda_i >0$ and $\overline{y_i}y_i = |y_i|^2 \geq 0 $ since $y \neq 0$ by assumption. This shows that $\left( x, Ax \right) = \left( y, \Lambda y \right) >0$ and $a$ is positive definite. 
+    \[\left( y, \Lambda y \right) = \sum_{i} \overline{y_i} y_i \lambda _i >0\] since $\lambda_i >0$ and $\overline{y_i}y_i = |y_i|^2 \geq 0 $ since $y \neq 0$ by assumption. This shows that $\left( x, Ax \right) = \left( y, \Lambda y \right) >0$ and $A$ is positive definite. 
 
 \end{proof}
 
@@ -107,8 +107,21 @@ Homework 7
 
 \newpage 
 \begin{exercise}[8.3]
-
+Suppose we wish to find $u \in H^2 \left( \Omega \right)$ satisfying $-\Delta u + cu^2 = f \in L^2 \left( \Omega \right)$ for $\Omega \subset \R^d$ is a bounded Lipschitz domain. For consistency, we would require that $cu^2 \in L^2 \left( \Omega \right)$. Determine the smallest $p$ such that if $c \in L^p (\Omega)$, then this holds. Depends on $d$. 
 \end{exercise}
+
+\begin{proof}
+  We want $cu^2 \in L^2 \left( \Omega \right)$. Suppose that $u \in L^r \left( \Omega \right)$ and $c \in L^p (\Omega)$. Then by Generalized H\"older's, we have the estimate
+  \[\|cu^2 \|_2^2 = \int\limits_\Omega c^2 u^4 \leq \|c\|_p^2 \|u\|_r^4 \]
+  provided that $2/p+4/r=1$. That is, given $r$, we determine $p = \frac{2}{1-4/r}$, and if $c \in L^p$, then we have $c u ^2 \in L^2 \left( \Omega \right)$.  
+
+  We make use now of the Sobolev embedding theorem. We know $ u \in H^2 \left( \Omega \right) = W^{2, 2} \left( \Omega \right)$. Let $j = 0$, $m = 2$, $p = 2$. Then we have 
+  \begin{enumerate}
+    \item If $4 < d$, then $W^{2,2} (\Omega) \hookrightarrow W^{0,r}\left( \Omega \right)$ for every $r\leq \frac{2d}{d-4}$. Let us first investigate when $r = \frac{2d}{d-4}$. Substituting in, we find $p = \frac{2d}{8-d}$. We immediately find that we have problems when $ d > 8$, which is admissible in this case. Restricting to $p \geq 1$, we obtain $ r \geq 4$, so we must have $ r \in [4, \frac{2d}{d-4}]$. 
+    
+    \item If $d < 4$, then $W^{2,2} (\Omega) \hookrightarrow C_B^0 (\Omega) = C^0 (\Omega) \cap L^\infty (\Omega)$. In this case, we obtain $ r = \infty$, and calculate $ p = 2$, so $c$ can be in $L^2$. 
+  \end{enumerate}
+\end{proof}
 
 
 
@@ -116,7 +129,19 @@ Homework 7
 
 \newpage
 \begin{exercise}[8.5]
+  Suppose that $\Omega \subset \R^d$ is a smooth, bounded, connected domain. Let 
+  \[H = \left\{ u \in H^2 \left( \Omega \right)  : \int_\Omega u = 0, \nabla u \cdot n = 0 \text{ on } \partial \Omega  \right\}.\]
+  Show that $H$ is a Hilbert space, and prove there exists $C > 0$ such that 
+  \[\|u\|_{H^1 \left( \Omega \right) } \leq C \sum_{|\alpha| = 2} \|D^\alpha u \|_{L^2 (\Omega)}\]
+  for every $u \in H$. 
 \end{exercise}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Hilbert Space.
+    \item Proof by contradiction. 
+  \end{enumerate}
+\end{proof}
 
 
 
