@@ -117,10 +117,27 @@ Suppose we wish to find $u \in H^2 \left( \Omega \right)$ satisfying $-\Delta u 
 
   We make use now of the Sobolev embedding theorem. We know $ u \in H^2 \left( \Omega \right) = W^{2, 2} \left( \Omega \right)$. Let $j = 0$, $m = 2$, $p = 2$. Then we have 
   \begin{enumerate}
-    \item If $4 < d$, then $W^{2,2} (\Omega) \hookrightarrow W^{0,r}\left( \Omega \right)$ for every $r\leq \frac{2d}{d-4}$. Let us first investigate when $r = \frac{2d}{d-4}$. Substituting in, we find $p = \frac{2d}{8-d}$. We immediately find that we have problems when $ d > 8$, which is admissible in this case. Restricting to $p \geq 1$, we obtain $ r \geq 4$, so we must have $ r \in [4, \frac{2d}{d-4}]$. 
+    \item If $4 < d$, then $W^{2,2} (\Omega) \hookrightarrow W^{0,r}\left( \Omega \right)$ for every $r\leq \frac{2d}{d-4}$. Let us first investigate when $r = \frac{2d}{d-4}$. Substituting in, we find $p = \frac{2d}{8-d}$. We immediately find that we have problems when $ d > 8$, which is admissible in this case. Enforcing that $p \geq 1$, we obtain $ r \geq 4$, so we must have $ r \in [4, \frac{2d}{d-4}]$. However, we run into an issue when $d > 8$. Then, there are no values for $r$ that work, and hence the argument breaks down. 
     
     \item If $d < 4$, then $W^{2,2} (\Omega) \hookrightarrow C_B^0 (\Omega) = C^0 (\Omega) \cap L^\infty (\Omega)$. In this case, we obtain $ r = \infty$, and calculate $ p = 2$, so $c$ can be in $L^2$. 
   \end{enumerate}
+
+  Therefore, we have the following result: 
+
+  \begin{table}[htbp]
+	\centering
+	\begin{tabular}{c|c}
+		$d$ & $p$ \\ \hline
+		$<4$ & 2 \\
+		$4$ & $2^+$ \\
+		$5$ & 10/3 \\
+		$6$ & 6 \\
+		$7$ & 14 \\
+    $8$ & $\infty$ \\\hline
+	\end{tabular}
+\end{table}
+
+
 \end{proof}
 
 
@@ -138,8 +155,30 @@ Suppose we wish to find $u \in H^2 \left( \Omega \right)$ satisfying $-\Delta u 
 
 \begin{proof}
   \begin{enumerate}
-    \item Recognize that the condition $\nabla u \cdot n = 0$ is exactly $\gamma_1 u = 0$. We showed that $\gamma_1$ is a continuous linear map. Furthermore, the averaging operator is continuous. Our space $H$ then can be equivalently characterized as $\mathcal N (A) \cap \mathcal N(\gamma_1)$. Each set is closed, so $H$ is closed. Therefore $H$ is a Hilbert space equipped with the $H^2(\Omega)$ inner product. 
-    \item Proof by contradiction. 
+    \item $H$ is the finite intersection of two null spaces. The null space of the averaging operator and the null space of the $\gamma_1$ operator. Therefore, $H$ is closed. $H$ also inherits the $H^2 \left( \Omega \right)$ inner product. 
+    \item Assume to the contrary that the inequality fails. That is, there exists a seqeunce $u_n \in H$ such that 
+    \[\|u_n\|_{H^1} = 1 \qquad \text{and} \qquad \sum_{|\alpha| = 2} \|D^\alpha u_n \|_{L^2 (\Omega)} \to 0 . \]
+
+    We remark that the second assumption implies that $D^\alpha u_n \to 0$ in $L^2$ for every $|\alpha| = 2$ multiindex.
+
+    On one hand, we have a bounded sequence in $H^1$ from which we can extract a weakly converging subsequence, denoted with the same symbol, $u_n \rightharpoonup u$ in $H^1$. 
+    
+    \cred
+
+    
+    Now $u_n$ is a bounded sequence in $H$ since
+    \begin{align*}
+      \|u\|_{H^2(\Omega)}^2 &= \|u\|^2 + \sum_{|\alpha| = 1} \|D^\alpha u \|^2 + \sum_{|\alpha| = 2} \|D^\alpha u \|^2 = \|u\|^2 + \|\nabla u \|^2 + \sum_{|\alpha| = 2} \|D^\alpha u \|^2 \\ 
+      &\leq \left( C_p^2 + 1  \right) \|\nabla u\|^2 +
+    \end{align*}
+
+    So, from that we can extract a subsequence $u_{n_k} \rightharpoonup u$ in $H$. This means that $D^2 u_{n_k} \rightharpoonup D^2 u$ weakly in $L^2$. At the same time, $D^2 u_{n_k} \to 0$ in $L^2$. We would conclude then that $D^2 u = 0$ almost everywhere. Combined with the condition that $\gamma_1 u = 0$, we conclude that $\nabla u = 0$ almost everywhere. 
+
+
+    On the other hand, $u_{n_k} \rightharpoonup u$ implies $u_{n_{k_\ell}} \to u$ in $H^1$, and $\nabla u_{n_{k_\ell}} \to \nabla u$ in $L^2$. Strong convergence in $L^2$ implies convergence in norm, so $1=\|\nabla u_n\| \to \|\nabla u\| $ so $\|\nabla u \| = 1$. A contradiction. 
+
+    \cbk 
+
   \end{enumerate}
 \end{proof}
 
