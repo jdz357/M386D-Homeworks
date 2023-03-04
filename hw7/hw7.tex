@@ -161,23 +161,17 @@ Suppose we wish to find $u \in H^2 \left( \Omega \right)$ satisfying $-\Delta u 
 
     We remark that the second assumption implies that $D^\alpha u_n \to 0$ in $L^2$ for every $|\alpha| = 2$ multiindex.
 
+    We claim now that $u_n$ is a bounded sequence in $H$. This follows since 
+    \[\|u_n\|_{H^2}^2 = \|u_n\|_{H^1}^2 + \sum_{|\alpha| = 2} \|D^\alpha u_n \|_{L^2 (\Omega)}^2 = 1 + C\]
+    where $C<\infty$ is the bound for the sequence $\sum_{|\alpha| = 2} \|D^\alpha u_n \|_{L^2 (\Omega)}^2$. We know it is bounded since it converges. Thus, we conclude there is a subsequence $u_{n_k} \rightharpoonup u$ in $H$. 
+
     On one hand, we have a bounded sequence in $H^1$ from which we can extract a weakly converging subsequence, denoted with the same symbol, $u_n \rightharpoonup u$ in $H^1$. 
+    This implies weak convergence $D^\alpha u_{n_k} \rightharpoonup D^\alpha u$ in $L^2$ for every $|\alpha| = 2$. However, we know already that $D^\alpha u_n \to 0$ for every such multiindex, so we conclude that $D^\alpha u = 0$ almost everyhwere. Condition $\nabla u \cdot n = 0$ implies then that $\nabla u = 0$. 
+
+    On the other hand, the R-K theorem implies that there exists a subsequence $u_{n_{k_\ell}} \to u$ in $H^1$. Strong convergence implies strong convergence of $ \nabla u_{n_{k_\ell}} \to \nabla u $ in $L^2$. Finally, we need the Poincare estimate to show the result. Notice that 
+    \[1=\|u\|^2_{H^1} \leftarrow \|u_{n_{k_\ell}}\|^2_{H^1}= \|u_{n_{k_\ell}}\|^2 + \|\nabla u_{n_{k_\ell}} \|^2 \leq \left( C_P^2 + 1 \right)\|\nabla u_{n_{k_\ell}} \|^2 \to \left( C_P^2 + 1 \right) \|\nabla u \|^2 \to 0.\]
     
-    \cred
 
-    
-    Now $u_n$ is a bounded sequence in $H$ since
-    \begin{align*}
-      \|u\|_{H^2(\Omega)}^2 &= \|u\|^2 + \sum_{|\alpha| = 1} \|D^\alpha u \|^2 + \sum_{|\alpha| = 2} \|D^\alpha u \|^2 = \|u\|^2 + \|\nabla u \|^2 + \sum_{|\alpha| = 2} \|D^\alpha u \|^2 \\ 
-      &\leq \left( C_p^2 + 1  \right) \|\nabla u\|^2 +
-    \end{align*}
-
-    So, from that we can extract a subsequence $u_{n_k} \rightharpoonup u$ in $H$. This means that $D^2 u_{n_k} \rightharpoonup D^2 u$ weakly in $L^2$. At the same time, $D^2 u_{n_k} \to 0$ in $L^2$. We would conclude then that $D^2 u = 0$ almost everywhere. Combined with the condition that $\gamma_1 u = 0$, we conclude that $\nabla u = 0$ almost everywhere. 
-
-
-    On the other hand, $u_{n_k} \rightharpoonup u$ implies $u_{n_{k_\ell}} \to u$ in $H^1$, and $\nabla u_{n_{k_\ell}} \to \nabla u$ in $L^2$. Strong convergence in $L^2$ implies convergence in norm, so $1=\|\nabla u_n\| \to \|\nabla u\| $ so $\|\nabla u \| = 1$. A contradiction. 
-
-    \cbk 
 
   \end{enumerate}
 \end{proof}
