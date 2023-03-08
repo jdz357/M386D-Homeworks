@@ -1,7 +1,7 @@
 \documentclass[letterpaper,twoside,11pt]{article}
 \usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
 \usepackage{amsthm}		%theorem style 
-\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
 %These lines make the theorem NAME BOLD
 \newtheoremstyle{mystyle}%                % Name
   {}%                                     % Space above
@@ -59,7 +59,7 @@
 \newcommand{\Q}{{\mathbb Q}}
 \newcommand{\C}{{\mathbb C}}
 \newcommand{\SL}{{\mathcal{L}}}
-%\usepackage{libertine}            %% For fancy font
+\usepackage{libertine}            %% For fancy font
 \DeclareMathOperator*{\slim}{s-lim}
 \newcommand{\cg}{\color{gray}}
 \newcommand{\cbk}{\color{black}}
@@ -89,24 +89,58 @@ Homework 8
 \begin{exercise}[4]
 BVP for $u (x,y) : \R^2 \to \R$. Write as a variational problem and show there exists a unique solution. Carefully define function spaces and identify where $f$ must lie. 
 \[\left\{ {\begin{array}{*{20}{c}}
-  { - {u_{xx}} + {e^y}u = f}&{\left( {x,y} \right) \in {{\left( {0,1} \right)}^2}} \\ 
+  { - {u_{xx}} + {e^y}u = f}&{\left( {x,y} \right) \in {{\left( {0,1} \right)}^2}} \\[.2cm] 
   {u\left( {0,y} \right) = 0,\,\,u\left( {1,y} \right) = \cos y}&{y \in \left( {0,1} \right)} 
 \end{array}} \right.\]
 \end{exercise}
 
 
 \begin{exercise}[9]
-
+Let $\Omega\subset \R^d$ be a bounded domain with Lipschitz boundary, $f \in L^2 \left( \Omega \right)$, $\alpha > 0$. Consider the Robin problem
+\[\left\{ {\begin{array}{*{20}{c}}
+  { -\Delta u + u = f}&{x\in \Omega} \\[.2cm] 
+  {\displaystyle \frac{\partial u}{\partial n }+ \alpha u = 0}&{x \in \partial \Omega} 
+\end{array}} \right.\]
+\begin{enumerate}
+  \item Formulate a variational principle $B(u,v) = (f, v)$ for $v \in H^1 \left( \Omega \right)$. 
+  \item Show that this problem has a unique weak solution. 
+\end{enumerate}
 \end{exercise}
 
 
-\begin{exercise}[13]
 
+\begin{exercise}[13]
+Suppose $\Omega\subset \R^d$ is a bounded Lipschitz domain. Consider the Stokes problem for vector $u$ and scalar $p$: 
+
+\[\left\{ 
+\begin{array}{*{20}{rl}}
+- \Delta u + \nabla p = f  & x \in \Omega \\[.2cm] 
+\nabla \cdot u = 0 & x \in \Omega \\[.2cm] 
+u = 0 & x \in \partial \Omega  
+\end{array}
+\right. \]
+where the first equation holds for each coordinate. This problem is a saddle-point problem in which we minimize some energy subject to the constraint $\nabla \cdot u = 0$. However, if we work over the constrained space, we can handle this problem. Let 
+\[H = \left\{ v \in \left( H_0^1 (\Omega) \right)^d  : \nabla \cdot u = 0\right\}\]
+\begin{enumerate}
+  \item Show that $H$ is a Hilbert space. 
+  \item Determine an appropriate Sobolev space for $f$ and formulate an appropriate VP for constrained Stokes. 
+  \item Show that there is a unique solution to the VP. 
+\end{enumerate}
 \end{exercise}
 
 
 \begin{exercise}[14]
-
+Let $\mathcal H = H_0^1 \left( \Omega \right) \times H^1 \left( \Omega \right)$ and consider the solution $\left( u,v \right)\in \mathcal H$ to the differential problem  
+\[\left\{ {\begin{array}{*{20}{c}}
+  - \Delta u = f + a\left( v-u \right) & x \in \Omega \\[.2cm] 
+  v - \Delta v = g + a(u-v) & x \in \Omega \\[.2cm] 
+  u = 0, \nabla v \cdot n = \gamma & x \in \partial \Omega
+\end{array}} \right.\]
+where $a \in L^\infty \left( \Omega \right)$. 
+\begin{enumerate}
+  \item Develop an appropriate weak or variational form for the problem. In what Sobolev spaces should $f, g, \gamma$ lie? 
+  \item Prove that there exists a unique solution provided that $a \geq 0$. 
+\end{enumerate}
 \end{exercise}
 
 
