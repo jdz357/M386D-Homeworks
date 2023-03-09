@@ -81,10 +81,16 @@ Homework 8
 \date{}
 \maketitle
 
+Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ inner product, and $\|\cdot\|$ as $\|\cdot \|_{L^2\left( \Omega \right)}$. 
+
 \begin{exercise}[2]
-  Suppose that the hypotheses of the Generalized Lax-Milgram theorem are satisfied. Suppose that $x_{0,1}$ and $x_{0,2}$ in $\mathcal X$ are such that the ssets $X + x_{0,1} = X + x_{0,2}$. Prove that the solutions $u_1 \in X + x_{0,1}$ and $u_2 \in X + x_{0,2}$ of the abstract variational problem agree. What does this say about Dirichlet BVP? 
+  Suppose that the hypotheses of the Generalized Lax-Milgram theorem are satisfied. Suppose that $x_{0,1}$ and $x_{0,2}$ in $\mathcal X$ are such that the sets $X + x_{0,1} = X + x_{0,2}$. Prove that the solutions $u_1 \in X + x_{0,1}$ and $u_2 \in X + x_{0,2}$ of the abstract variational problem agree. What does this say about Dirichlet BVP? 
 \end{exercise}
 
+Assume that both $u_1, u_2$ satisfy the variational problem $B(u, v) = F(v)$ for every $v \in Y$. Then, $B(u_2 - u_1 , v) = 0$ for every $v \in Y$. At the same time, $B$ satisfies the inf-sup condition, 
+\[\mathop {\sup }\limits_{\left\| v \right\| = 1} B\left( {{u_2} - {u_1},v} \right) \geqslant \gamma \left\| {{u_2} - {u_1}} \right\|.\]
+Thus, $\|u_2-u_1\| = 0$ and we conclude that the solutions are the same. 
+The result shows that the solution to Dirichlet BVP's is independent of how the boundary data is extended to the whole space. 
 
 \begin{exercise}[4]
 BVP for $u (x,y) : \R^2 \to \R$. Write as a variational problem and show there exists a unique solution. Carefully define function spaces and identify where $f$ must lie. 
@@ -93,6 +99,8 @@ BVP for $u (x,y) : \R^2 \to \R$. Write as a variational problem and show there e
   {u\left( {0,y} \right) = 0,\,\,u\left( {1,y} \right) = \cos y}&{y \in \left( {0,1} \right)} 
 \end{array}} \right.\]
 \end{exercise}
+
+\cred Treat as a problem for fixed $y$? Where does $f$ come from? \cbk 
 
 
 \begin{exercise}[9]
@@ -107,6 +115,35 @@ Let $\Omega\subset \R^d$ be a bounded domain with Lipschitz boundary, $f \in L^2
 \end{enumerate}
 \end{exercise}
 
+\begin{proof}
+  \begin{enumerate}
+    \item Variational Problem. Multiply by a test function $v$ and integrate over $\Omega$:
+    \[\left( { - {\nabla ^2}u,v} \right) + \left( {u,v} \right) = \left( {f,v} \right).\]
+    Integrating the first term by parts, 
+    \[ - \left( {{\nabla ^2}u,v} \right) = \left( {\nabla u,\nabla v} \right) - {\left\langle {\nabla u \cdot n,v} \right\rangle _{\partial \Omega }} = \left( {\nabla u,\nabla v} \right) + {\left\langle {\alpha u,v} \right\rangle _{\partial \Omega }}\]
+    we arrive at 
+    \[\left( {\nabla u,\nabla v} \right) + {\left\langle {\alpha u,v} \right\rangle _{\partial \Omega }} + \left( {u,v} \right) = \left( {f,v} \right).\]
+    The VP reads: 
+    \[\left\{ {\begin{array}{*{20}{l}}
+      {u \in {H^1}\left( \Omega  \right)} \\[.2cm] 
+      {\left( {\nabla u,\nabla v} \right) + {{\left\langle {\alpha u,v} \right\rangle }_{\partial \Omega }} + \left( {u,v} \right) = B\left( {u,v} \right) = F\left( v \right) = \left( {f,v} \right)} \\[.2cm]
+      \text{for every } v\in H^1 (\Omega).  
+    \end{array}} \right.\]
+    \item Coercivity:  
+    \[B\left( {v,v} \right) = {\left\| {\nabla v} \right\|^2} + {\left\langle {\alpha v,v} \right\rangle _{\partial \Omega }} + {\left\| v \right\|^2} \geqslant {\left\| {\nabla v} \right\|^2} + {\left\| v \right\|^2} = \left\| v \right\|_{{H^1}\left( \Omega  \right)}^2.\]
+
+
+    Continuity: 
+    \begin{align*}
+        \left| {B\left( {u,v} \right)} \right| &= \left| {\left( {\nabla u,\nabla v} \right) + {{\left\langle {\alpha u,v} \right\rangle }_{\partial \Omega }} + \left( {u,v} \right)} \right| \hfill \\[.2cm]
+         &\leqslant \left\| {\nabla u} \right\|\left\| {\nabla v} \right\| + \left\| u \right\|\left\| v \right\| + \alpha {\left\| {{\gamma _0}u} \right\|_{{L^2}\left( {\partial \Omega } \right)}}{\left\| {{\gamma _0}v} \right\|_{{L^2}\left( {\partial \Omega } \right)}} \hfill \\[.2cm]
+         &\leqslant C{\left\| u \right\|_{{H^1}\left( \Omega  \right)}}{\left\| v \right\|_{{H^1}\left( \Omega  \right)}}  
+    \end{align*}
+    Therefore, by Lax-Milgram, the VP admits a unique solution.
+
+  \end{enumerate}
+\end{proof}
+
 
 
 \begin{exercise}[13]
@@ -120,7 +157,7 @@ u = 0 & x \in \partial \Omega
 \end{array}
 \right. \]
 where the first equation holds for each coordinate. This problem is a saddle-point problem in which we minimize some energy subject to the constraint $\nabla \cdot u = 0$. However, if we work over the constrained space, we can handle this problem. Let 
-\[H = \left\{ v \in \left( H_0^1 (\Omega) \right)^d  : \nabla \cdot u = 0\right\}\]
+\[H = \left\{ v \in \left( H_0^1 (\Omega) \right)^d  : \nabla \cdot v = 0\right\}\]
 \begin{enumerate}
   \item Show that $H$ is a Hilbert space. 
   \item Determine an appropriate Sobolev space for $f$ and formulate an appropriate VP for constrained Stokes. 
@@ -128,12 +165,18 @@ where the first equation holds for each coordinate. This problem is a saddle-poi
 \end{enumerate}
 \end{exercise}
 
+\begin{proof}
+  \begin{enumerate}
+    \item $H$ is clearly a linear subspace of Hilbert Space $\left( H_0^1 (\Omega) \right)^d$. What remains is to show that $H$ is closed. Let $u_n \in H$ be a Cauchy sequence. (That is, $\nabla \cdot u_n = 0$.) Assume that $u_n \to u $ in the $H^1$ sense. Then $\nabla u_n \to \nabla u$ in $(L^2(\Omega))^{d\times d}$, and hence each element $\left( \nabla u_n \right)_{ij} \to \left( \nabla u \right)_{ij}$ in $L^2\left( \Omega \right)$. 
+  \end{enumerate}
+\end{proof}
+
 
 \begin{exercise}[14]
 Let $\mathcal H = H_0^1 \left( \Omega \right) \times H^1 \left( \Omega \right)$ and consider the solution $\left( u,v \right)\in \mathcal H$ to the differential problem  
 \[\left\{ {\begin{array}{*{20}{c}}
-  - \Delta u = f + a\left( v-u \right) & x \in \Omega \\[.2cm] 
-  v - \Delta v = g + a(u-v) & x \in \Omega \\[.2cm] 
+  - \Delta u = f + a(x)\left( v-u \right) & x \in \Omega \\[.2cm] 
+  v - \Delta v = g + a(x)(u-v) & x \in \Omega \\[.2cm] 
   u = 0, \nabla v \cdot n = \gamma & x \in \partial \Omega
 \end{array}} \right.\]
 where $a \in L^\infty \left( \Omega \right)$. 
