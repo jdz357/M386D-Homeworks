@@ -88,7 +88,7 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \end{exercise}
 
 Assume that both $u_1, u_2$ satisfy the variational problem $B(u, v) = F(v)$ for every $v \in Y$. Then, $B(u_2 - u_1 , v) = 0$ for every $v \in Y$. At the same time, $B$ satisfies the inf-sup condition, 
-\[\mathop {\sup }\limits_{\left\| v \right\| = 1} B\left( {{u_2} - {u_1},v} \right) \geqslant \gamma \left\| {{u_2} - {u_1}} \right\|.\]
+\[0= \mathop {\sup }\limits_{\left\| v \right\| = 1} B\left( {{u_2} - {u_1},v} \right) \geqslant \gamma \left\| {{u_2} - {u_1}} \right\|.\]
 Thus, $\|u_2-u_1\| = 0$ and we conclude that the solutions are the same. 
 The result shows that the solution to Dirichlet BVP's is independent of how the boundary data is extended to the whole space. 
 
@@ -100,7 +100,23 @@ BVP for $u (x,y) : \R^2 \to \R$. Write as a variational problem and show there e
 \end{array}} \right.\]
 \end{exercise}
 
-\cred Treat as a problem for fixed $y$? Where does $f$ come from? \cbk 
+
+Multiply by test function $v$ and integrate first in $x$ only: 
+\[-\int\limits_0^1 u_{xx} v dx + \int\limits_0^1 e^y u v dx =\int\limits_0^1 u_{x} v_x  dx - u_xv|_0^1  + \int\limits_0^1 e^y u v dx= \int\limits_0^1 f vdx\]
+if we impose $v(0, y) = v(1, y) = 0$, then 
+\[\int\limits_0^1 u_{x} v_x  dx + \int\limits_0^1 e^y u v dx = \int\limits_0^1 fv dx\]
+Integrating in $y$, 
+\[\int_\Omega u_xv_x dx dy + \int_\Omega e^y u v dx dy= \int_\Omega f vdx dy. \]
+Define the space 
+\[H = \left\{ u \in L^2 (\Omega) : u_x \in L^2 (\Omega) \right\}.\] 
+Then, the VP reads: 
+\[\left\{ {\begin{array}{*{20}{l}}
+  {u \in H,} \\[.2cm] 
+  u\left( 0, y \right) = 0, u\left( 1, y \right) = \cos y \\[.2cm]
+  \left( u_x, v_x \right) + \left( e^y u, v \right) = \left( f, v \right) \\[.2cm]
+  \quad \text{for every } v\in H : v(0,y) = v(1, y) = 0.  
+\end{array}} \right.\]
+
 
 
 \begin{exercise}[9]
@@ -127,7 +143,7 @@ Let $\Omega\subset \R^d$ be a bounded domain with Lipschitz boundary, $f \in L^2
     \[\left\{ {\begin{array}{*{20}{l}}
       {u \in {H^1}\left( \Omega  \right)} \\[.2cm] 
       {\left( {\nabla u,\nabla v} \right) + {{\left\langle {\alpha u,v} \right\rangle }_{\partial \Omega }} + \left( {u,v} \right) = B\left( {u,v} \right) = F\left( v \right) = \left( {f,v} \right)} \\[.2cm]
-      \text{for every } v\in H^1 (\Omega).  
+      \qquad \text{for every } v\in H^1 (\Omega).  
     \end{array}} \right.\]
     \item Coercivity:  
     \[B\left( {v,v} \right) = {\left\| {\nabla v} \right\|^2} + {\left\langle {\alpha v,v} \right\rangle _{\partial \Omega }} + {\left\| v \right\|^2} \geqslant {\left\| {\nabla v} \right\|^2} + {\left\| v \right\|^2} = \left\| v \right\|_{{H^1}\left( \Omega  \right)}^2.\]
@@ -167,7 +183,24 @@ where the first equation holds for each coordinate. This problem is a saddle-poi
 
 \begin{proof}
   \begin{enumerate}
-    \item $H$ is clearly a linear subspace of Hilbert Space $\left( H_0^1 (\Omega) \right)^d$. What remains is to show that $H$ is closed. Let $u_n \in H$ be a Cauchy sequence. (That is, $\nabla \cdot u_n = 0$.) Assume that $u_n \to u $ in the $H^1$ sense. Then $\nabla u_n \to \nabla u$ in $(L^2(\Omega))^{d\times d}$, and hence each element $\left( \nabla u_n \right)_{ij} \to \left( \nabla u \right)_{ij}$ in $L^2\left( \Omega \right)$. 
+    \item $H$ is clearly a linear subspace of Hilbert Space $\left( H_0^1 (\Omega) \right)^d$. What remains is to show that $H$ is closed. Let $u_n \in H$ be a Cauchy sequence. (That is, $\nabla \cdot u_n = 0$.) Assume that $u_n \to u $ in the $H^1$ sense. Then $\nabla u_n \to \nabla u$ in $(L^2(\Omega))^{d\times d}$, and hence each element $\left( \nabla u_n \right)_{ij} \to \left( \nabla u \right)_{ij}$ in $L^2\left( \Omega \right)$. Of course, this implies the diagonals converge and therefore that $0=\nabla \cdot u_n \to \nabla \cdot u =0$ in $L^2$, so $u\in H$ and $H$ is a Hilbert space (equipped with the standard $H^1$ inner product). 
+    \item Test with a vector function $v$ and integrate by parts. 
+    \begin{align*}
+      -\left( \nabla^2 u, v \right) + \left( \nabla p , v \right) &= \left( f, v \right) \\
+      \left( \nabla u, \nabla v \right) - \langle\nabla u \cdot n, v\rangle - \left( p, \nabla \cdot v \right) + \langle p, v\cdot n \rangle  &= \left( f, v \right)
+    \end{align*}
+    Now, if we restrict to functions $v \in H$, the VP reads
+    \[\left\{ {\begin{array}{*{20}{l}}
+      u \in H, \\[.2cm]
+      \left( \nabla u, \nabla v \right) = \left( f, v \right) \quad \text{for every } v \in H.
+    \end{array}} \right.\]
+    We should also have $f \in H^{-1}$. 
+    \item Continuity of the right hand side is a result of H\"older's. Continuity on the bilinear form is also trivial. 
+    
+    Coercivity:
+    \[B(v,v)= \|\nabla v\|^2 \geq \frac{1}{C_P^2+1}\|v\|^2_{H^1}.\]
+    Therefore, by Lax-Milgram, the problem admits a unique solution for $u$. We conclude nothing regarding existence and uniqueness for $p$. 
+
   \end{enumerate}
 \end{proof}
 
@@ -185,7 +218,57 @@ where $a \in L^\infty \left( \Omega \right)$.
   \item Prove that there exists a unique solution provided that $a \geq 0$. 
 \end{enumerate}
 \end{exercise}
+\begin{enumerate}
+  \item Test the first equation with $w$ and the second with $z$: 
+  \[\left\{ {\begin{array}{*{20}{l}}
+    \left( a(x) (u-v), w \right) - \left( \nabla^2 u, w \right) = \left( f, w \right) \\[.2cm] 
+    \left( a(x)(v-u), z \right) + \left( v, z \right) - \left( \nabla^2 v, z \right) = \left( g, z \right)
+  \end{array}} \right.\]
+  Integration by parts tells us 
+  \[-\left( \nabla^2 u, w \right) = \left( \nabla u, \nabla w \right) - \langle w, \nabla u\cdot n \rangle = \left( \nabla u, \nabla w \right) \quad \text{if } w = 0 \text{ on } \partial \Omega\]
+  and
+  \[-\left( \nabla^2 v, z \right) = \left( \nabla v, \nabla z \right) - \langle \nabla v \cdot n, z\rangle = \left( \nabla v, \nabla z \right) - \langle \gamma , z\rangle.\]
+  The variational problem reads 
+  \[\left\{ {\begin{array}{*{20}{l}}
+    \mathsf u := \left( u,v \right)\in \mathcal H,\\[.2cm]
+    B\left( \mathsf u, \mathsf w \right) = F\left( \mathsf w \right)
+    \quad \text{for every } \mathsf w :=\left( w, z \right)\in \mathcal H,
+  \end{array}} \right.\]
+  where 
+  \begin{align*}
+    B\left( \mathsf u, \mathsf w \right) &= \left( a(x) (u-v), w-z \right) + \left( \nabla u, \nabla w \right) + \left( \nabla v, \nabla z \right) + \left( v, z \right) \\
+    F\left( \mathsf w \right) &= \left( f, w \right) + \left( g, z \right) + \langle \gamma, z\rangle.
+  \end{align*}
 
+  We need $f \in H^{-1}$, $g \in \left( H^1  \right)^*$, and $\gamma \in H^{-1/2}$. 
+
+  \item Let us use the norm $\|\mathsf u\|_{\mathcal H} = \|\left( u,v \right)\|_{\mathcal H} = \|u\|_{H^1\left( \Omega \right)} + \|v\|_{H^1\left( \Omega \right)}$. 
+  
+  Continuty of RHS: 
+  \begin{align*}
+    F\left( \mathsf w  \right) &= \left( f, w \right) + \left( g, z \right) + \langle \gamma, z\rangle \\[.2cm]
+    &\leqslant \|f\| \|w\| + \|g\| \|z\| + C \|\gamma \| \|z\|_{H^1(\Omega)} \\[.2cm]
+    &\leqslant  \|f\| \|w\|_{H^1(\Omega)} + (\|g\| + C \|\gamma\|) \|z\|_{H^1(\Omega)} \\[.2cm] 
+    &\leqslant \max\left\{ \|f\|, (\|g\| + C \|\gamma\|) \right\} \|\mathsf w\|_{\mathcal H}.
+  \end{align*}
+  Continuity of $B$: 
+  \begin{align*}
+    B\left( \mathsf u, \mathsf w \right) &= \left( au, w \right) - \left( au, z \right) - \left( av, w \right) + \left( av, z \right)+ \left( \nabla u, \nabla w \right) + \left( \nabla v, \nabla z \right) + \left( v, z \right)\\[.2cm] 
+    &\leqslant \|a\|\left( \|u\|\|w\| + \|u\| \|z\| + \|v\|\|w\| + \|v\|\|z\| \right) + \|\nabla u \|\|\nabla w \| + \|\nabla v \| \|\nabla z \| + \| v \| \| z \| \\[.2cm]
+    &\leqslant M \left( \|u\|_{H^1(\Omega)} + \|v\|_{H^1(\Omega)} \right) \left( \|w\|_{H^1(\Omega)} + \|z\|_{H^1(\Omega)} \right).
+  \end{align*}
+  Coercivity of $B$: 
+  \begin{align*}
+    B\left( \mathsf w, \mathsf w \right) &= \left( a(x) (w-z), (w-z) \right) + \|\nabla w\|^2 + \|\nabla z\|^2 + \|z\|^2 \\[.2cm]
+    &\geqslant \left( 1+C_P^2 \right)\inv \| w\|^2_{H^1} + \|z\|^2_{H^1}\\[.2cm]
+    &\geqslant C \left( \|w\|_{H^1} + \|z\|_{H^1} \right)^2.
+  \end{align*}
+  Notice in particular that 
+  \[\left( a(x) (w-z), (w-z) \right) = \int a(x) (w-z)^2 \geq 0.\]
+  By Lax-Milgram, the problem admits a unique solution. 
+
+
+\end{enumerate}
 
 
 \end{document}
