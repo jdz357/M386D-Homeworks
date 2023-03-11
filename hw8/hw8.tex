@@ -108,13 +108,12 @@ if we impose $v(0, y) = v(1, y) = 0$, then
 Integrating in $y$, 
 \[\int_\Omega u_xv_x dx dy + \int_\Omega e^y u v dx dy= \int_\Omega f vdx dy. \]
 Define the space 
-\[H = \left\{ u \in L^2 (\Omega) : u_x \in L^2 (\Omega) \right\}.\] 
+\[H = \left\{ u \in L^2 (\Omega) : u_x \in L^2 (\Omega), u\left( 0, y \right) = u\left( 1, y \right) = 0\right\}.\] 
 Then, the VP reads: 
 \[\left\{ {\begin{array}{*{20}{l}}
-  {u \in H,} \\[.2cm] 
-  u\left( 0, y \right) = 0, u\left( 1, y \right) = \cos y \\[.2cm]
+  {u \in H+x\cos(y),} \\[.2cm] 
   \left( u_x, v_x \right) + \left( e^y u, v \right) = \left( f, v \right) \\[.2cm]
-  \quad \text{for every } v\in H : v(0,y) = v(1, y) = 0.  
+  \quad \text{for every } v\in H.
 \end{array}} \right.\]
 
 
