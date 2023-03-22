@@ -115,7 +115,13 @@ Then, the VP reads:
   \left( u_x, v_x \right) + \left( e^y u, v \right) = \left( f, v \right) \\[.2cm]
   \quad \text{for every } v\in H.
 \end{array}} \right.\]
+We need $f$ coming from the dual of $H$ for this to make sense. 
 
+To show there exists a unique solution, first equip $H$ with the norm $\|u\|_H^2 = \|u\|^2 + \|u_x\|^2$. Now, the RHS is continuious by definition, and the LHS is continuious since 
+\[B(u,v) \leq \|u_x\| \|v_x\| + e \|u\|\|v\| \leq \left( 1+e \right)\|u\|_H \|v\|_H.\]
+It is also coercive since 
+\[B\left( v,v \right) \geq \|v_x\|^2 + \|v\|^2 = \|v\|_H^2.\]
+Therefore, there exists a unique solution. 
 
 
 \begin{exercise}[9]
@@ -241,26 +247,26 @@ where $a \in L^\infty \left( \Omega \right)$.
 
   We need $f \in H^{-1}$, $g \in \left( H^1  \right)^*$, and $\gamma \in H^{-1/2}$. 
 
-  \item Let us use the norm $\|\mathsf u\|_{\mathcal H} = \|\left( u,v \right)\|_{\mathcal H} = \|u\|_{H^1\left( \Omega \right)} + \|v\|_{H^1\left( \Omega \right)}$. 
+  \item Let us use the norm $\|\mathsf u\|_{\mathcal H}^2 = \|\left( u,v \right)\|^2_{\mathcal H} = \|u\|^2_{H^1\left( \Omega \right)} + \|v\|^2_{H^1\left( \Omega \right)}$. 
   
-  Continuty of RHS: 
-  \begin{align*}
-    F\left( \mathsf w  \right) &= \left( f, w \right) + \left( g, z \right) + \langle \gamma, z\rangle \\[.2cm]
-    &\leqslant \|f\| \|w\| + \|g\| \|z\| + C \|\gamma \| \|z\|_{H^1(\Omega)} \\[.2cm]
-    &\leqslant  \|f\| \|w\|_{H^1(\Omega)} + (\|g\| + C \|\gamma\|) \|z\|_{H^1(\Omega)} \\[.2cm] 
-    &\leqslant \max\left\{ \|f\|, (\|g\| + C \|\gamma\|) \right\} \|\mathsf w\|_{\mathcal H}.
-  \end{align*}
+  Continuty of RHS is trivial under the assumption that $f, g, \gamma$ come from the appropriate spaces. 
+  \[F\left( \mathsf w \right) \leq \left( \|f\|_{H^{-1}} + \|g\|_{(H^1)^*} + C \|\gamma\|_{H^{-1/2}} \right) \|\mathsf w \|_{\mathcal H}.\]
   Continuity of $B$: 
-  \begin{align*}
-    B\left( \mathsf u, \mathsf w \right) &= \left( au, w \right) - \left( au, z \right) - \left( av, w \right) + \left( av, z \right)+ \left( \nabla u, \nabla w \right) + \left( \nabla v, \nabla z \right) + \left( v, z \right)\\[.2cm] 
-    &\leqslant \|a\|\left( \|u\|\|w\| + \|u\| \|z\| + \|v\|\|w\| + \|v\|\|z\| \right) + \|\nabla u \|\|\nabla w \| + \|\nabla v \| \|\nabla z \| + \| v \| \| z \| \\[.2cm]
-    &\leqslant M \left( \|u\|_{H^1(\Omega)} + \|v\|_{H^1(\Omega)} \right) \left( \|w\|_{H^1(\Omega)} + \|z\|_{H^1(\Omega)} \right).
-  \end{align*}
+\begin{align*}
+  |B\left( \mathsf{u,w} \right)| &\leq \|\nabla u \| \|\nabla w \| + \|\nabla v \| \| \nabla z \|+\|v\|\|z\| + \|a\|_{\infty} \left( \|u\| + \|v\|  \right)\left( \|w\| + \|z\| \right)\\[.2cm]
+  &\leq \|u\|_{H^1} \|w\|_{H^1} + 2\|v\|_{H^1}\|z\|_{H^1} + \|a\|_{\infty} \left( \|u\|_{H^1} + \|v\|_{H^1}  \right)\left( \|w\|_{H^1} + \|z\|_{H^1} \right)\\[.2cm]
+  &\leq C \|\mathsf u \|_{\mathcal H} \|\mathsf w\|_{\mathcal H}
+\end{align*}
+
+
+
+
   Coercivity of $B$: 
   \begin{align*}
     B\left( \mathsf w, \mathsf w \right) &= \left( a(x) (w-z), (w-z) \right) + \|\nabla w\|^2 + \|\nabla z\|^2 + \|z\|^2 \\[.2cm]
-    &\geqslant \left( 1+C_P^2 \right)\inv \| w\|^2_{H^1} + \|z\|^2_{H^1}\\[.2cm]
-    &\geqslant C \left( \|w\|_{H^1} + \|z\|_{H^1} \right)^2.
+    &\geq \|\nabla w \|^2 + \|z\|^2_{H^1} \\[.2cm]
+    &\geq C_P^{-2} \|w\|^2_{H^1} + \|z\|^2_{H^1}\\[.2cm]
+    &\geq \min\left\{ 1, C_P^{-2} \right\} \|\mathsf w\|_{\mathcal H}.
   \end{align*}
   Notice in particular that 
   \[\left( a(x) (w-z), (w-z) \right) = \int a(x) (w-z)^2 \geq 0.\]
