@@ -68,6 +68,11 @@
 \newcommand{\inv}{^{-1}}
 \newcommand{\sch}{\mathcal S} 
 
+\newcommand{\Hone}{H^1\left( \Omega \right)}
+\newcommand{\Hdiv}{H\left( \text{div}, \Omega \right)}
+\newcommand{\Hcur}{H\left( \text{curl}, \Omega \right)}
+\newcommand{\Ltwo}{L^2 \left( \Omega \right)}
+
 
 
 
@@ -176,13 +181,13 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \end{enumerate}
 \end{exercise}
 
-
+\cblu
 \begin{proof}
   \begin{enumerate}
-    \item 
+    \item $\Hdiv$ is a linear subspace of the Hilbert space $\Ltwo^d$. If $u, v \in \Hdiv$, then $u + v$ is also in $\Hdiv$ since $u + v \in \Ltwo^d $ and $\nabla \cdot \left( u+v \right) = \nabla \cdot u + \nabla \cdot v \in \Ltwo$. What remains to show is that $\Hdiv$ is closed with respect to $\|\cdot\|_{\Hdiv}$. Remark: the proposed inner product is indeed an inner product since it is a combination of inner products on $\Ltwo^d$ and $\Ltwo$. Let $u_n$ be a Cauchy sequence in $\Hdiv$ with $u_n \to u$ in $\Ltwo^d$. 
   \end{enumerate}
 \end{proof}
-
+\cbk 
 
 
 
@@ -196,6 +201,14 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
   \end{enumerate}
 \end{exercise}
 
+
+
+
+
+
+
+
+\newpage 
 \begin{exercise}[27]
   Suppose $u \in H^1\left( \Omega \right)$ where $\Omega\subset \R^d$ is bounded connected. Recall the $H^1$ seminorm is $|u|_{H^1} = \left\{ \sum_{|\alpha| = 1} \|D^\alpha u \|^2 \right\}^{1/2}$. 
   \begin{enumerate}
@@ -209,6 +222,41 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
   \end{enumerate}
 \end{exercise}
 
+\cblu 
+\begin{proof}
+  \begin{enumerate}
+    \item We have 
+    \[\inf_{c\in \R} \|u-c\| \leq \| u - d \|\]
+    (definition of infinimum). So, it is sufficient to demonstrate the result for a particular constant $d\in \R$ and then simply take infimum on both sides. 
+
+
+  \end{enumerate}
+\end{proof}
+\cbk 
+
+
+\cred 
+\begin{lemma}
+  There exists $C> 0$ such that 
+  \[\|u\|^2 \leq C \left\{ \left|\int_\Omega u \right|^2 + \|\nabla u \|^2 \right\}\]
+  for every $u \in \Hone$.
+\end{lemma}
+\begin{proof}
+  (Standard proof of Poincar\'e-like inequality with contradiction.) Assume to the contrary that there exists a sequence $u_n$ satisfying 
+  \[\|u_n\| = 1, \qquad \int_\Omega u_n \to 0, \qquad \|\nabla u_n\| \to 0.\]
+  Then there exists a subsequence $u_{n_k} \rightharpoonup u$ in $\Hone$. Weak convergence of $u_{n_k}$ in $\Hone$ implies $\nabla u_{n_k} \rightharpoonup \nabla u$ in $\Ltwo$. But, by the lower weak sequential semicontinuity of the $L^2$ norm, then $\nabla u = 0$, that is, $u$ is constant. At the same time, convergence of the average of $u$ implies that $u$ must be zero. By the Rellich-Kondrachov Theorem, however, we obtain that $u_{n_k} \to u$ in $\Ltwo$ and $\|u\| = 1$, a contradiction. 
+\end{proof}
+\cbk 
+
+
+
+
+
+
+
+
+
+\newpage 
 \begin{exercise}[29]
   Consider the problem 
 
