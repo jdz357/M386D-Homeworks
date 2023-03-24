@@ -184,7 +184,10 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \cblu
 \begin{proof}
   \begin{enumerate}
-    \item $\Hdiv$ is a linear subspace of the Hilbert space $\Ltwo^d$. If $u, v \in \Hdiv$, then $u + v$ is also in $\Hdiv$ since $u + v \in \Ltwo^d $ and $\nabla \cdot \left( u+v \right) = \nabla \cdot u + \nabla \cdot v \in \Ltwo$. What remains to show is that $\Hdiv$ is closed with respect to $\|\cdot\|_{\Hdiv}$. Remark: the proposed inner product is indeed an inner product since it is a combination of inner products on $\Ltwo^d$ and $\Ltwo$. Let $u_n$ be a Cauchy sequence in $\Hdiv$ with $u_n \to u$ in $\Ltwo^d$. 
+    \item $\Hdiv \subset \Ltwo^d$ is clearly a linear subspace. What remains to show is that $\Hdiv$ is closed with respect to $\|\cdot\|_{\Hdiv}$. Remark: the proposed inner product is indeed an inner product since it is a combination of inner products on $\Ltwo^d$ and $\Ltwo$. Let $u_n$ be a Cauchy sequence in $\Hdiv$ with $u_n \to u$ in $\Ltwo^d$. 
+    
+    \item 
+    \item 
   \end{enumerate}
 \end{proof}
 \cbk 
@@ -201,6 +204,14 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
   \end{enumerate}
 \end{exercise}
 
+\cblu
+\begin{proof}
+  \begin{enumerate}
+    \item asdf 
+    \item asdf
+  \end{enumerate}
+\end{proof}
+\cbk 
 
 
 
@@ -225,28 +236,28 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \cblu 
 \begin{proof}
   \begin{enumerate}
-    \item We have 
-    \[\inf_{c\in \R} \|u-c\| \leq \| u - d \|\]
-    (definition of infinimum). So, it is sufficient to demonstrate the result for a particular constant $d\in \R$ and then simply take infimum on both sides. 
-
-
+    \item We always have 
+    \[\inf_{c\in \R} \|u-c\| \leq \| u - d \| \qquad \forall u, \]
+    so it is sufficient to demonstrate the result for a particular $d\in \R$. Let $d = |\Omega|\inv \int_\Omega u$. Then, $u-d$ has average zero, and we can apply the Poincare Inequality for functions with zero average, 
+    \[\exists C_P>0 : \|u-d\| \leq C_P \|\nabla u\| = C_P |u|_{\Hone}.\]
+    \item Use scaling arguments. Let $\xi\in \hat \Omega = \left( 0,1 \right)^d$ be the master element coordinates. Notice $x_i = h\xi_i$, $dx = h^d d\xi$. Then 
+    \begin{align*}
+      \|u-c\|^2_{L^2(\Omega)} &= \int_\Omega (u(x)-c)^2 dx \\[.2cm] 
+      &= \int_{\hat \Omega} \left( (u\circ h)(\xi) - c \right)^2 h^d d\xi &  (x = h \xi)  \\[.2cm]
+      &= h^d\|u \circ h - c \|^2_{L^2 (\hat \Omega)} \\[.2cm] 
+      &\leq h^dC_{\hat\Omega}^2 |u\circ h|^2_{H^1(\hat\Omega)} & (\text{by previous})\\[.2cm] 
+      &= h^dC_{\hat\Omega}^2 \|\hat \nabla (u\circ h) \|^2_{L^2(\hat \Omega)^d} \\[.2cm]
+      &= h^dC_{\hat\Omega}^2 \int_{\hat\Omega} (\hat \nabla (u \circ h) (\xi))^2 d\xi \\[.2cm]
+      &= C_{\hat\Omega}^2 \int_\Omega h^2 \left( \nabla u \right)^2 dx \\[.2cm]
+      &= h^2 C_{\hat\Omega}^2 |u|^2_{\Hone}.
+    \end{align*}
+    Finally, take infimum on both sides with respect to $c$. 
+    \item Idea: consider each element separately, and apply the previous result. In 1D, for example, we have 
   \end{enumerate}
 \end{proof}
 \cbk 
 
 
-\cred 
-\begin{lemma}
-  There exists $C> 0$ such that 
-  \[\|u\|^2 \leq C \left\{ \left|\int_\Omega u \right|^2 + \|\nabla u \|^2 \right\}\]
-  for every $u \in \Hone$.
-\end{lemma}
-\begin{proof}
-  (Standard proof of Poincar\'e-like inequality with contradiction.) Assume to the contrary that there exists a sequence $u_n$ satisfying 
-  \[\|u_n\| = 1, \qquad \int_\Omega u_n \to 0, \qquad \|\nabla u_n\| \to 0.\]
-  Then there exists a subsequence $u_{n_k} \rightharpoonup u$ in $\Hone$. Weak convergence of $u_{n_k}$ in $\Hone$ implies $\nabla u_{n_k} \rightharpoonup \nabla u$ in $\Ltwo$. But, by the lower weak sequential semicontinuity of the $L^2$ norm, then $\nabla u = 0$, that is, $u$ is constant. At the same time, convergence of the average of $u$ implies that $u$ must be zero. By the Rellich-Kondrachov Theorem, however, we obtain that $u_{n_k} \to u$ in $\Ltwo$ and $\|u\| = 1$, a contradiction. 
-\end{proof}
-\cbk 
 
 
 
@@ -259,12 +270,24 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \newpage 
 \begin{exercise}[29]
   Consider the problem 
-
+  $\Omega= \left( 0,1 \right)\subset \R$, $f\in L^2 \left( 0,1 \right)$, 
+  \[\left\{ {\begin{array}{*{20}{l}}
+    -u'' = f & x \in \Omega \\[.2cm]
+    u(0) = u(1) = 0.
+  \end{array}} \right.\]
   \begin{enumerate}
     \item Find the Green's Function. 
-    \item Instead impose Neumann BC's, and find the Green's function. Recall we now require $-\partial^2/\partial x^2 G(x, y) = \delta_y(x) -1$.
+    \item Instead impose Neumann BC's, and find the Green's function. Recall we now require \(-\partial^2/\partial x^2 G(x, y) = \delta_y(x) -1\).
   \end{enumerate}
 \end{exercise}
 
+\cblu
+\begin{proof}
+  \begin{enumerate}
+    \item asdf 
+    \item asdf
+  \end{enumerate}
+\end{proof}
+\cbk 
 \end{document}
  
