@@ -135,14 +135,14 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
       &\leq \|\nabla u_n\| \|\nabla v\| + C\|u_{n-1}\|^2_{H_0^1(\R^4)} \|u_n \|_{H_0^1(\R^4)} \|v\|_{H_0^1(\R^4)} \\
       &\leq \left( 1+C\|u_{n-1}\|^2_{H_0^1(\R^4)} \right)\|u_n \|_{H_0^1(\Omega)} \|v\|_{H_0^1(\Omega)}.
     \end{align*}
-    The bilinear form is also coercive, 
+    \(B\) is also coercive, 
     \begin{align*}
       B\left( v, v \right) &= \|\nabla v\|^2 + \int\limits_\Omega u_{n-1}^2 v^2 \\ 
       &\geq \|\nabla v\|^2 \\
       &\geq C_P^{-2} \|v\|_{H^1_0(\Omega)}^2.
     \end{align*}
-    By Lax-Milgram, the problem admits a unique solution $u_n \in H_0^1 \left( \Omega \right)$ which we can extend by zero to $u_n \in H_0^1 \left( \R^4 \right)$. Moreover, we have the estimate 
-    \[\|u_n\|_{H^1_0 \left( \Omega \right)} = \|u_n\|_{H^1_0 \left( \R^4 \right)} \leq C_P^2 \|f\|.\] Note the bound is independent of $n$. 
+    By Lax-Milgram, there exists unique $u_n \in H_0^1 \left( \Omega \right)$ which we can extend to $u_n \in H_0^1 \left( \R^4 \right)$. Moreover, 
+    \[\|u_n\|_{H^1_0 \left( \Omega \right)} = \|u_n\|_{H^1_0 \left( \R^4 \right)} \leq C_P^2 \|f\|.\] 
     \item \cred Notice that $u_n$ has just been shown to be a bounded sequence in the Hilbert space $H_0^1 \left( \Omega \right)$. Therefore, there is a subsequence $u_{n_k} \rightharpoonup u$ in $H_0^1(\Omega)$, furthermore, $u_{n_k} \to u$ in $L^2 (\Omega)$ and $\nabla u_{n_k} \rightharpoonup \nabla u$ in $L^2 (\Omega)^{4}$. 
     We argue that $u$ is indeed a weak solution to the nonlinear PDE. For every test function $v$, $\left( \cdot, \nabla v \right)$ is a linear functional on $L^2(\Omega)^4$, so $\left( \nabla u_{n_k}, \nabla v \right) \to \left( \nabla u, \nabla v \right)$. Additionally, $u_{n_{k-1}}^2 u_{n_k} \to u^3$, so $\left( u_{n_{k-1}}^2 u_{n_k} ,v \right) \to \left( u^3, v \right)$. This implies 
     \[B(u_{n_k}, v) \to \left( \nabla u, \nabla v \right) + \left( u^3, v \right) = \left( f, v \right)\]
@@ -172,7 +172,7 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \begin{enumerate}
   \item Show that $H\left( \text{div}, \Omega \right)$ is a Hilbert space with inner product 
   \[\left( u,v \right)_{H(\text{div}, \Omega)} = \left( u,v \right) + \left( \nabla \cdot u, \nabla \cdot v \right).\]
-  \item The trace Theorem does not imply that $\partial_\nu v = v \cdot \nu$ exists on $\partial \Omega$. Nevertheless, show that $\partial_\nu : H\left( \text{div}, \Omega \right) \to H^{-1/2} \left( \partial \Omega \right) = \left( H^{1/2}(\partial \Omega) \right)^*$ is a well defined bounded linear oeprator in the sense that 
+  \item The trace Theorem does not imply that $\partial_\nu v = v \cdot \nu$ exists on $\partial \Omega$. Nevertheless, show that $\partial_\nu : H\left( \text{div}, \Omega \right) \to H^{-1/2} \left( \partial \Omega \right) = \left( H^{1/2}(\partial \Omega) \right)^*$ is a well defined bounded linear operator in the sense that 
   \[\int\limits_{\partial \Omega} v \cdot \nu \phi d\sigma(x) = \int\limits_{\Omega} \nabla \cdot v \phi dx + \int\limits_{\Omega} v\cdot \nabla \phi dx.\]
   \item Prove the following inf-sup condition: there exists $\gamma > 0$ such that 
   \[\inf_{w\in L^2} \sup_{v\in H(\text{div},\Omega)} \frac{(w, \nabla \cdot v)}{\|w\| \|v\|_{H(\text{div}, \Omega)}}\geq \gamma > 0.\]
@@ -184,10 +184,27 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \cblu
 \begin{proof}
   \begin{enumerate}
-    \item $\Hdiv \subset \Ltwo^d$ is clearly a linear subspace. What remains to show is that $\Hdiv$ is closed with respect to $\|\cdot\|_{\Hdiv}$. Remark: the proposed inner product is indeed an inner product since it is a combination of inner products on $\Ltwo^d$ and $\Ltwo$. Let $u_n$ be a Cauchy sequence in $\Hdiv$ with $u_n \to u$ in $\Ltwo^d$. 
+    \item $\Hdiv \subset \Ltwo^d$ is clearly a linear subspace. What remains to show is that $\Hdiv$ is closed with respect to $\|\cdot\|_{\Hdiv}$. Let $u_n$ be a Cauchy sequence in $\Hdiv$ with $u_n \to u$ in $\Ltwo^d$. 
+    \cred Convergence in norm? div is continuous in this norm? \cblu
     
     \item 
-    \item 
+    \item First consider $\nabla^2\varphi = w$. The VP is 
+    \[\left\{ {\begin{array}{*{20}{l}}
+      \varphi \in H_0^1 \left( \Omega \right)\\[.2cm]
+      \left( \nabla \varphi, \nabla v \right) = - \left( w, v \right)\\[.2cm]
+      \text{ for every } v \in H_0^1 \left( \Omega \right).
+    \end{array}} \right.\]
+    Since $w \in \Ltwo$, the RHS is continuous. The bilinear form is continuous with constant one and coercive by the Poincar\'e inequality. Therefore, the problem admits a unique solution in $H_0^1(\Omega)$. Moreover, by elliptic regularity, the solution \(\varphi \in H^2 \left( \Omega \right)\) and $\|\varphi\|_{H^2(\Omega)} \leq C \|w\|$.
+    Now, let us consider $v = \nabla \varphi \implies \nabla \cdot v = \nabla \cdot \nabla \varphi = \Delta \varphi = w$. Then 
+    \begin{align*}
+      \frac{(w, \nabla \cdot (\nabla \varphi))}{\|w\| \|\nabla \varphi\|_{\Hdiv}}&=\frac{\|w\|^2 }{\|w\| \|\nabla \varphi\|_{\Hdiv}}\\[.2cm] 
+      &= \frac{\|w\|}{\|\nabla \varphi\|_{\Hdiv}}\\[.2cm]
+      &= \frac{\|w\|}{\sqrt{\|\nabla \varphi \|^2 + \|\nabla \cdot \nabla \varphi \|^2 }}\\[.2cm]
+      &\geq \frac{\|w\|}{\|\varphi\|_{H^2 (\Omega)}}\\[.2cm]
+      &\geq \frac{1}{C} > 0,
+    \end{align*}
+    which implies the result. 
+
   \end{enumerate}
 \end{proof}
 \cbk 
@@ -207,8 +224,14 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \cblu
 \begin{proof}
   \begin{enumerate}
-    \item asdf 
-    \item asdf
+    \item  Compatibilty condition: 
+    \item Consider the nonhomogeneous Dirichlet boundary conditions
+    \[\left\{ {\begin{array}{*{20}{l}}
+      -u''=f & x \in (0,1)\\[.2cm]
+      u(0) = u_0\\[.2cm]
+      u(1) = u_1.
+    \end{array}} \right.\]
+    Define the lift $u_D(x) = u_0 + (u_1-u_0)x$, and write \(u = w + u_D\).
   \end{enumerate}
 \end{proof}
 \cbk 
@@ -237,8 +260,8 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \begin{proof}
   \begin{enumerate}
     \item We always have 
-    \[\inf_{c\in \R} \|u-c\| \leq \| u - d \| \qquad \forall u, \]
-    so it is sufficient to demonstrate the result for a particular $d\in \R$. Let $d = |\Omega|\inv \int_\Omega u$. Then, $u-d$ has average zero, and we can apply the Poincare Inequality for functions with zero average, 
+    \[\inf_{c\in \R} \|u-c\| \leq \| u - d \|,  \]
+    so it is sufficient to demonstrate the result for a particular $d\in \R$. Let $d = |\Omega|\inv \int_\Omega u$. Then, $u-d$ has average zero, and the Poincare Inequality implies 
     \[\exists C_P>0 : \|u-d\| \leq C_P \|\nabla u\| = C_P |u|_{\Hone}.\]
     \item Use scaling arguments. Let $\xi\in \hat \Omega = \left( 0,1 \right)^d$ be the master element coordinates. Notice $x_i = h\xi_i$, $dx = h^d d\xi$. Then 
     \begin{align*}
@@ -252,7 +275,16 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
       &= h^2 C_{\hat\Omega}^2 |u|^2_{\Hone}.
     \end{align*}
     Finally, take infimum on both sides with respect to $c$. 
-    \item Idea: consider each element separately, and apply the previous result. In 1D, for example, we have 
+    \item Idea: consider each element separately, and apply the previous result. In 1D, for example, we have
+    \[\|u-p\|^2=\int\limits_0^1 (u(x)-p)^2 dx = \sum_{i = 1}^{N}\int\limits_{x_{i-1}}^{x_i} (u(x)-p)^2dx.\]
+    On each interval, we can apply the previous result. Summing a finite number of times, we just increase the constant. In $d$ dimensions, with each dimension split into $N_i$ elements, we have \(N_1 \times N_2 \times \dots \times N_d \) small domains. Then we have 
+    \begin{align*}
+      \|u-p\|^2 &= \int_\Omega (u(x)-p)^2 dx \\[.2cm]
+      &=\sum_{i = 1}^{N_1 \times \dots \times N_d} \int_{\Omega_i} (u(x)-p)^2 dx \\[.2cm]
+      &\leq \sum_{i = 1}^{N_1 \times \dots \times N_d} C^2h^2 |u|^2_{H^1(\Omega_i)} & (\text{previous result on } \Omega_i)\\[.2cm]
+      &= C^2 h^2 |u|^2_{H^1(\Omega)}.
+    \end{align*}
+    We remark that we have slightly glanced over the translation transformation required to shift an arbitrary element \(\Omega_i\) to align with \(\left( 0,h \right)^d\). However, in the case where \(\Omega = \left( 0,1 \right)^d\), this is merely a translation which the integral does not care about. 
   \end{enumerate}
 \end{proof}
 \cbk 
@@ -277,15 +309,17 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
   \end{array}} \right.\]
   \begin{enumerate}
     \item Find the Green's Function. 
-    \item Instead impose Neumann BC's, and find the Green's function. Recall we now require \(-\partial^2/\partial x^2 G(x, y) = \delta_y(x) -1\).
+    \item Instead impose Neumann BC's, and find the Green's function. 
+    
+    Recall we now require \(-\partial^2/\partial x^2 G(x, y) = \delta_y(x) -1\).
   \end{enumerate}
 \end{exercise}
 
 \cblu
 \begin{proof}
   \begin{enumerate}
-    \item asdf 
-    \item asdf
+    \item  
+    \item 
   \end{enumerate}
 \end{proof}
 \cbk 
