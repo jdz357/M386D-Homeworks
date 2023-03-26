@@ -143,10 +143,8 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
     \end{align*}
     By Lax-Milgram, there exists unique $u_n \in H_0^1 \left( \Omega \right)$ which we can extend to $u_n \in H_0^1 \left( \R^4 \right)$. Moreover, 
     \[\|u_n\|_{H^1_0 \left( \Omega \right)} = \|u_n\|_{H^1_0 \left( \R^4 \right)} \leq C_P^2 \|f\|.\] 
-    \item \cred Notice that $u_n$ has just been shown to be a bounded sequence in the Hilbert space $H_0^1 \left( \Omega \right)$. Therefore, there is a subsequence $u_{n_k} \rightharpoonup u$ in $H_0^1(\Omega)$, furthermore, $u_{n_k} \to u$ in $L^2 (\Omega)$ and $\nabla u_{n_k} \rightharpoonup \nabla u$ in $L^2 (\Omega)^{4}$. 
-    We argue that $u$ is indeed a weak solution to the nonlinear PDE. For every test function $v$, $\left( \cdot, \nabla v \right)$ is a linear functional on $L^2(\Omega)^4$, so $\left( \nabla u_{n_k}, \nabla v \right) \to \left( \nabla u, \nabla v \right)$. Additionally, $u_{n_{k-1}}^2 u_{n_k} \to u^3$, so $\left( u_{n_{k-1}}^2 u_{n_k} ,v \right) \to \left( u^3, v \right)$. This implies 
-    \[B(u_{n_k}, v) \to \left( \nabla u, \nabla v \right) + \left( u^3, v \right) = \left( f, v \right)\]
-    which is exactly the weak form of the original nonlinear problem. 
+    \item Notice that $u_n$ has just been shown to be a bounded sequence in the Hilbert space $H_0^1 \left( \Omega \right)$. Therefore, there is a subsequence $u_{n_k} \rightharpoonup u$ in $H_0^1(\Omega)$, furthermore, $u_{n_k} \to u$ in $L^2 (\Omega)$ and $\nabla u_{n_k} \rightharpoonup \nabla u$ in $L^2 (\Omega)^{4}$. 
+    We argue that $u$ is indeed a weak solution to the nonlinear PDE by arguing that $B(u_n-u, v) \to 0$. For every test function $v$, $\left( \cdot, \nabla v \right)$ is a linear functional on $L^2(\Omega)^4$, so $\left( \nabla u_{n_k}, \nabla v \right) \to \left( \nabla u, \nabla v \right)$. Additionally, sequence $u^2_{n_k-1}$ is bounded, and $u_{n_k}-u\to 0$, so we conclude $u^2_{n_k-1}(u_{n_k}-u)\to 0$. (Product of a bounded sequence and a sequence converging to zero converges to zero.) That is, $B(u_n-u,v) \to 0$, so $u$ satisfies the weak form of the nonlinear PDE. 
   \end{enumerate}
 \end{proof}
 \cbk 
