@@ -182,10 +182,21 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \cblu
 \begin{proof}
   \begin{enumerate}
-    \item $\Hdiv \subset \Ltwo^d$ is clearly a linear subspace. What remains to show is that $\Hdiv$ is closed with respect to $\|\cdot\|_{\Hdiv}$. Let $u_n$ be a Cauchy sequence in $\Hdiv$ with $u_n \to u$ in $\Ltwo^d$. 
-    \cred Convergence in norm? div is continuous in this norm? \cblu
-    
-    \item 
+    \item $\Hdiv \subset \Ltwo^d$ is clearly a linear subspace. What remains to show is that it is closed. Let $u_n$ be a Cauchy sequence in $\Hdiv$ with $u_n \to u$ in $\Ltwo^d$. 
+    Since $\Ltwo$ is complete, then $u \in \Ltwo^d$. Furthermore, for any \(\phi \in \mathcal D\),
+    \[\left( \nabla \cdot u_n, \phi \right) = - \left( u_n, \nabla \phi \right) \to -\left( u, \nabla \phi  \right) = \left( \nabla \cdot u, \phi \right).\]
+    So, $\nabla \cdot u_n \to \nabla \cdot u$ in the distributional sense. Since $u_n$ is Cauchy in $\Hdiv$, then $\nabla \cdot u_n$ is Cauchy in $\Ltwo$, and therefore $\nabla \cdot u_n \to g \in \Ltwo$. Then by comparison to what we have showed, $\nabla \cdot u = g \in \Ltwo$, so $u \in \Hdiv$. 
+    \item The operator is clearly linear since all the involved operations are linear. Furthermore, we have the estimate 
+    \begin{align*}
+        \left| {\int\limits_{\partial \Omega } {v \cdot \nu \phi d\sigma \left( x \right)} } \right| &\leqslant \left| {\int\limits_\Omega  {\nabla  \cdot v\phi dx} } \right| + \left| {\int\limits_\Omega  {v \cdot \nabla \phi dx} } \right| \hfill \\
+         &\leqslant \left\| {\nabla  \cdot v} \right\|\left\| \phi  \right\| + \left\| v \right\|\left\| {\nabla \phi } \right\| \hfill \\
+         &\leqslant 2\left\| v \right\|_{\Hdiv}\left\| \phi  \right\|_{\Hone}
+    \end{align*}
+    for $v\in \Hdiv$ and $\phi\in \Hone$. 
+    We remark that integration by parts holds for both spaces by density of test functions. A better approach is to start with test functions and then extend to the entire space, which is implicit here. 
+    The trace operator $\gamma_0 : \Hone \to H^{1/2}\left( \partial \Omega \right)$ is bounded and surjective, and so for every $g \in H^{1/2}(\partial \Omega)$, there exists a $\phi \in \Hone$ such that $\gamma_0\phi = g$ and $\|\phi\|_{\Hone} \leq \|g\|_{H^{1/2}(\partial \Omega)}$. Thus, we write 
+    \[\left| {\int\limits_{\partial \Omega } {v \cdot \nu gd\sigma \left( x \right)} } \right| \leqslant 2\left\| v \right\|_{\Hdiv}\left\| g \right\|_{H^{1/2}(\partial \Omega)}\]
+    for every $v \in \Hdiv$, $g \in H^{1/2}(\partial\Omega)$. We have just demonstrated that the proposed operator $\partial_\nu$ is bounded, which implies also that it is well-defined between the spaces $\Hdiv$ and $H^{-1/2}(\partial\Omega)$. 
     \item First consider $\nabla^2\varphi = w$. The VP is 
     \[\left\{ {\begin{array}{*{20}{l}}
       \varphi \in H_0^1 \left( \Omega \right)\\[.2cm]
@@ -222,14 +233,44 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \cblu
 \begin{proof}
   \begin{enumerate}
-    \item  Compatibilty condition: 
+    \item We wish to solve 
+    \[\left\{ {\begin{array}{*{20}{l}}
+      { - u'' = f}&{x \in \left( {0,1} \right)} \\[.2cm] 
+      {u'\left( 0 \right) = a,\,\,u'\left( 1 \right) = b}&{} 
+    \end{array}} \right.\]
+    The VP is 
+    \[\left\{ {\begin{array}{*{20}{l}}
+      {u \in {{\tilde H}^1}\left( {0,1} \right)} \\[.2cm] 
+      {\left( {u',v'} \right) = \left( {f,v} \right) - av\left( 0 \right) + bv\left( 1 \right)} \\[.2cm] 
+      {\forall v \in {H^1}\left( {0,1} \right)} 
+    \end{array}} \right.\]
+    which is accompanied by the compatibility condition 
+    \[\int\limits_0^1 f = a-b.\]
+    We have the same mesh setup, $h = 1/N$, $N \in \N$. $x_j = jh$ for $j = 0, \dots, N$. We define the finite element space as 
+    \[{H_n} = \left\{ {v \in {C^0}\left( {0,1} \right):{{\left. v \right|}_{\left[ {{x_{j - 1}},{x_j}} \right]}} \in {\mathcal{P}^1}\left( {{x_{j - 1}},{x_j}} \right)} \right\}.\]
+    The space is dense in $\Hone$, and when we seek the Galerkin approximation, we look in the trial space $\Hone$ as opposed to $\tilde H^1$ with the understanding that we can shift the numerical solution by any constant. The discrete problem is 
+    \[\left\{ {\begin{array}{*{20}{l}}
+      {{u_n} \in {H_n}} \\[.2cm]
+      {\left( {{{u'}_n},{{v'}_n}} \right) = \left( {f,{v_n}} \right) - a{v_n}\left( 0 \right) + b{v_n}\left( 1 \right)} \\[.2cm]
+      {\forall v \in {H_n}} 
+    \end{array}} \right.\]
+    It is sufficient to test simply with the hat functions $\phi_{n,j}$ which form a basis for $H_n$. We represent the solution as 
+    \[u_n = \sum_{j=0}^{N}\alpha_j \phi_{n,j}.\]
+    The resulting linear system is 
+    \[\underbrace {\sum\limits_{j = 0}^N {{\alpha _j}\left( {{\phi _{n,j}}^\prime ,{\phi _{n,i}}^\prime } \right)} }_{M\alpha } = \underbrace {\left( {f,{\phi _{n,i}}} \right) - a{\phi _{n,i}}\left( 0 \right) + b{\phi _{n,i}}\left( 1 \right)}_b.\]
+    Matrix $M$ is invertible and tridiagonal, so the problem $M\alpha = b$ has a unique solution. Once the coefficients are obtained, then any solution $u_n + c$, $c \in \R$ is also a solution. 
     \item Consider the nonhomogeneous Dirichlet boundary conditions
     \[\left\{ {\begin{array}{*{20}{l}}
       -u''=f & x \in (0,1)\\[.2cm]
       u(0) = u_0\\[.2cm]
       u(1) = u_1.
     \end{array}} \right.\]
-    Define the lift $u_D(x) = u_0 + (u_1-u_0)x$, and write \(u = w + u_D\).
+    Define the lift $u_D(x) = u_0 + (u_1-u_0)x$, and write \(u = w + u_D\). Remark: one may use any admissible lift that lives in the finite element space. We proved already that the end solution is independent of the choice of lift. Then, we solve essentially the same system, just with a modified right hand side. Notice now that function $w$ satisfies the homogeneous boundary conditions. The problem is now 
+    \[\left\{ {\begin{array}{*{20}{l}}
+      {{w_n} \in {H_{n,0}}} \\[.2cm] 
+      {\left( {{w_n}',{v_n}'} \right) = \left( {f,{v_n}} \right) - \left( {{u_{D,n}}',{v_n}'} \right),\quad \forall {v_n} \in {H_{n,0}}} 
+    \end{array}} \right.\]
+    This problem results in a similar linear system (same left hand side, actually) as the original problem for the weights $\alpha_j$ of the numerical solution $w_n=\sum\alpha_j \phi_{n,j}$. The ultimate solution is $u = w + u_D$. 
   \end{enumerate}
 \end{proof}
 \cbk 
@@ -277,8 +318,8 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
     \[\|u-p\|^2=\int\limits_0^1 (u(x)-p)^2 dx = \sum_{i = 1}^{N}\int\limits_{x_{i-1}}^{x_i} (u(x)-p)^2dx.\]
     On each interval, we can apply the previous result. Summing a finite number of times, we just increase the constant. In $d$ dimensions, with each dimension split into $N_i$ elements, we have \(N_1 \times N_2 \times \dots \times N_d \) small domains. Then we have 
     \begin{align*}
-      \|u-p\|^2 &= \int_\Omega (u(x)-p)^2 dx \\[.2cm]
-      &=\sum_{i = 1}^{N_1 \times \dots \times N_d} \int_{\Omega_i} (u(x)-p)^2 dx \\[.2cm]
+      \inf_{p\in P}\|u-p\|^2 &= \inf_{p\in P}\int_\Omega (u(x)-p)^2 dx \\[.2cm]
+      &=\sum_{i = 1}^{N_1 \times \dots \times N_d} \inf_{p_i\in \R}\int_{\Omega_i} (u(x)-p_i)^2 dx \\[.2cm]
       &\leq \sum_{i = 1}^{N_1 \times \dots \times N_d} C^2h^2 |u|^2_{H^1(\Omega_i)} & (\text{previous result on } \Omega_i)\\[.2cm]
       &= C^2 h^2 |u|^2_{H^1(\Omega)}.
     \end{align*}
@@ -316,8 +357,76 @@ Unless otherwise stated, denote by $\left( \cdot, \cdot \right)$ as the $L^2$ in
 \cblu
 \begin{proof}
   \begin{enumerate}
-    \item  
-    \item 
+    \item We want to solve \[ - \partial _x^2G = {\delta _y}\left( x \right)\]
+    on the interval $(0,1)$ and subject to $G\left( {0,y} \right) = G\left( {1,y} \right) = 0$. We split the problem into two domains and equivalently seek the solution to 
+    \[\begin{gathered}
+      \left\{ {\begin{array}{*{20}{l}}
+      { - \partial _x^2{G_1} = 0}&{x \in \left( {0,y} \right)} \\ 
+      {{G_1}\left( {0,y} \right) = 0}&{} 
+    \end{array}} \right. \hfill \\
+      \left\{ {\begin{array}{*{20}{c}}
+      { - \partial _x^2{G_2} = 0}&{x \in \left( {y,1} \right)} \\ 
+      {{G_2}\left( {1,y} \right) = 0}&{} 
+    \end{array}} \right. \hfill \\ 
+    \end{gathered} \]
+    We see immediately that $G_1 = c_1(y)x$ and $G_2 = c_2(y)(x-1)$. The continuity and jump conditions imply 
+    \[\begin{gathered}
+      {G_1}\left( {y,y} \right) = {G_2}\left( {y,y} \right) \hfill \\
+      {\partial _x}\left( {{G_1}\left( {x,y} \right) - {G_2}\left( {x,y} \right)} \right){|_{x = y}} = 1 \hfill \\ 
+    \end{gathered} \]
+    which implies that $c_1(y) = 1-y$ and $c_2(y) = -y$. The final Green's function is 
+    \[G\left( {x,y} \right) = \left\{ {\begin{array}{*{20}{c}}
+      {x\left( {1 - y} \right)}&{x \in \left( {0,y} \right)} \\ 
+      {\left( {1 - x} \right)y}&{x \in \left( {y,1} \right)} 
+    \end{array}} \right.\]
+    Finally, we verify that $G$ satisfies the BC and is a solution to the equivalent variational problem for $v \in H_0^1 (0,1)$: 
+    \begin{align*}
+        \int\limits_0^1 { - \partial _x^2Gvdx}  &= \int\limits_0^1 {{\partial _x}Gv'dx}  - \left. {{\partial _x}Gv} \right|_0^1 \hfill \\
+         &= \int\limits_0^1 {{\partial _x}Gv'dx}  \hfill \\
+         &= \int\limits_0^y {\left( {1 - y} \right)v'dx}  + \int\limits_y^1 { - yv'dx}  \hfill \\
+         &= v\left( y \right) \hfill \\
+         &= \int\limits_0^1 {{\delta _y}\left( x \right)vdx} 
+    \end{align*}
+
+
+
+
+    \item Essentially the same procedure. We are solving 
+    \[ - \partial _x^2G = {\delta _y}\left( x \right) - 1\]
+    on $(0,1)$ subject to the conditions ${\partial _x}G\left( {0,y} \right) = {\partial _x}G\left( {1,y} \right) = 0$. Decompose the domain into 
+    \[\begin{gathered}
+      \left\{ {\begin{array}{*{20}{c}}
+      { - \partial _x^2{G_1} = 1}&{x \in \left( {0,y} \right)} \\ 
+      {{\partial _x}{G_1}\left( {0,y} \right) = 0}&{} 
+    \end{array}} \right. \hfill \\
+      \left\{ {\begin{array}{*{20}{c}}
+      { - \partial _x^2{G_2} = 1}&{x \in \left( {y,1} \right)} \\ 
+      {{\partial _x}{G_2}\left( {1,y} \right) = 0}&{} 
+    \end{array}} \right. \hfill \\ 
+    \end{gathered} \]
+    It is easy to solve the equations, we see that 
+    \[{G_i}\left( {x,y} \right) = \frac{1}{2}{x^2} + {C_{i,1}}\left( y \right)x + {C_{i,2}}\left( y \right)\] 
+    for $i = 1, 2$. Applying the BC's, 
+    \[\begin{gathered}
+      {G_1} = \frac{1}{2}{x^2} + {C_1}\left( y \right) \hfill \\
+      {G_2} = \frac{1}{2}{x^2} - x + {C_2}\left( y \right).
+    \end{gathered} \]
+    Continuity and jump conditions imply that 
+    \[{C_1}\left( y \right) =  - y + {C_2}\left( y \right)\qquad y - \left( {y - 1} \right) = 1.\]
+    We satisfy automatically the jump condition, so we choose a $C_1(y) = c(y)$ sufficiently regular as a free variable, arriving at the result 
+    \[G\left( {x,y} \right) = \left\{ {\begin{array}{*{20}{l}}
+      {\frac{1}{2}{x^2} + c(y)}&{x \in \left( {0,y} \right)} \\[.2cm] 
+      {\frac{1}{2}{x^2} - x + y + c\left( y \right)}&{x \in \left( {y,1} \right)} 
+    \end{array}} \right.\]
+    Finally, for $v\in \Hone$, we have 
+    \begin{align*}
+        \int\limits_0^1 { - \partial _x^2Gv}  &= \int\limits_0^1 {{\partial _x}Gv'}  - \left. {{\partial _x}Gv} \right|_0^1 \hfill \\
+         &= \int\limits_0^y {xv'}  + \int\limits_y^1 {\left( {x - 1} \right)v'}  \hfill \\
+         &= \int\limits_0^1 {xv'}  - v\left( 1 \right) + v\left( y \right) \hfill \\
+         &= v\left( y \right) - \int\limits_0^1 v  \hfill \\
+         &= \int\limits_0^1 {\left( {{\delta _y} - 1} \right)v} \\
+         P_m \, \underline{\downarrow}\, H_m
+    \end{align*}
   \end{enumerate}
 \end{proof}
 \cbk 
