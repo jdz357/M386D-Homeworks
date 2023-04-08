@@ -1,0 +1,121 @@
+\documentclass[letterpaper,twoside,11pt]{article}
+\usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
+\usepackage{amsthm}		%theorem style 
+%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+%These lines make the theorem NAME BOLD
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}[section]
+%end of making theorem name bold. 
+\newtheorem*{thm}{Theorem}		%Theorem no number. 
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem*{ex}{Example}
+\newtheorem{notee}{Note}[section]
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{note}{Note}
+\usepackage[super]{nth}
+\usepackage[makeroom]{cancel}
+
+%----------------------- Macros and Definitions --------------------------
+\setlength{\fboxsep}{2.5\fboxsep}
+%Sets boxlength size
+
+\setlength\headheight{15pt}
+\addtolength\topmargin{-25pt}
+\addtolength\footskip{0pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\SL}{{\mathcal{L}}}
+\usepackage{libertine}            %% For fancy font
+\DeclareMathOperator*{\slim}{s-lim}
+\newcommand{\cg}{\color{gray}}
+\newcommand{\cbk}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\sch}{\mathcal S} 
+
+\newcommand{\Hone}{H^1\left( \Omega \right)}
+\newcommand{\Hdiv}{H\left( \text{div}, \Omega \right)}
+\newcommand{\Hcur}{H\left( \text{curl}, \Omega \right)}
+\newcommand{\Ltwo}{L^2 \left( \Omega \right)}
+
+
+
+
+\begin{document}
+%\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
+\title{\vspace{-2\baselineskip} 
+Homework 10
+}
+%\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
+\author{Jonathan Zhang \qquad EID: { jdz357} }
+\date{}
+\maketitle
+
+
+\begin{exercise}[9.3]
+  Let $X = C([0,1])$ be the space of bounded continuous functions on $[0,1]$ and, for $u \in X$, define $F(u)(x) = \int\limits_0^1 K(x, y) f(u(y))dy$ where $K:[0,1] \times [0,1] \to \R$ is continuous and $f$ is a $C^1$ mapping of $\R$ into $\R$. Find the Fr\'echet derivative $DF(u)$ of $F$ at $u\in X$. Is the map $u \mapsto DF(u)$ continuous?
+\end{exercise}
+
+\begin{exercise}[9.5]
+  Set up and apply contraction mapping principle to show that the problem 
+  \[-u_{xx} + u - \varepsilon u^2 = f(x), \quad x\in \R\]
+  has a smooth bounded solution if $\varepsilon>0$ is small enough, where $f(x) \in \sch (\R)$. 
+\end{exercise}
+
+\begin{exercise}[9.7]
+  Suppose that $F$ is defined on a Banach space $X$, that $x_0 = F(x_0)$ is a fixed point of $F$, $DF(x_0)$ exists, and that 1 is not in the spectrum of $DF(x_0)$. Prove that $x_0$ is an isolated fixed point. 
+\end{exercise}
+
+\begin{exercise}[9.8]
+  Consider the ODE 
+  \[u'(t) + u(t) = \cos(u(t))\]
+  posed as an IVP for $t > 0$ with $u(0) = u_0$. 
+  \begin{enumerate}
+    \item Use contraction mapping theorem to show that there is exactly one solution $u$ corresponding to any given $u_0 \in \R$. 
+    \item Prove that there is a number $\xi$ such that $\lim_{t\to \infty} u(t) = \xi$ for any solution $u$, independent of the value of $u_0$. 
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[9.10]
+  Consider the PDE 
+  \[u_{t} - u_{xxt} - \varepsilon u^3 = f, \quad x\in \R, t>0 \]
+  with $u(x,0) = g(x)$. Use the Fourier transform and a contraction mapping argument to show that there exists a solution for small enough $\varepsilon$, at least up to some time $T< \infty$. In what spaces should $f$ and $g$ lie? 
+\end{exercise}
+
+\end{document}
+ 
