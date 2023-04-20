@@ -1,0 +1,242 @@
+\documentclass[letterpaper,twoside,11pt]{article}
+\usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
+\usepackage{amsthm}		%theorem style 
+%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+%These lines make the theorem NAME BOLD
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}[section]
+%end of making theorem name bold. 
+\newtheorem*{thm}{Theorem}		%Theorem no number. 
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem*{ex}{Example}
+\newtheorem{notee}{Note}[section]
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{note}{Note}
+\usepackage[super]{nth}
+\usepackage[makeroom]{cancel}
+
+%----------------------- Macros and Definitions --------------------------
+\setlength{\fboxsep}{2.5\fboxsep}
+%Sets boxlength size
+
+\setlength\headheight{15pt}
+\addtolength\topmargin{-25pt}
+\addtolength\footskip{0pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage} 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\sffamily CSE 386D}
+\fancyhead[LO,RE]{\sffamily UT Austin}
+\fancyfoot[LO,RE]{\sffamily Oden Institute}
+\fancyfoot[RO,LE]{\sffamily\bfseries\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\SL}{{\mathcal{L}}}
+%\usepackage{libertine}            %% For fancy font
+\DeclareMathOperator*{\slim}{s-lim}
+\newcommand{\cg}{\color{gray}}
+\newcommand{\cbk}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\sch}{\mathcal S} 
+
+\newcommand{\Hone}{H^1\left( \Omega \right)}
+\newcommand{\Hdiv}{H\left( \text{div}, \Omega \right)}
+\newcommand{\Hcur}{H\left( \text{curl}, \Omega \right)}
+\newcommand{\Ltwo}{L^2 \left( \Omega \right)}
+
+
+
+
+\begin{document}
+\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
+\title{\vspace{-2\baselineskip} 
+Homework 11
+}
+%\author{Jonathan Zhang \qquad EID: { jdz357} \qquad { jdz@utexas.edu}}
+\author{Jonathan Zhang \qquad EID: { jdz357} }
+\date{}
+\maketitle
+
+
+\begin{exercise}[9.13]
+  Surjective Mapping Theorem. Let $X$ and $Y$ be Banach spaces, $U\subset X$ open, $f:U\to Y$ be $C^1$, and $x_0 \in U$. If $Df(x_0)$ has a bounded right inverse, then $f(U)$ contains a neighborhood of $f(x_0)$. 
+  \begin{enumerate}
+    \item Prove from the Inverse Function Theorem. 
+    \item Prove that if $y\in Y$ is sufficiently close to $f(x_0)$, then there is at least one solution to $f(x) = y$. 
+  \end{enumerate}
+\end{exercise}
+
+\cblu 
+\begin{enumerate}
+  \item Let $R$ be the right inverse of $Df(x_0)$, that is, $Df(x_0) \circ R = I$. Consider $g:V\to Y$ where $g(y) = f(x_0 + Ry)$, and $V = \left\{ y \in Y: x_0 + Ry \in U \right\}$. Applying the chain rule, we see that 
+  \[Dg(y) = Df(x_0 + Ry) R\]
+  and when evaluated at zero, $Dg(0) = Df(x_0) R = I$ which is clearly an isomorphism. Then, there exists $0 \ni S \subset V \subset Y$, $g(0) = f(x_0) \ni T \subset Y$ such that $g : S \to T$ is a diffeomorphism. Moreover, $T = g(S) \subset g(V) = f(U)$, so indeed, $f(U)$ contains a neighborhood (namely $T$) of $f(x_0)$. 
+  \item Pick a $y \in T$ - this conditioin defines how close $y \in Y$ must be to $f(x_0)$. Set $z = g\inv (y)$, that is, $g(z) = y$. But by definition, $g(z) = f(x_0 + Rz)$. If we define $x := x_0 + Rz$, then we are looking at the solution to $f(x) = g(z) = y$. 
+\end{enumerate}
+\cbk 
+
+\begin{exercise}[9.14]
+  Suppose that $f \in C\left( [0,1] \right)$ and we want to solve 
+  \[\frac{1}{1 + \ve u^2} u ' = f(x), \quad x \in (0,1), \quad u(0) = 0.\]
+  Note that there is a unique solution $u_0(x)$ when $\ve = 0$. 
+\begin{enumerate}
+  \item Use the implicit function theorem to show that there is a continuously differentiable solution for $\ve$ small enough. 
+  \item Use the Banach Contraction Mapping Theorem to show that there is a unique continuous solution in a closed ball about $u_0$ in an appropriate Banach space for $\ve$ sufficiently small. 
+\end{enumerate}
+\end{exercise}
+
+
+\cblu 
+\begin{enumerate}
+  \item  Define $F: \R \times \{u \in C^1 \left( [0,1] \right) : u (0) = 0\} \to C(0,1)$ by 
+  \[F\left( \ve , u \right) = \frac{u'}{1 + \ve u^2 }.\]
+  If we can show that $F$ is $C^1$ at least in some neighborhood of $(0, u_0)$, and that $D_uF(0, x_0)$ is an isomorphism, then we can apply the implicit function theorem. To that end, we attempt to compute the partials of $F$. We know from proposition 9.7 that is $X$ is a direct some of NLS's, and if each partial exists and are continuous at $x_0$, then $F$ is Fr\'echet differentiable at $x_0$. We have 
+  \[D_{\ve}F(\ve, u) (h)= - u' u^2 \left( 1 + \ve u^2  \right)^{-2}h,\]
+  \[D_uF(u)(h) = \left( 1+ \ve u^2 \right)\inv h' - \left( 1+ \ve u^2  \right)^{-2} 2\ve u u' h.\]
+  And 
+  \begin{align*}
+    D_{u}F(0, u_0)(h) = h'. 
+  \end{align*}
+  It is not immediately obvious that $h'$ provides a bijection between the two spaces, but indeed, the equation $h' = f$ with accompanying BC's can be solved easily for $h$. And, $\|h'\| \leq 1 \|h\|_{C^1}$, so $D_uF (0, u_0)$ is bounded. Furthermore, $D_{\ve}F$ is bounded (continuous functions defined on a compact interval), and continuous with respect to $\ve$, so we conclude that $F$ is Fr\'echet differentiable, and that $DF(0, u_0)$ is an isomorphism. We can now apply the implicit function theorem to conclude that there exists sets $W \subset \R$, $U \subset \left\{ u \in C^1([0,1]) : u(0) = 0 \right\}$, $V \subset C(0,1)$ with $0 \in W$, $u_0 \in U$, and $f \in V$ and a unique mapping $g : W \times V \to U$ such that $F(\ve, g(\ve, f)) = f$ for all $(\ve, f) \in W \times V$. That is to say, as long as $\ve \in W$, we can find a $C^1$ solution to the problem.  
+  \item Rearrange and integrate: 
+  \[u'(x) = \left( 1 + \ve u^2  \right)f(x) \longrightarrow u(x) =\int\limits_0^x \left( 1 + \ve u^2(s)  \right)f(s) ds .\]
+  We see that $u$ solves the differential equation if it is a fixed point of the operator $G$ where $G$ is defined as 
+  \[G: C(B_r(u_0)) \ni u \longrightarrow Gu(x) = \int\limits_0^x \left( 1 + \ve u^2(s)  \right)f(s) ds \in C(B_r(u_0)). \]
+  What remains is to show that indeed, $G$ sets $C(B_r(u_0))$ into itself, and that $G$ is a contraction. To that end, we estimate 
+  \begin{align*}
+    \|Gu\|_{\infty} &= \sup_x |Gu(x)| \\
+    &= \sup_x \left\vert \int\limits_0^x \left( 1 + \ve u^2(s)  \right)f(s) ds\right\vert\\
+    &\leq \|f\|_{\infty}\left( 1 + \ve r^2 \right)\\
+    &\mathop{\leq}\limits^? r
+  \end{align*}
+  Implies that 
+  \[\ve \leq r^{-2} \left(\frac{r}{\|f\|_{\infty}}-1\right) \qquad \text{and} \qquad r > \|f\|_{\infty}.\]
+  For $G$ to be a contraction, 
+  \begin{align*}
+    \|Gu-Gv\|_{\infty} &= \sup_x \left\vert \int\limits_0^x \ve f(s) (u^2(s) - v^2(s)) ds\right\vert \\ 
+    &\leq \ve \|f\|_{\infty} 2r \|u-v\|_{\infty}
+  \end{align*}
+  which implies condition 
+  \[\ve < \frac{1}{2r\|f\|_{\infty}}.\]
+  Then, for $\ve = \min\left\{ r^{-2} \left(\frac{r}{\|f\|_{\infty}}-1\right), \left( 2r\|f\|_{\infty} \right)\inv \right\}$, there is a unique continuous solution. 
+\end{enumerate}
+
+\cbk
+
+
+
+\begin{exercise}[9.15]
+   Let $X$, $Y$ Banach. 
+  \begin{enumerate}
+    \item Let $F$ and $G$ take $X$ to $Y$ be $C^1$ on $X$, and let $H(x, \ve) = F(x) + \ve G(x)$ for $\ve \in \R$. If $H(x_0, 0) = 0$ and $DF(x_0)$ is invertible, show that there exists $x\in X$ such that $H(x, \ve) = 0$ for $\ve$ sufficiently close to $0$. 
+    \item Let $f\in C^0 \left( [0,1] \right)$ and $\ve \in \R$. Use the previous result to show that, for sufficiently small $\ve$, there is a solution $w \in C^2 \left( [0,1] \right)$ to 
+    \[w'' = f + w + \ve w^2 , \qquad w(0) = w(1) = 0.\] 
+  \end{enumerate}
+\end{exercise}
+
+\cblu 
+  \begin{enumerate}
+    \item Use implicit function theorem. To better follow the convention, let us define a new $\tilde H (\ve, x) := H(x, \ve)$. Now $\tilde H : \R \times X \to Y$ is $C^1$, in particular, in the neighborhood of $(0, x_0)$. We have $y_0 = \tilde H(0, x_0) = 0$. Moreover, $D_x\tilde H(0, x_0) = DF(x_0)$ is invertible. By the theorem, there exist open sets $W \subset \R$, $U\subset X$, $V\subset Y$, with $0 \in W$, $x_0 \in U$, and $0 \in V$, and a unique mapping $g : W \times V \to U$ such that $\tilde H(\ve, g(y, \ve)) = y$ for all $(\ve, y) \in W\times V$. This tells us that as long as $\ve$ is in the set $W$, we have a solution. 
+    \item We rewrite as $w'' - f - w - \ve w^2 = 0$ and define $F(w) = w'' - f- w$ and $G(w) = -w^2$. Then we are looking at exactly the same problem, $H\left( \ve, w \right) = F(w) + \ve G(w) = 0$. We define spaces 
+    \[X = \left\{ w\in C^2 ([0,1]) : w(0) = w(1) = 0 \right\}, \quad Y = C([0,1]).\]
+    We need to check that in fact $F$ and $G$ are $C^1$. By inspection, $G$ is $C^1$. $F$ is bounded since 
+    \begin{align*}
+      \|w''\|_{\infty} &\leq 1 \|w\|_{C^2} = \|w\|_{\infty} + \|w'\|_{\infty} + \|w''\|_{\infty}
+    \end{align*}
+    and the additional addition operations are continuous. 
+
+    We remark that for $\ve = 0$, the equation $w'' - w = f$ with BC has an easy to calculate exact solution (use homogeneous solution + particular), but we do not remark on exactly how to obtain $w_0$ since the procedure may change depending on how $f$ looks. Thus, we have $H(0, w_0) = 0$. The only thing left is to show that $DF(w_0)$ is invertible. But, $DF(w_0)(h) = h'' - h$, and by the same reasoning as previous, the ODE $h'' - h = g$ with accompanying BC can be solved easily. So indeed, the derivative provides an isomorphism between the two spaces. Apply now the previous result. 
+  \end{enumerate}
+\cbk 
+
+\begin{exercise}[9.18]
+  Prove that if $X$ is an NLS, $U\subset X$ open, $f : U\to \R$ is strictly convex and differentiable, then for $x, y \in U$, $x \neq y$, 
+  \[f(y) > f(x) + Df(x)(y-x),\]
+  and $Df(x) = 0$ implies that $f$ has a strict and therefore unique minimum. 
+\end{exercise}
+
+\cblu 
+\begin{proof}
+  If $f$ is strictly convex, then it is also convex. Pick $x, y \in U$, and define $z := \lambda x + \left( 1-\lambda \right)y$ for $\lambda \in (0,1)$. Then, we have 
+  \[\lambda f(x) + \left( 1-\lambda  \right)f(y)>f(z) \geq f(x) + Df(x) (z-x)\]
+  by the definitions of strict convex and convex. Manipulating gives 
+  \[\left( 1-\lambda \right)f(y) > (1-\lambda) f(x) + Df(x) (-(1-\lambda)x + (1-\lambda )y). \]
+  Divide by $1-\lambda \neq 0$ to conclude the result. 
+
+  For the second statement, we go by contradiction. Assume to the contrary that there exists $x,y \in U$, $x \neq y$, such that both $x$ and $y$ are minimizers of $f$. The punch line is that under these assumptions and the assumption that $f$ is strictly convex, the only possibility is that $f$ is a constant on the line between $x$ and $y$. More precisely, we have the same statement that 
+  \[\lambda f(x) + \left( 1-\lambda  \right)f(y)>f(z).\]
+  Of course, if this is the case, then we have immediately contradicted the fact that $x$ and $y$ are both minimizers, because we have just found a point that attains a lower value. Even in the case of equality, we would obtain that $f$ is a linear function of $y$, i.e. $f(y) = f(x) + Df(x)(y-x)$. But, linear functions are not strictly convex. Yet another contradiction.
+\end{proof}
+\cbk 
+
+\begin{exercise}[9.20]
+  Let $\Omega\subset \R^n$ have smooth boundary, $A(x)$ an $n \times n$ real matrix with components in $L^\infty (\Omega)$, and $c(x)$, $f(x)$, be real with $c \in L^\infty (\Omega)$ and $f \in \Ltwo$. Consider 
+  \[\left\{ {\begin{array}{*{20}{rl}}
+    -\nabla \cdot A \nabla u + cu = f & x\in \Omega \\[.2cm] 
+    u = 0 & x \in \partial \Omega 
+  \end{array}} \right.\] 
+  \begin{enumerate}
+    \item Write as a variational problem. 
+    \item Assume $A$ is symmetric, uniformly positive definite, and $c$ is uniformly positive. Define the energy functional 
+    \[J : H_0^1 \to \R, \quad J(v) = \frac{1}{2}\int_\Omega \left\{ |A^{1/2} \nabla v|^2 + c|v|^2 - 2fv \right\}dx.\]
+    Find $DJ(u)$. 
+    \item Prove that for $u \in H_0^1$, TFAE: (i) $u$ is the solution of the BVP, (ii) $DJ(u) = 0$, (iii) $u$ minimizes $J$. 
+  \end{enumerate}
+\end{exercise}
+
+\cblu 
+\begin{enumerate}
+  \item Multiply by a test function $v$, integrate by parts. 
+  \begin{align*}
+    \left( -\nabla \cdot A\nabla u, v \right) + \left( cu,v \right) &= \left( f, v \right) \\[.2cm]
+    \left( A\nabla u, \nabla v \right) + \langle A\nabla u \cdot n, v\rangle_{\partial \Omega} + \left( cu,v \right) &= \left( f, v \right) 
+  \end{align*}
+  Restricting to $v \in H_0^1 \left( \Omega \right)$, we have the VP 
+  \[\left\{ {\begin{array}{*{20}{l}}
+    u \in H_0^1 \left( \Omega \right), \\[.2cm]
+    b(u,v) := \left( A\nabla u, \nabla v \right) + (cu,v) = \left( f, v \right) =: \ell (v) \\[.2cm]
+    \quad \text{for every } v \in H_0^1 (\Omega)
+  \end{array}} \right.\] 
+  \item We immediately expect that $DJ(u)$ returns the variational problem just written. Indeed, 
+  \begin{align*}
+    2J(v + h) - 2J(v) &= \int_\Omega |A^{1/2} \nabla \left( v+h \right)|^2-|A^{1/2} \nabla v|^2 + c|\left( v+h \right)|^2 -c|v|^2 - 2f h\\ 
+    &= \left( 2A^{1/2}\nabla v, A^{1/2}\nabla h \right) +2(cv, h) + (ch,h) - 2(f, h).
+  \end{align*}
+  Dividing by 2 and extracting the linear part, we see precisely that 
+  \[DJ(v)(h) = \left( A\nabla v, \nabla h \right) + (cv, h) - \left( f, h \right).\]
+  \item (i) $\implies$ (ii) by Chapter 8 result. (ii) $\implies$ (i) by previous part of problem. (iii) \(\implies\) (ii) by definition. The non-trivial implication is that (ii) implies (iii). We want to use the second derivative test, and we have the additional fact that the bilinear form is coercive to help us. Noting that the bilinear form (also the second derivative) is bounded below by $\gamma \|h\|^2_{\Hone}$, we have exactly what we need to apply the theorem. Therefore, $v$ is a strict local minimum. 
+\end{enumerate}
+
+
+\end{document}
+ 
