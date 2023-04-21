@@ -1,7 +1,7 @@
 \documentclass[letterpaper,twoside,11pt]{article}
 \usepackage{a4wide,graphicx,fancyhdr,clrscode,tabularx,amsmath,amssymb,amsfonts,color,enumitem, bm, array, textcomp, subcaption, color, listings, chemformula, tcolorbox, setspace, xcolor}
 \usepackage{amsthm}		%theorem style 
-%\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
+\usepackage{mathptmx}      %SET MATH TYPE FONT TO TIMES NEW ROMAN
 %These lines make the theorem NAME BOLD
 \newtheoremstyle{mystyle}%                % Name
   {}%                                     % Space above
@@ -103,22 +103,91 @@ Homework 12
   over the set of $y \in C^2([0,1])$ such that $y(0) = \alpha$, $y'(0) = \beta$, $y(1) = \gamma$, and $y'(1) = \delta$. That is, with $C_0^2([0,1]) = \left\{ u \in C^2 ([0,1]) : u(0) = u'(0) = u(1) = u'(1) = 0 \right\}$, and $y \in C_0^2 + p(x)$ where $p$ is the cubic polynomial that matches the BC. 
   \begin{enumerate}
     \item Find a differential equation, similar to the EL equation, that must be satisfied by the minimum (if it exists). 
-    \item Apply you
+    \item Apply your equation to find the extremal(s) of 
+    \[F(y) = \int\limits_0^1 \left( y''(x) \right)^2 dx,\]
+    where $y(0) = y'(0) = y'(1) = 0$, but $y(1) = 1$, and justify that each extremal is a (possibly non-strict) minimum. 
   \end{enumerate}
 \end{exercise}
 
 
 
 \begin{exercise}[10.6]
-
+  Consider the functional 
+  \[\Phi(x, y, y') = \int\limits_a^b F(x, y(x), y'(x))dx.\]
+  \begin{enumerate}
+    \item If $F \in C^2$ and $F = F(y, y')$ only, and if we assume that $y \in C^2$, prove that in this case the EL equations reduce to 
+    \[\frac{d}{dx}\left( F - y'F_{y'} \right) = 0.\]
+    \item Among all $C^2$ curves $y(x)$ joining the points $(0,1)$ and $(1, \cosh(1))$, find the one which generates the minimum area when rotated about the $x$ axis. This area is 
+    \[A = 2\pi \int\limits_0^1 y \sqrt{1 + (y')^2} dx.\]
+  \end{enumerate}
 \end{exercise}
+
+\cblu 
+
+\begin{enumerate}
+  \item Direct computation. 
+  \begin{align*}
+      \left( {{D_3}Fy' - f} \right)' &= {D_3}Fy'' + \left( {{D_3}F} \right)'y' - f' \hfill \\
+       &= {D_3}Fy'' + {D_2}Fy' - \left( {{D_2}Fy' + {D_3}fy''} \right) \hfill \\
+       &= 0 
+  \end{align*}
+\end{enumerate}
+
+\cbk 
+
+
 
 \begin{exercise}[10.8]
-
+  Consider the problem of finding a $C^1$ curve that minimizes 
+  \[\int\limits_0^1 (y'(t))^2 dt\]
+  subject to the conditions $y(0) = y(1) = 0$ and 
+  \[\int\limits_0^1 y^2 = 1.\]
+  \begin{enumerate}
+    \item Remove the integral constraint by incorporating a Lagrange multiplier, and find the EL equations. 
+    \item Find all extremals. 
+    \item Find the solution. 
+    \item Use your result to find the best constant $C$ in the inequality 
+    \[\|y\|\leq C \|y'\|\]
+    for functions that satisfy $y(0) = y(1) = 0$. 
+  \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[10.9]
+\cblu 
 
+
+\begin{enumerate}
+  \item We form the Lagrangian, 
+  \[\mathcal{L}\left( {y,\lambda } \right) = \int\limits_0^1 {{{\left( {y'\left( t \right)} \right)}^2}dt}  - \lambda \left[ {\int\limits_0^1 {\left\{ {y{{\left( t \right)}^2} - 1} \right\}dt} } \right] = \int\limits_0^1 {\left\{ {{{\left( {y'\left( t \right)} \right)}^2} - \lambda y{{\left( t \right)}^2} + \lambda } \right\}dt} \]
+  which we seek to minimize. To that end, define 
+  \[f(t, y, y') = {{{\left( {y'\left( t \right)} \right)}^2} - \lambda y{{\left( t \right)}^2} + \lambda }.\]
+  The EL equations are
+  \[ - 2\lambda y = {D_2}f = \frac{d}{{dx}}{D_3}f = \frac{d}{{dx}}\left( {2y'} \right) = 2y''.\]
+  Hence, the resulting ODE is given simply by $-y'' = \lambda y$, accompanied with the BC $y(0) = y(1) = 0$. 
+  \item Extremals can be found by solving the eigenvalue problem. To that end, we note that the operator $-\frac{d^2}{dx^2}$ accompanied with homogeneous boundary conditions is self-adjoint. Therefore, its eigenvalues are non-negative and real. We immediately see that zero cannot be an eigenvalue, for if $\lambda = 0$, then $y'' = 0$, so $y$ is linear, and after incorporating BC, we see that $y \equiv 0$, which does not satisfy the original integral constraint. The general solution is  
+  \[y\left( t \right) = A\cos \left( {\sqrt \lambda  t} \right) + B\sin \left( {\sqrt \lambda  t} \right).\]
+  BC imply $A = 0$ and 
+  \[y\left( 1 \right) = B\sin \left( {\sqrt \lambda  } \right) = 0 \implies \lambda  = {n^2}{\pi ^2},\qquad n =1, 2, \dots .\]
+  The coefficient $B$ is determined by satisfying the integral condition.
+  \[1 = \int\limits_0^1 {{y^2}}  = {B^2}\int\limits_0^1 {{{\sin }^2}\left( {n\pi t} \right)dt}  \implies  B =  \pm \sqrt 2 .\]
+  \item Make the observation 
+  \[y\left( t \right) = \sin \left( {n\pi t} \right) \Rightarrow y'\left( t \right) = n\pi \cos \left( {n\pi t} \right).\]
+  So, no matter which $n$ we pick, we will always be integrating $\cos^2(n\pi t)$, so the minimizer is the extremal with the smallest admissible $n$, that is, $n = 1$. So, the solution is $y(t) = \sqrt{2} \sin(\pi t)$. 
+  \item The best constant is the one attaining the bound, that is, the smallest eigenvalue. This means $C = \pi^{2}$. 
+\end{enumerate}
+
+
+
+\cbk 
+
+
+
+
+
+\begin{exercise}[10.9]
+  Find the $C^2$ curve that minimizes the functional 
+  \[\int\limits_0^1 \left\{ y(t)^2 + y'(t)^2 \right\}dt \]
+  subject to $y(0) = 0$, $y(1) = 1$ and the constraint 
+  \[\int\limits_0^1 y = 0\]
 \end{exercise}
 
 
