@@ -97,6 +97,20 @@ Homework 12
   \end{enumerate}
 \end{exercise}
 
+\cblu 
+
+\begin{enumerate}
+  \item Let \(f(x, y, y') = y^2 - yy'\). EL equation:
+  \[2y-y'=\left( -y \right)'\]
+  gives the extremals $y = 0$. 
+  \item For $y = 0$, $F(y) = 0$. However, the function $e^x - 1$ satisfies the boundary condition, and $F(e^x - 1)=2-e < 0$, so, $y = 0$ is not the minimizer. Since $y = 0$ is the only solution satisfying the EL equations, then we conclude that there is no minimum.  
+  \item Now, we have 
+  \[F(y) = \int\limits_0^1 \left\{ y^2 - (y^2/2)' \right\}dx = \int\limits_0^1 y^2 dx \geq 0. \]
+  And, the only function that attains zero is exactly $y = 0$, so it is the minimizer. 
+\end{enumerate}
+
+\cbk 
+
 \begin{exercise}[10.4]
   Minimize 
   \[F(y) = \int\limits_0^1 f(x, y(x), y'(x), y''(x)) dx\]
@@ -105,7 +119,7 @@ Homework 12
     \item Find a differential equation, similar to the EL equation, that must be satisfied by the minimum (if it exists). 
     \item Apply your equation to find the extremal(s) of 
     \[F(y) = \int\limits_0^1 \left( y''(x) \right)^2 dx,\]
-    where $y(0) = y'(0) = y'(1) = 0$, but $y(1) = 1$, and justify that each extremal is a (possibly non-strict) minimum. 
+    where $y(0) = y'(0) = y'(1) = 0$, but $y(1) = 1$, and justify that each extremal is a (possibly non-strict) minimum. \cred Show that $F$ is convex. 
   \end{enumerate}
 \end{exercise}
 
@@ -131,6 +145,7 @@ Homework 12
        &= {D_3}Fy'' + {D_2}Fy' - \left( {{D_2}Fy' + {D_3}fy''} \right) \hfill \\
        &= 0 
   \end{align*}
+  \item Seek to minimize 
 \end{enumerate}
 
 \cbk 
@@ -172,7 +187,7 @@ Homework 12
   \item Make the observation 
   \[y\left( t \right) = \sin \left( {n\pi t} \right) \Rightarrow y'\left( t \right) = n\pi \cos \left( {n\pi t} \right).\]
   So, no matter which $n$ we pick, we will always be integrating $\cos^2(n\pi t)$, so the minimizer is the extremal with the smallest admissible $n$, that is, $n = 1$. So, the solution is $y(t) = \sqrt{2} \sin(\pi t)$. 
-  \item The best constant is the one attaining the bound, that is, the smallest eigenvalue. This means $C = \pi^{-2}$. 
+  \item The best constant is the one attaining the bound, that is, the smallest eigenvalue. This means $C = \pi^{-1}$. 
 \end{enumerate}
 
 
@@ -190,7 +205,14 @@ Homework 12
   \[\int\limits_0^1 y = 0\]
 \end{exercise}
 
+\cblu 
 
+Let $f(t, y, y') = y^2 + (y')^2$.
+\[2y = \left( 2y' \right)'=2y'' \implies y''=y.\]
+
+\cbk 
+
+\cred check when the der of constr are zero.
 
 
 
