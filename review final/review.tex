@@ -160,8 +160,27 @@ Review
     \end{equation}
     The RHS tends to $0$ as $h \to 0$ in $X$. \cg Since $Df(x)$ is bounded, the first term on the right tends to zero trivially as $h \to 0$. Since $R(x,h)$ is $o(\|h\|)$, it means that $R(x,h)$ goes to zero faster than $h$ goes to zero. This implies, however, that if $h\to 0$, then also $R(x, h) \to 0$. A somewhat obvious fact. \cbk 
   \end{proof}
-  Having differentiability, namely \textit{strong} differentiability, at a point $x$ is more than enough to conclude that $f$ is continuous at $x$. A piecewise linear function may be continuous, but not differentiable at the interface points. 
-
+  Having differentiability, namely \textit{strong} differentiability, at a point $x$ is more than enough to conclude that $f$ is continuous at $x$. A piecewise linear function may be continuous, but not differentiable at the interface points. Strong differentiability allows us to conclude more: 
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{lemma}[Local Lipschitz Property]
+      If $f:U \to Y$ is differentiable at $x \in U$, then for every $\ve > 0$, there exists a $\delta = \delta(x, \ve) > 0$ such that for every $h$ with $\|h\|_X \leq \delta$, 
+      \[{\left\| {f\left( {x + h} \right) - f\left( x \right)} \right\|_Y} \leqslant \left( {{{\left\| {Df\left( x \right)} \right\|}_{B\left( {X,Y} \right)}} + \varepsilon } \right){\left\| h \right\|_X}.\]
+    \end{lemma} 
+  \end{tcolorbox}
+  \begin{proof}
+    We have 
+    \begin{equation}
+      f\left( {x + h} \right) - f\left( x \right) = Df\left( x \right)h + R\left( {x,h} \right).
+    \end{equation}
+    Since the remainder is $o(\|h\|)$, then for every $\ve > 0$, there exists a $\delta > 0$ such that 
+    \begin{equation}
+      \frac{{{{\left\| {R\left( {x,h} \right)} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} < \ve
+    \end{equation}
+    whenever $\|h\|_X < \delta$. \cg Definition of convergence of $\|R\| /\|h\| \to 0$. \cbk It follows then that 
+    \begin{equation}
+      {\left\| {f\left( {x + h} \right) - f\left( x \right)} \right\|_Y} = \left\| {Df\left( x \right)h + R\left( {x,h} \right)} \right\| \leqslant {\left\| {Df\left( x \right)} \right\|_{B\left( {X,Y} \right)}}{\left\| h \right\|_X} + \varepsilon {\left\| h \right\|_X}.
+    \end{equation}
+  \end{proof}
 
 
 \subsection{Fixed Points and Contractive Maps}
