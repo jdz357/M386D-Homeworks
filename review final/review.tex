@@ -181,6 +181,64 @@ Review
       {\left\| {f\left( {x + h} \right) - f\left( x \right)} \right\|_Y} = \left\| {Df\left( x \right)h + R\left( {x,h} \right)} \right\| \leqslant {\left\| {Df\left( x \right)} \right\|_{B\left( {X,Y} \right)}}{\left\| h \right\|_X} + \varepsilon {\left\| h \right\|_X}.
     \end{equation}
   \end{proof}
+  Even if $f$ is not strongly differentiable, it may still admit some kind of weaker derivative. The key here is that in the Fr\'echet derivative, we require the remainder goes to zero for all paths that take $\|h\|_X \to 0$. We now consider incrementing only in a specific direction $h$. Start with $f:U \to Y$, fix a direction $h \in X$, and consider the auxillary function 
+  \begin{equation}
+    g:\R \ni t \to g(t) := f(x + th) \in Y.
+  \end{equation}
+
+
+
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{prop}
+      \[f\text{ is Fr\'echet differentiable at }x \implies f\text{ is Gateaux differentiable at }x. \]
+    \end{prop}
+  \end{tcolorbox}
+
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{theorem}[Chain Rule]
+      Let $X, Y, Z$ be NLS's and $U\subset X$, $V\subset Y$ open, $f : U \to Y$ and $g : V \to Z$. Let $x \in U$ and $y = f(x) \in V$. Suppose that $g$ is Fr\'echet differentiable at $y$ and $f$ is Gateaux (or Fr\'echet) differentiable at $x$. Then the composition $g \circ f$ is Gateaux (or Fr\'echet) differentiable at $x$ with 
+      \[D(g\circ f)(x) = Dg(y) \circ Df(x)\]
+    \end{theorem}
+  \end{tcolorbox}
+
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{prop}[Mean Value Theorem for Curves]
+      Let $Y$ be an NLS and $\varphi : [a,b] \to Y$ be continuous, where $a < b$ are real numbers. Suppose $\varphi ' (t)$ exists on $(a,b)$ and $\|\varphi'(t)\|_{B(\R,Y)} \leq M$. Then 
+      \[\|\varphi(b) - \varphi(a)\|_Y \leq M(b-a).\]
+    \end{prop}
+  \end{tcolorbox}
+  \begin{proof}
+    Use a compactness argument. 
+  \end{proof}
+
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{theorem}[Mean Value Theorem]
+      Let $X,Y$ be NLS's, $U\subset X$ open. Let $f: U \to Y$ be Fr\'echet differentiable at all $x \in U$, and suppose that the line segment 
+      \[\ell = \left\{ tx_2 + (1-t)x_1 : t\in [0,1]\right\} \]
+      is contained in $U$. Then 
+      \[{\left\| {f\left( {{x_2}} \right) - f\left( {{x_1}} \right)} \right\|_Y} \leqslant \mathop {\sup }\limits_{x \in \ell } {\left\| {Df\left( x \right)} \right\|_{B\left( {X,Y} \right)}}{\left\| {{x_2} - {x_1}} \right\|_X}.\]
+    \end{theorem}
+  \end{tcolorbox}
+  \begin{proof}
+    Use the MVT for curves applied to the function $\varphi : [0,1]\to Y$, 
+    \[\varphi \left( t \right) = f\left( {\left( {1 - t} \right){x_1} + t{x_2}} \right) = f\left( {{x_1} + t\left( {{x_2} - {x_1}} \right)} \right) = f\left( {\gamma \left( t \right)} \right).\]
+  \end{proof}
+
+  \begin{definition}
+    Let $x$  
+  \end{definition}
+
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{prop}
+      Let $X = X_1 \oplus \dots \oplus X_m$ be the direct sum of NLS's, $U\subset X$ open, and $F : U \to Y$. 
+    \end{prop}
+  \end{tcolorbox}
+
+
+
+
+
+
 
 
 \subsection{Fixed Points and Contractive Maps}
