@@ -72,6 +72,7 @@
 \newcommand{\cbk}{\color{black}}
 \newcommand{\cred}{\color{red}}
 \newcommand{\cblu}{\color{blue}}
+\newcommand{\ve}{\varepsilon}
 \usepackage{libertine}            %% For fancy font
 \begin{document}
 %\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
@@ -82,26 +83,119 @@ Review
 \date{}
 \maketitle
 
+%\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+%  \begin{theorem}
+%    Here, we use the following notation: $\left( {{M^\alpha }f} \right)\left( x \right) = {x^\alpha }f\left( x \right)$.
+%    
+%    If $T\in \ScS'$ and $f \in \ScS$, then $T\ast f$ is smooth and polynomially bounded. 
+%  \end{theorem}
+%  \end{tcolorbox} 
 
-\section{Preliminaries}
+\section{Differential Calculus in Banach Spaces and the Calculus of Variations}
+\subsection{Differentiation}
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
-  \begin{theorem}
-    Here, we use the following notation: $\left( {{M^\alpha }f} \right)\left( x \right) = {x^\alpha }f\left( x \right)$.
-    
-    If $T\in \ScS'$ and $f \in \ScS$, then $T\ast f$ is smooth and polynomially bounded. 
-  \end{theorem}
+  Our goal will be to generalize the notion of the 1D derivative, in the context of results like the Mean Value Theorem and Taylor's Theorem. Let us start with what we know: the standard 1D definition of the derivative is
+  \begin{equation}
+    f'(x) = \lim_{h\to 0} \frac{f(x+h) - f(x)}{h},
+  \end{equation}
+  but it is not clear how $1/h$ will generalize in higher dimensions. Indeed, it makes no sense. We can, however, define a similar concept. 
+  \begin{definition}[Little o]
+    Let $X, Y$ be NLS's, $f : X \to Y$. If 
+    \[\lim_{h \to 0} \frac{\|f(h)\|_Y}{\|h\|_X} = 0,\]
+    we say that $f$ is ``little oh'' of $h$ and write 
+    \[\|f(h)\|_Y = o\left( \|h\|_X \right).\]
+  \end{definition}
+  \cg
+    Here, we have generalized the notion of $1/h$ to multiple dimensions by looking only at the norm of the increment and of the output. 
+  \cbk
+  We can now formulate a notion of the derivative.
+  \begin{definition}[Fr\'echet Derivative]
+    Let $X, Y$ NLS, $U\subset X$ open, $f: U \to Y$. We say that $f$ is Fr\'echet differentiable (or strongly differentiable) at a point $x \in U$ if and only if there exists a bounded linear map $A \in B(X, Y)$ such that the remainder
+    \[R(x,h) := f(x+h) - f(x) - Ah\]
+    is $o\left( \|h\|_X \right)$. That is, 
+    \[\lim_{h\to 0}\frac{\|R(x,h)\|_Y}{\|h\|_X} = 0.\]
+  \end{definition}
+  If $A$ exists, we call $A$ the Fr\'echet derivative of $f$ at $x$, denoted $Df(x)$. Note that by construction, $A = Df(x)$ is a linear operator on $h$. 
+  The definition of the Fr\'echet derivative is consistent with the one dimensional analogue. For $f \in C^1 (\R)$, 
+  \begin{equation}
+    R\left( {x,h} \right) = f\left( {x + h} \right) - f\left( x \right) - f'\left( x \right)h = \left[ {\frac{{f\left( {x + h} \right) - f\left( x \right)}}{h} - f'\left( x \right)} \right]h,
+  \end{equation}
+  and 
+  \begin{equation}
+    \mathop {\lim }\limits_{h \to 0} \frac{{\left| {R\left( {x,h} \right)} \right|}}{{\left| h \right|}} = \mathop {\lim }\limits_{h \to 0} \left[ {\frac{{f\left( {x + h} \right) - f\left( x \right)}}{h} - f'\left( x \right)} \right] = 0.
+  \end{equation}
+  More generally, the map $Df$ (as contrasted with $Df(x)$) can be regarded as a map $Df: U\times X \ni (x, h) \to Df(x)h \in Y$. 
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{prop}
+      If $f$ is Fr\'echet differentiable, then $Df(x)$ is unique, and $f$ is continuous at $x$. Moreover, if $g$ is Fr\'echet differentiable, then for every $\alpha, \beta \in \mathbb F$, 
+      \[D\left( \alpha f + \beta g \right)(x) = \alpha Df(x) + \beta Dg(x).\]
+      (That is to say, the operator $D$ taking functions $f \mapsto Df$ is linear.) 
+    \end{prop}
   \end{tcolorbox}
-  
-  
+  \begin{proof}
+    Suppose that there are two derivatives at $x$, $A, B \in B(X, Y)$. Define the two remainders
+    \begin{equation}
+      \begin{gathered}
+        {R_A}\left( {x,h} \right) = f\left( {x + h} \right) - f\left( x \right) - Ah \hfill \\[.2cm]
+        {R_B}\left( {x,h} \right) = f\left( {x + h} \right) - f\left( x \right) - Bh. 
+      \end{gathered} 
+    \end{equation}
+    By assumption, both $R_A(x,h) = o\left( \|h\|_X \right)$ and $R_B(x, h) = o\left( \|h\|_X \right)$. Now we show that in fact, $A = B$. 
+    \begin{equation}
+      \begin{split}
+        {\left\| {A - B} \right\|_{B\left( {X,Y} \right)}} &= \cred \mathop {\sup }\limits_{\left\| h \right\| = \varepsilon }\cbk  \frac{{{{\left\| {Ah - Bh} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} \hfill \\[.2cm]
+        &= \mathop {\sup }\limits_{\left\| h \right\| = \varepsilon } \frac{{{{\left\| {Ah - Bh} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} \hfill \\[.2cm]
+        &= \mathop {\sup }\limits_{\left\| h \right\| = \varepsilon } \frac{{{{\left\| {{R_A}\left( {x,h} \right) - {R_B}\left( {x,h} \right)} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} \hfill \\[.2cm]
+        &\leqslant \mathop {\sup }\limits_{\left\| h \right\| = \varepsilon } \frac{{{{\left\| {{R_A}\left( {x,h} \right)} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} + \mathop {\sup }\limits_{\left\| h \right\| = \varepsilon } \frac{{{{\left\| {{R_B}\left( {x,h} \right)} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} .
+      \end{split}
+    \end{equation}
+    \cred Is this the right definition of the norm on $B(X,Y)$? \cbk The RHS can be made small as $\ve \to 0$. \cred Really? I thought the operator norm doesn't depend on this...\cbk Indeed, the argument of the supremum goes to zero as $\|h\| \to 0$ by the $o(\|h\|_X)$ assumption. Thus, $A = B = Df(x)$ is unique. 
+    To prove that $f$ is continuous at $x$, we have 
+    \begin{equation}
+      \begin{split}
+          {\left\| {f\left( {x + h} \right) - f\left( x \right)} \right\|_Y}& = {\left\| {Df\left( x \right)h + R\left( {x,h} \right)} \right\|_Y} \hfill \\[.2cm]
+           &\leqslant {\left\| {Df\left( x \right)h} \right\|_Y} + {\left\| {R\left( {x,h} \right)} \right\|_Y} \hfill \\[.2cm]
+           &\leqslant {\left\| {Df\left( x \right)} \right\|_{B\left( {X,Y} \right)}}{\left\| h \right\|_X} + {\left\| {R\left( {x,h} \right)} \right\|_Y}.
+      \end{split}
+    \end{equation}
+    The RHS tends to $0$ as $h \to 0$ in $X$. \cg Since $Df(x)$ is bounded, the first term on the right tends to zero trivially as $h \to 0$. Since $R(x,h)$ is $o(\|h\|)$, it means that $R(x,h)$ goes to zero faster than $h$ goes to zero. This implies, however, that if $h\to 0$, then also $R(x, h) \to 0$. A somewhat obvious fact. \cbk 
+  \end{proof}
+  Having differentiability, namely \textit{strong} differentiability, at a point $x$ is more than enough to conclude that $f$ is continuous at $x$. A piecewise linear function may be continuous, but not differentiable at the interface points. 
+
+
+
+\subsection{Fixed Points and Contractive Maps}
+
+
+
+\subsection{Nonlinear Equations}
 
 
 
 
 
+\subsection{Higher Derivatives}
 
-\newpage\section{Differential Calculus in Banach Spaces}
-\newpage\section{Calculus of Variations }
+
+
+
+
+\subsection{Extrema}
+
+
+
+
+
+\subsection{Euler-Lagrange Equations}
+
+
+
+
+
+\subsection{Constrained Extrema and Lagrange Multipliers}
+
+
+
 
 
 \end{document}
