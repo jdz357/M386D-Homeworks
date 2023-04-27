@@ -73,6 +73,7 @@
 \newcommand{\cred}{\color{red}}
 \newcommand{\cblu}{\color{blue}}
 \newcommand{\ve}{\varepsilon}
+\newcommand{\inv}{^{-1}}
 \usepackage{libertine}            %% For fancy font
 \begin{document}
 %\fontfamily{ptm}\selectfont     %% TO SELECT THE FONT
@@ -246,10 +247,85 @@ Review
 
 \subsection{Fixed Points and Contractive Maps}
 
+  \begin{definition}[Contraction Map, Fixed Point]
+    Let $(X,d)$ be a metric space, $G:X\to X$. We say that the mapping $G$ is a contraction if and only if there exists a \(theta\), \(0 \leq \theta < 1\) such that 
+    \[d\left( G(x), G(y) \right) \leq \theta d(x, y)\]
+    for every $x, y \in X$. We say that a point $x \in X$ is a fixed point of the mapping $G$ if and only if $x = G(x)$. 
+  \end{definition}
+  The definition of a contraction immediately implies that every contraction is Lipschitz continuous with Lipschitz constant strictly smaller than 1. 
+
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{theorem}[Banach Contraction Mapping Theorem]
+      Let \((X,d)\) be a complete metric space and \(G\) a contraction on \(X\). Then there is a unique fixed point of \(G\) in $X$. 
+    \end{theorem}
+  \end{tcolorbox}
+  \begin{proof}
+    Uniqueness: go by contradition, then you would get \(x=y\). 
+    Existence: Fix $x_0 \in X$. Consider the sequence \(x_n = G(x_{n-1})\). Claim: $x_n$ is a Cauchy sequence. Observe that 
+    \[d(x_1, x_2) = d(G(x_0), G(x_1))\leq \theta d(x_0, x_1)\]
+    and proceed by induction. Then you find out 
+    \[d(x_n, x_{n+1}) \leq \theta^n d(x_0, x_1).\] 
+    Then for $n \geq 0$, $m > n$, 
+    \begin{align*}
+      d(x_n, x_m) &\leq d(x_n, x_{n+1}) + d(x_{n+1}, x_{n+2}) + \dots + d(x_{m-1}, x_m)\\
+      &\leq \left( \theta^n  + \dots + \theta^{m-1} \right) d\left( x_0, x_1 \right)\\
+      &=\theta^n \left( 1 + \theta + \dots + \theta^{m-n-1} \right)d(x_0, x_1)\\
+      &\leq \frac{\theta^n}{1-\theta}d(x_0, x_1).
+    \end{align*}
+    Then since $X$ is complete, the Cauchy sequence \(x_n\) converges to the limit, the fixed point. 
+  \end{proof}
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{corollary}[Fixed Point Iteration]
+      Let the assumptions of Theorem 1.4 hold. Suppose that \(G\) has a contraction constant \(\theta\), and let $x_0 \in X$. Then, if the sequence $x_n$ is defined successively by \(x_{n+1} = G(x_n)\), then \(x_n \to x\), where $x$ is the unique fixed point of \(G\) in \(X\). Moreover, 
+      \[d(x_n, x) \leq \frac{\theta^n}{1-\theta}d(x_0, x_1).\]
+    \end{corollary}
+  \end{tcolorbox}
+  Usually, the metric space \(X\) will be the space of continuous functions. For nonlinear equations, you may have to restrict yourself to a ball, $B_r(0) \subset X = C^0([0,T])$, or something similar. Once you take the closed ball, you have still a metric space, so everything else still works. 
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{corollary}
+      Let \(X\) be a Banach space and \(f: X \to X\) a differentiable mapping. Suppose that $\|Df(x)\|_{B(X,X)} \leq \kappa < 1$ for $x \in \overline{B_R(0)}$. If there is an $x_0 \in B_R(0)$ such that \(\overline{B_r(x_0)}\subset B_R(0)\) for some $r \geq \|f(x_0) - x_0\|/(1-\kappa)$, then \(f\) has a unique fixed point in \(\overline{B_r(x_0)}\).  
+    \end{corollary}
+  \end{tcolorbox}
+  That is to say, a map \(f\) which is \textit{locally contractive}, and for which we can find a point that is not too far moved by \(f\), has a fixed point which may be obtained by the sequence \(x_{n+1} = f(x_n)\). 
+
+
+
+
+
+
 
 
 \subsection{Nonlinear Equations}
-
+  We have seen that the basic tool for proving the existence and uniqueness of nonlinear equations is the contraction mapping theorem. We consider now the more general problem of solving \(f(x) = y\), where $f:X\to Y$ and \(X, Y\) are Banach spaces. 
+  Solving \(f(x) = y\) is equivalent to solving for the fixed point of the operator 
+  \[G(x) = x - T_x(f(x) - y).\]
+  where \(T_x : Y \to X\) vanishes only at $0$.
+  \cg \(x = G(x) \implies 0 = T_x(f(x) - y)\implies f(x) =y. \)\cbk 
+  If \(T\) is independent of \(x\), then we also have 
+  \[DG(x) = I - T\circ Df(x).\]
+  If $\|DG(x)\|\leq \kappa < 1$, that is, if we can select such a $T$ to make the operator norm less than one, then we can apply the result of Corollary 1.4.2 in an attempt to find a fixed point. The result is 
+  \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+    \begin{theorem}[Simplified Newton Method]
+      Let \(X, Y\) Banach, \(f:X\to Y\) a differentiable mapping. Suppose that \(A=Df(x_0)\) has a bounded inverse, and that 
+      \[\|I-A\inv Df(x)\| \leq \kappa <1\]
+      for every $x \in B_r(x_0)$ for some $r>0$. Let 
+      \[\delta = \frac{(1-\kappa)r}{\|A\inv\|_{B(Y,x)}}.\]
+      Then the equation $f(x) = y$ has a uniue solution \(x\in B_r(x_0)\)whenever \(y\in B_{\delta}(f(x_0))\).
+    \end{theorem}
+  \end{tcolorbox}
+  \begin{proof}
+    Let \(y\in B_{\delta}(f(x_0))\) be given, define a mapping 
+    \[g_y:X \to X, \qquad x \longmapsto x - A\inv(f(x)-y).\]
+    Note that $f(x) = y$ if and only if $g_y(x) = x$. \cg Same argument as previous. If $A$ is invertible, then $A\inv$ vanishes only at zero. \cbk Notice also that since $A\inv$ is independent of \(x\), we have 
+    \[Dg_y(x) = I - A\inv Df(x).\]
+    By assumption, we have that $\|Dg_y(x)\| = \|I - A\inv Df(x)\| \leq \kappa$ for $x \in B_r(x_0)$, so \(g_y\) is a contraction on \(\overline{B_r(x_0)}\). What remains to show is that $g_y$ takes $B_r(x_0)$ into itself. But with our constructions of $y, \delta$, \cred revisit this...f(x0) not f(x)! 
+    \begin{align*}
+      \|g_y(x) - x_0\| &\leq \|g_y(x) - g_y(x_0)\| + \|g_y(x_0) - x_0\| \\
+      &\leq \dots \\
+      &\leq r.
+    \end{align*} \cbk 
+    The contraction map theorem now implies the existence of a unique solution in the ball. 
+  \end{proof}
 
 
 
