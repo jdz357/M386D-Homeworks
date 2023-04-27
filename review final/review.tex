@@ -149,7 +149,7 @@ Review
         &\leqslant \mathop {\sup }\limits_{\left\| h \right\| = \varepsilon } \frac{{{{\left\| {{R_A}\left( {x,h} \right)} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} + \mathop {\sup }\limits_{\left\| h \right\| = \varepsilon } \frac{{{{\left\| {{R_B}\left( {x,h} \right)} \right\|}_Y}}}{{{{\left\| h \right\|}_X}}} .
       \end{split}
     \end{equation}
-    \cred Is this the right definition of the norm on $B(X,Y)$? \cbk The RHS can be made small as $\ve \to 0$. \cred Really? I thought the operator norm doesn't depend on this...\cbk Indeed, the argument of the supremum goes to zero as $\|h\| \to 0$ by the $o(\|h\|_X)$ assumption. Thus, $A = B = Df(x)$ is unique. 
+    \cred Is this the right definition of the norm on $B(X,Y)$? \cbk The RHS can be made small as $\ve \to 0$. Indeed, the argument of the supremum goes to zero as $\|h\| \to 0$ by the $o(\|h\|_X)$ assumption. Thus, $A = B = Df(x)$ is unique. 
     To prove that $f$ is continuous at $x$, we have 
     \begin{equation}
       \begin{split}
@@ -225,12 +225,15 @@ Review
   \end{proof}
 
   \begin{definition}
-    Let $x$  
+    Let $X = X_1 \oplus \dots \oplus X_m$. Let $U \subset X$ open, $F:U\to Y$, $Y$ NLS. Let $x = (x_1, \dots, x_m)\in U$ and fix an integer $k \in [1,m]$. For $z$ near $x_k$ (k-th component) in space $X_k$, the point $(x_1, \dots, x_{k-1}, z, x_{k+1}, \dots, x_m) \in U$ since $U$ is open. Define now 
+    \[f_k(z) = F(x_1, \dots, x_{k-1}, z, x_{k+1}, \dots, x_m).\]
+    Then $f_k$ maps an open set in $X_k$ to $Y$. If $f_k$ has a Fr\'echet derivative at $z=x_k$, then we say that the original $F$ has a k-th partial derivative at $x$ and define $D_kF(x) := Df_k (x_k)$. Notice that $D_kF(x) = Df_k (x_k) \in B(X_k, Y)$. 
   \end{definition}
 
   \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
     \begin{prop}
-      Let $X = X_1 \oplus \dots \oplus X_m$ be the direct sum of NLS's, $U\subset X$ open, and $F : U \to Y$. 
+      Let $X = X_1 \oplus \dots \oplus X_m$ be the direct sum of NLS's, $U\subset X$ open, and $F : U \to Y$, $Y$ an NLS. Suppose that all partial derivatives $D_jF(x)$ exist for $x \in U$ and $j \in [1,m]$, and that these maps are continuous as a function of $x$ at some $x_0 \in U$. Then, $F$ is Fr\'echet differentiable at $x_0$ and for an increment $h = (h_1, \dots, h_m) \in X$, 
+      \[DF(x_0)h = \sum_{j = 1}^{m}D_jF(x_0)h_j.\]
     \end{prop}
   \end{tcolorbox}
 
