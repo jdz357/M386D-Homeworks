@@ -119,9 +119,47 @@ Homework 12
     \item Find a differential equation, similar to the EL equation, that must be satisfied by the minimum (if it exists). 
     \item Apply your equation to find the extremal(s) of 
     \[F(y) = \int\limits_0^1 \left( y''(x) \right)^2 dx,\]
-    where $y(0) = y'(0) = y'(1) = 0$, but $y(1) = 1$, and justify that each extremal is a (possibly non-strict) minimum. \cred Show that $F$ is convex. 
+    where $y(0) = y'(0) = y'(1) = 0$, but $y(1) = 1$, and justify that each extremal is a (possibly non-strict) minimum. 
   \end{enumerate}
 \end{exercise}
+
+\cblu 
+  We go through the exact same steps as in the text to derive the ordinary EL equations. Let $A$ be defined as 
+  \[Ah = \int\limits_0^1 D_2f h + D_3f h' + D_4f h''.\]
+  which is a bounded linear functional on $C^2$ with the norm $\|h\| = \max(\|h\|_{\infty}, \|h'\|_{\infty}, \|h''\|_{\infty})$. 
+  We show now that $A$ is indeed the Frechet derivative. We have 
+  \[\begin{gathered}
+    \left| {F\left( {y + h} \right) - F\left( y \right) - Ah} \right| \leqslant \int\limits_0^1 {\int\limits_0^1 {\left| {{D_2}f\left( {x,y + th,y' + th',y'' + th''} \right) - {D_2}f\left( {x,y,y',y''} \right)} \right|dtdx} }  \hfill \\
+     \quad\quad\quad \qquad \qquad + \int\limits_0^1 {\int\limits_0^1 {\left| {{D_3}f\left( {x,y + th,y' + th',y'' + th''} \right) - {D_3}f\left( {x,y,y',y''} \right)} \right|dtdx} }  \hfill \\
+     \,\,\qquad \qquad + \int\limits_0^1 {\int\limits_0^1 {\left| {{D_4}f\left( {x,y + th,y' + th',y'' + th''} \right) - {D_4}f\left( {x,y,y',y''} \right)} \right|dtdx} } 
+  \end{gathered} \]
+  Since $D_2f$, $D_3f$, and $D_4f$ are uniformly continuous on compact sets, the right hand side is $o(\|h\|)$ and so $DF(y) = A$. 
+
+  To show that $A$ is continuous, we use the uniform continuity of $D_2f, D_3f, D_4f$ and for $\|k\| \leq 1$, 
+  \[\begin{gathered}
+    \left| {DF\left( {y + h} \right)k - DF\left( y \right)k} \right| \leqslant \int\limits_0^1 {\left| {\left\{ {{D_2}f\left( {x,y + h,y' + h',y'' + h''} \right) - {D_2}f\left( {x,y,y',y''} \right)} \right\}k} \right|dx}   \\
+     + \int\limits_0^1 {\left| {\left\{ {{D_3}f\left( {x,y + h,y' + h',y'' + h''} \right) - {D_3}f\left( {x,y,y',y''} \right)} \right\}k'} \right|dx} \\
+     + \int\limits_0^1 {\left| {\left\{ {{D_4}f\left( {x,y + h,y' + h',y'' + h''} \right) - {D_4}f\left( {x,y,y',y''} \right)} \right\}k''} \right|dx}  
+  \end{gathered} \]
+  which tends to zero as $\|h\| \to 0$. 
+
+  Now we develop the ODE: for $h \in C_0^2$, 
+  \begin{align*}
+      Ah &= \int\limits_0^1 {{D_2}fh + {D_3}fh' + {D_4}fh''}  \hfill \\
+       &= \int\limits_0^1 {\left( {{D_2}f - {{\left( {{D_3}f} \right)}^\prime } + {{\left( {{D_4}f} \right)}^{\prime \prime }}} \right)hdx}  + \left[ {\left( {{D_3}f - {{\left( {{D_4}f} \right)}^\prime }} \right)h} \right]_0^1 + \left[ {{D_3}fh'} \right]_0^1 
+  \end{align*}
+  so, the ODE is 
+  \[{{D_2}f - {{\left( {{D_3}f} \right)}^\prime } + {{\left( {{D_4}f} \right)}^{\prime \prime }}}=0.\]
+
+  If we apply this result to
+  \[F(y) = \int\limits_0^1 \left( y''(x) \right)^2 dx,\]
+  we see that the ODE reduces to 
+  \[y^{(iv) = 0}\]
+  Thus, $y$ is the cubic polynomial that matches the boundary conditions. (That is, $y = p$.) Elementary calculation gives 
+  \[p = y = -2x^3 + 3x^2.\]
+  Moreover, we know that the extremal is a possibly non-strict minimum since $F$ is convex (can be easily seen since $x^2$ is convex),
+  \[F\left( {\lambda y + \left( {1 - \lambda } \right)z} \right) = \int\limits_0^1 {{{\left( {\lambda y'' + \left( {1 - \lambda } \right)z''} \right)}^2}}  \leqslant \lambda F\left( y \right) + \left( {1 - \lambda } \right)F\left( z \right)\]
+\cbk 
 
 
 
@@ -146,6 +184,19 @@ Homework 12
        &= 0 
   \end{align*}
   \item Seek to minimize 
+  \[A\left( y \right) = \int\limits_0^1 {2\pi y\sqrt {1 + {{\left( {y'} \right)}^2}} dx} .\]
+  Note that $D_3^2f \neq 0$ unless $y = 0$, and clearly $y(x) > 0$, so we have regular extremals. Now, we can use the Theorem when the integrand depends only on the second and third variables, 
+  \[2\pi y\frac{{{{y'}^2}}}{{\sqrt {1 + {{\left( {y'} \right)}^2}} }} - 2\pi y\sqrt {1 + {{\left( {y'} \right)}^2}}  = {D_3}fy' - f = 2\pi C\]
+  which implies 
+  \[y' = \frac{1}{C}\sqrt{y^2 - C^2}.\]
+  Separate variables and integrate, (following the problem in the text) gives the solution 
+  \[y\left( x \right) = C\cosh \left( {x/C + \lambda } \right).\]
+  The boundary conditons give the values for the two constants: 
+  \[\begin{gathered}
+    y\left( 0 \right) = C\cosh \left( \lambda  \right) = 1 \hfill \\
+    y\left( 1 \right) = C\cosh \left( {1/C + \lambda } \right) = \cosh 1 
+  \end{gathered} \]
+  for which $C = 1$, $\lambda = 0$ is a solution. 
 \end{enumerate}
 
 \cbk 
@@ -206,13 +257,20 @@ Homework 12
 \end{exercise}
 
 \cblu 
+Lagrangian: 
+\[L\left( {y,\lambda } \right) = \int\limits_0^1 {{y^2} + {{\left( {y'} \right)}^2} - \lambda y} \]
+EL equations: 
+\[2y - \lambda  = {D_2}f = {\left( {{D_3}f} \right)^\prime } = {\left( {2y'} \right)^\prime } = 2y''\]
+whose solution is the function 
+\[y =  - \frac{{{{{e}}^{ - x}}\left( { - 1 + {{{e}}^x}} \right)\left( { - 2{{e}} + \lambda {{e}} - \lambda {{{e}}^2} - \lambda {{{e}}^x} - 2{{{e}}^{1 + x}} + \lambda {{{e}}^{1 + x}}} \right)}}{{2\left( { - 1 + {{{e}}^2}} \right)}}.\]
+The integral constraint gives the value for the Lagrange multiplier, 
+\[\lambda = \frac{2(e-1)}{e-3}.\]
 
-Let $f(t, y, y') = y^2 + (y')^2$.
-\[2y = \left( 2y' \right)'=2y'' \implies y''=y.\]
+We check also when the derivatives of the constraints are zero, but this gives a trivial solution which does not satisfy the original problem. 
 
 \cbk 
 
-\cred check when the der of constr are zero.
+
 
 
 
