@@ -335,39 +335,75 @@ Review
       \end{enumerate}
       for every \(x_1, x_2 \in B_r(x_0)\). Let \(y\in Y\), and set 
       \[\ve = \|A\inv (f(x_0)-y)\|_X.\]
-
+      For any \(y\) such that 
+      \[\ve \leq r/2, \qquad 4\ve \kappa \|A\inv\|_{B(Y,X)}\leq 1,\]
+      the equation \(f(x) = y\) has a unique solution in \(B_r(x_0)\). Moreover, the solution is the limit of the iterations 
+      \[x_{k+1} = x_k - Df(x_k)\inv (f(x_k)-y).\]
+      The convergence is asymtpotically quadratic, that is 
+      \[\|x_{k+1}-x_k\|\leq C\|x_k-x_{k-1}\|^2\]
+      for large $k$. 
     \end{theorem}
   \end{tcolorbox}
 
   \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
     \begin{theorem}[Inverse Function Theorem I]
-      
+      Let the hypotheses of the Simplified Newton Method hold. Then the inverse mapping $f\inv : B_{\delta}(f(x_0)) \to B_r(x_0)$ is Lipschitz. 
     \end{theorem}
   \end{tcolorbox}
+  \begin{proof}
+    Consider two points $y_1, y_2$ such that $f(x_i) = y_i$. Then estimate
+    \begin{align*}
+      \|f\inv (y_1) - f\inv (y_2)\| &= \|x_1-x_2\| \\
+      &= \|g_y(x_1)- g_y(x_2) + A\inv(f(x_2)-f(x_1))\| \\
+      &\leq \kappa \|x_1 - x_2\| + \|A\inv\| \|y_2-y_1\|.
+    \end{align*}
+    So, \(f\inv\) is Lipschitz with at worst constant \(\|A\inv\|/(1-\kappa)\).
+  \end{proof}
 
   \begin{definition}[Diffeomorphism]
-    
+    Let \(X,Y\) be Banach spaces, \(U\subset X\) open, \(V\subset Y\) open. Let $f:U\to V$ be 1-1 and onto. We say that \(f\) is a diffeomorphism on $U$ (equivalently, that $U$ is diffeomorphic to $V$) if and only if both \(f\) and \(f\inv\) are $C^1$. That is, the maps 
+    \[x \mapsto Df(x)\qquad y \mapsto Df\inv(y)\]
+    are continuous from $U$ to $B(X, Y)$ and from $V$ into $B(Y, X)$ respectively.
   \end{definition}
   
   \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
     \begin{theorem}[Inverse Function Theorem II]
-      
+      Let \(X, Y\) be Banach. Let \(x_0 \in X\) be such that \(f\) is $C^1$ in a neighborhood of \(x_0\) and $Df(x_0)$ is an isomorphism. 
+
+      Then there is an open set $U \subset X$, $x_0 \in U$, and an open set $V\subset Y$, $f(x_0) \in V$ such that $f:U\to V$ is a diffeomorphism. Moreover, for $y \in V$, $x \in U$, $y = f(x)$, we have 
+      \[D(f\inv)(y) = (Df(x))\inv.\]
     \end{theorem}
   \end{tcolorbox}
 
   \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
     \begin{lemma}
-      
+      Let $X, Y$ Banach. Then $GL(X, Y)$ is an open subset of $B(X, Y)$. If $GL(X, Y)$ is nonempty, then the mapping $J_{X,Y}: GL(X, Y) \ni A \to A\inv \in GL(Y, X)$ is 1-1, onto, and continuous. 
     \end{lemma}
   \end{tcolorbox}
 
   \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
     \begin{theorem}[Implicit Function Theorem]
-      
+      Let \(X, Y, Z\) be Banach spaces. Suppose that 
+      \begin{itemize}
+        \item $f:Z\times X \to Y$ is a $C^1$ mapping defined at least in the neighborhood of a point $(z_0, x_0)$. 
+        \item Let $y_0 = f(z_0, x_0)$.
+        \item $D_xf(z_0, x_0) \in GL(X, Y)$.
+      \end{itemize}
+      Then there exist open sets 
+      \begin{enumerate}
+        \item $z_0 \in W\subset Z$,
+        \item $x_0 \in U \subset X$, 
+        \item $y_0 \in V\subset Y$
+      \end{enumerate}
+      and a unique mapping $g : W \times V \to U$ such that $f(z, g(z, y)) = y$ for all $(z, y) \in W \times V$. Moreover, $g$ is $C^1$ and with $x = g(z, y)$, 
+      \[Dg(z, y)(\eta, \zeta) = D_xf(z, x)\inv \left( \zeta - D_zf(z, x)\eta \right)\]
+      for all $(z, y) \in W \times V$ and $(\eta, \zeta) \in Z \times Y$. 
     \end{theorem}
   \end{tcolorbox}
+  If $Z = \left\{ 0 \right\}$ is the trivial Banach space, then we recover the Inverse Function Theorem. 
+
   \begin{corollary}
-    
+    Let $f$ be as in the Implicit Function Theorem. Then, there is a unique $C^1$ branch of solutions to the equation $f(z, x) = y_0$ in a neighborhood of $(z_0, x_0)$. 
   \end{corollary}
 
 
